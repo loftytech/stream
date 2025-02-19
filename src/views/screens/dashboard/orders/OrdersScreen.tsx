@@ -1,16 +1,10 @@
 import { useNavigate } from 'react-router-dom'
-import DashboardHeader from '../../components/dashboardHeader/DashboardHeader'
-import { HeaderContainer, HeaderStats, RecentOrders, TopSection, Wrapper } from './styles'
-import useOrderModel from './orders/useOrderModel'
-import { useEffect } from 'react'
+import DashboardHeader from '../../../components/dashboardHeader/DashboardHeader'
+import { HeaderContainer, HeaderStats, RecentOrders, Wrapper } from './styles'
+import { HiOutlineSearch } from 'react-icons/hi'
 
-const DashboardScreen: React.FC = () => {
-    const orderModel = useOrderModel()
+const OrdersScreen: React.FC = () => {
     const navigate = useNavigate()
-
-    useEffect(() => {
-        orderModel.fetchOrders()
-    }, [])
 
     return (
         <Wrapper>
@@ -43,48 +37,18 @@ const DashboardScreen: React.FC = () => {
                 </div>
             </HeaderContainer>
 
-            <TopSection>
-                <div className="col-1">
-                    <div className="stats">
-                        <h5>Prices Chart</h5>
-                        <h2>5.987,34</h2>
-                        <h6>Secondary text</h6>
-
-                        <svg viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <circle cx="10.214" cy="10.214" r="10.214" fill="#BDBDBD"/>
-                            <rect x="8.51172" y="7.94434" width="3.40465" height="9.07905" rx="1.70232" fill="white"/>
-                            <rect x="8.51172" y="3.40479" width="3.40465" height="3.40465" rx="1.70232" fill="white"/>
-                        </svg>
-                    </div>
-
-                    <div className="graph">
-                        <img src="/assets/img/chart-img.png" alt="" />
-                    </div>
-
-                </div>
-                <div className="col-2">
-                    <h2>Payment List</h2>
-
-                    <ul className="table-head">
-                        <li>Entry date</li>
-                        <li>Amount</li>
-                        <li>Currency</li>
-                        <li>Reference</li>
-                        <li>Status</li>
-                    </ul>
-
-                    <ul className="table-row">
-                        <li>05-Mar-2024</li>
-                        <li>11,825,825.00</li>
-                        <li>NGN</li>
-                        <li>GTN24004</li>
-                        <li><span>Payment confirmed</span></li>
-                    </ul>
-                </div>
-            </TopSection>
-
             <RecentOrders>
-                <h2>Recent Orders</h2>
+                <div className="search">
+                    <HiOutlineSearch />
+                    <input type="text" placeholder="Search for an order" />
+                </div>
+                <div className="table-top-head">
+                    <h2>All Orders (1,293)</h2>
+
+                    <select name="" id="">
+                        <option value="none">filter</option>
+                    </select>
+                </div>
                 <div className="table">
                     <ul className="table-head">
                         <li>Order Date</li>
@@ -119,4 +83,4 @@ const DashboardScreen: React.FC = () => {
     )
 }
 
-export default DashboardScreen
+export default OrdersScreen

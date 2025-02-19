@@ -57,8 +57,8 @@ const Sidebar: React.FC = () => {
                                 <span>Overview</span>
                              </Link>
                         </MenuItems>
-                        <MenuItems $isActive={location.pathname === "/dashboard/apps" ? true : false}>
-                            <Link onClick={() => dispatch(setNavigation({dashboard: false}))} to="/dashboard/apps">
+                        <MenuItems $isActive={location.pathname === "/dashboard/orders" ? true : false}>
+                            <Link onClick={() => dispatch(setNavigation({dashboard: false}))} to="/dashboard/orders">
                                 <HiOutlineCash />
                                 <span>Orders</span>
                             </Link>

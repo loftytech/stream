@@ -2,10 +2,14 @@ import { useState } from "react";
 import AxiosCall from "../../../utils/axios";
 import Message from "../../components/message/Message";
 import { useNavigate } from "react-router-dom";
+import { useAppDispatch, useAppSelector } from "../../../hooks/hooks";
+import { setProfile } from "../../../slices/profileSlice";
 
 const useAuthModel = () => {
     const [isSigningUp, setIsSigningUp] = useState(false)
     const [isSigningIn, setIsSigningIn] = useState(false)
+    const userProfile: any = useAppSelector(state => state.profile.state);
+    const dispatch = useAppDispatch()
 
     const navigation = useNavigate()
 
@@ -43,12 +47,20 @@ const useAuthModel = () => {
             });
 
             setIsSigningIn(false)
-            if (res.success) {
-                localStorage.setItem("authToken", res.accessToken)
+            if (res.status == "success") {
+                localStorage.setItem("authToken", res.data.accessToken)
+                localStorage.setItem("user_id", res.data.id)
+                navigation("/dashboard")
+
+                dispatch(setProfile({
+                    email: res.data.email,
+                    name: res.data.name,
+                    phone: res.data.phone,
+                    fetchedProfile: true,
+                }))
 
                 Message.success("Signin in successfull")
 
-                window.location.href = "https://fletch.coralscale.com?access_token=" + res.accessToken
             } else {
                 Message.error(res.message)
             }
@@ -161,10 +173,36 @@ const useAuthModel = () => {
         }
     }
 
+    const fetchProfile = async () => {
+        if (userProfile.fetchedProfile) {
+            return;
+        }
+        try {
+            const userId = localStorage.getItem('user_id')
+            const res = await AxiosCall({
+                method: "GET",
+                path: "/v1/user/" + userId
+            });
+            if (res.status == "success") {
+                dispatch(setProfile({
+                    email: res.data.user.email,
+                    name: res.data.user.name,
+                    phone: res.data.user.phone,
+                    balance: res.data.user.balance
+                }))
+            } else {
+                Message.error(res.message)
+            }
+        } catch (err: any) {
+            Message.error(err?.response.data.message)
+        }
+    }
+
 
     return {
         signup,
         signin,
+        fetchProfile,
         isSigningIn,
         isSigningUp,
         isFetchingInstallToken,

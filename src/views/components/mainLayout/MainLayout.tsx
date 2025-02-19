@@ -1,23 +1,15 @@
 import React, { useEffect } from 'react'
 import { Content, MainLayoutWrapper } from './styles'
-import DashboardHeader from '../dashboardHeader/DashboardHeader';
-import { useAppDispatch, useAppSelector } from '../../../hooks/hooks';
 import Sidebar from '../sidebar/Sidebar';
-import { fetchProfileAction } from '../../../actions/profileAction';
-import { useLocation } from 'react-router-dom';
 
-const MainLayout: React.FC<{title?: String, children: React.ReactNode}> = ({title, children}) => {
+import { useLocation } from 'react-router-dom';
+import useAuthModel from '../../screens/auth/useAuthModel';
+
+const MainLayout: React.FC<{title?: String, children: React.ReactNode}> = ({children}) => {
     // const { height, width } = useWindowDimensions()
     const { pathname } = useLocation();
-    const userProfile: any = useAppSelector(state => state.profile.state);
-    const dispatch = useAppDispatch()
+    const authModel = useAuthModel()
 
-    const fetchProfile = async () => {
-        if (userProfile.fetchedProfile) {
-            return;
-        }
-        fetchProfileAction(dispatch);
-    }
 
     useEffect(() => {
         window.scrollTo(0, 0)
@@ -25,8 +17,7 @@ const MainLayout: React.FC<{title?: String, children: React.ReactNode}> = ({titl
    
 
     useEffect(() => {
-        // fetchProfile()
-
+        authModel.fetchProfile()
     }, [])
 
     return (

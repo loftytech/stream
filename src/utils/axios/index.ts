@@ -65,7 +65,7 @@ const AxiosCall = async (requestObj: requestObjInterface) => {
 				.replace(window.location.host, '')
 				.replace(window.location.protocol + '//', '');
 			const urlEncoded = encodeURIComponent(currentPath);
-			// window.location.href = `/signin/?redirect=${urlEncoded}`;
+			window.location.href = `/signin/?redirect=${urlEncoded}`;
 		}
 		Message.error(error?.response?.data.message);
 		throw error;

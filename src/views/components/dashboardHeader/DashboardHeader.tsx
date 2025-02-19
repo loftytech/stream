@@ -21,8 +21,8 @@ const  DashboardHeader: React.FC<{title?: String, customHeader?: React.ReactNode
                 <HeadMeta>
                     <img src="/assets/img/avatar-img.png" alt="" />
                     <div className="info">
-                        <h4>Mariam</h4>
-                        <span>a.mariam@mezovest.com</span>
+                        <h4>{userProfile.name}</h4>
+                        <span>{userProfile.email}</span>
                     </div>
                 </HeadMeta>
             </Content>

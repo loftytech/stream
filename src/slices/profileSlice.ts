@@ -2,8 +2,7 @@ import {createSlice} from '@reduxjs/toolkit';
 
 const initialState: {state: ProfileSliceInterface} = {
   state: {
-    firstName: "",
-    lastName: "",
+    name: "",
     email: "",
     phone: "",
     builds: "",
@@ -40,8 +39,7 @@ export const setProfileSlice = createSlice({
 export const {setProfile} = setProfileSlice.actions;
 
 export interface ProfileSliceInterface {
-  firstName: string
-  lastName: string
+  name: string
   email: string
   phone: string
   builds: string

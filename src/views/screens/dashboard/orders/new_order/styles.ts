@@ -93,6 +93,7 @@ export const Form = styled.form`
             border: 0.5px solid #D0D5DD;
             height: 150px;
             border-radius: 8px;
+            cursor: pointer;
 
             svg {
                 color: #667085;
@@ -103,6 +104,31 @@ export const Form = styled.form`
                 font-size: 14px;
                 font-weight: 400;
                 color: #667085;
+            }
+
+            .attachments {
+                display: flex;
+                flex-direction: column;
+                gap: 4px;
+
+                li {
+                    display: flex;
+                    gap: 2px;
+                    font-size: 13px;
+                    color: #667085;
+
+                    &::after {
+                        content: ',';
+                        display: inline-block;
+                        font-size: 14px;
+                    }
+
+                    &:last-child {
+                        &::after {
+                            display: none;
+                        }
+                    }
+                }
             }
         }
     }
@@ -123,6 +149,7 @@ export const Form = styled.form`
             border: none;
             flex: 1;
             max-width: 140px;
+            cursor: pointer;
 
             &:last-child {
                 background-color: transparent;
