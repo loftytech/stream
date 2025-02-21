@@ -47,7 +47,7 @@ const SigninScreen: React.FC = () => {
                 <MainSection>
                     <Form>
                         <TabWrapper>
-                            <TabItem onClick={() => setIsSignup(true)} isActive={isSignUp}>Sign Up</TabItem>
+                            {/* <TabItem onClick={() => setIsSignup(true)} isActive={isSignUp}>Sign Up</TabItem> */}
                             <TabItem  onClick={() => setIsSignup(false)} isActive={!isSignUp}>Log in</TabItem>
                         </TabWrapper>
 
@@ -69,10 +69,10 @@ const SigninScreen: React.FC = () => {
                             <input ref={email} id="user-email" type="text" placeholder="Email" />
                         </InputSec>
 
-                        <UsePhone>
+                        {/* <UsePhone>
                             <span>use</span>
                             <Link to="#">phone number</Link>
-                        </UsePhone>
+                        </UsePhone> */}
                         <PasswordInput>
                             <div className="input-row">
                             <img src="/assets/svg/lock-icon.svg" alt="" />
@@ -83,7 +83,7 @@ const SigninScreen: React.FC = () => {
 
                         {!isSignUp && <ForgotPass>
                             <span>Forgot password?</span>
-                            <Link to="#">Reset Password</Link>
+                            <Link to="#">contact admin</Link>
                         </ForgotPass>}
 
                         {isSignUp ? <Button onClick={signup}>{authModel.isSigningUp ? <Loader /> : "Sign Up"}</Button> : <Button onClick={signin}>{authModel.isSigningIn ? <Loader /> : "Login"}</Button>}
