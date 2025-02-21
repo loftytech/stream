@@ -1,4 +1,4 @@
-import { Button, Container, ForgotPass, Form, FormFooter, InputSec, MainSection, PasswordInput, SideSection, TabItem, TabWrapper, UsePhone, Wrapper } from './styles'
+import { Button, Container, ForgotPass, Form, FormFooter, InputSec, MainSection, PasswordInput, SideSection, TabItem, TabWrapper, Wrapper } from './styles'
 import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai'
 import { useRef, useState } from 'react'
 import Loader from '../../../components/Loader/Loader'
