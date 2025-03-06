@@ -42,3 +42,34 @@ export interface UnitQuantity {
     conversionFactor?: string;
     status?:           string;
 }
+
+
+export interface Purchase {
+    balance?:        number;
+    currency?:       string;
+    id?:             string;
+    loadingDate?:    null;
+    logistics?:      Logistic[];
+    marketer?:       string;
+    orderDate?:      Date;
+    price?:          number;
+    purchaseNumber?: string;
+    quantity?:       number;
+    quantityLeft?:   number;
+    rate?:           number;
+    status?:         string;
+    unit?:           Unit;
+}
+
+export interface Logistic {
+    plantAddress?: string;
+    plantName?:    string;
+}
+
+export interface Unit {
+    fullPlural?:    string;
+    fullSingular?:  string;
+    id?:            string;
+    shortPlural?:   string;
+    shortSingular?: string;
+}
