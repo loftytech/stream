@@ -13,7 +13,7 @@ export const Wrapper = styled.div<{center: boolean, sideColor?: string, topColor
         width: 25px;
         height: 25px;
         border-radius: 50%;
-        border: 4px solid ${props => props.sideColor ? props.sideColor  : '#0004'};
+        border: 4px solid ${props => props.sideColor ? props.sideColor  : '#02cb63'};
         border-top-color: ${props => props.topColor ? props.topColor  : '#fff'};
         animation: Loading 0.5s linear infinite;
     }

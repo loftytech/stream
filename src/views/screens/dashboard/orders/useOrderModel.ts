@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { Product, Terminal, UnitQuantity } from "./types"
+import { Product, Purchase, Terminal, UnitQuantity } from "./types"
 import AxiosCall from "../../../../utils/axios"
 import Message from "../../../components/message/Message"
 
@@ -12,7 +12,7 @@ const useOrderModel = () => {
     const [isFetchingTerminals, setIsFetchingTerminals] = useState(false)
     const [isFetchingUnits, setIsFetchingUnits] = useState(false)
     const [isPlacingOrder, setIsPlacingOrder] = useState(false)
-    const [orders, setOrders] = useState([])
+    const [orders, setOrders] = useState<Purchase[]>([])
     const [isFetchingOrders, setIsFetchingOrders] = useState(false)
 
     const fetchOrders = async () => {

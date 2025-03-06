@@ -3,6 +3,8 @@ import DashboardHeader from '../../components/dashboardHeader/DashboardHeader'
 import { HeaderContainer, HeaderStats, RecentOrders, TopSection, Wrapper } from './styles'
 import useOrderModel from './orders/useOrderModel'
 import { useEffect } from 'react'
+import dayjs from 'dayjs'
+import Loader from '../../components/Loader/Loader'
 
 const DashboardScreen: React.FC = () => {
     const orderModel = useOrderModel()
@@ -98,16 +100,16 @@ const DashboardScreen: React.FC = () => {
                         <li>Status</li>
                     </ul>
 
-                    {[1,2,3,4,5,6,7].map((_item, idx) => {
+                    {orderModel.isFetchingOrders ? <Loader topPadding="20px" bottomPadding="20px" styleTwo center /> : orderModel.orders.map((item, idx) => {
                         return <ul key={idx} className="table-row">
-                        <li>21 Feb 2024</li>
-                        <li>26th Feb 2024</li>
-                        <li>005231754865</li>
-                        <li>Mezovest Ltd</li>
-                        <li>9.98 MTA</li>
-                        <li>Ibile Oil & Gas Corporation Lagos State Durbar Road Jakande Estate</li>
-                        <li>N1,020,000.00</li>
-                        <li>N10,179,600.00</li>
+                        <li>{dayjs(item.orderDate).format("DD, MMM YYYY")}</li>
+                        <li>{dayjs(item.loadingDate).format("DD, MMM YYYY")}</li>
+                        <li>{item.purchaseNumber}</li>
+                        <li>{item.marketer}</li>
+                        <li>{item.logistics![0].plantName}</li>
+                        <li>{item.logistics![0].plantAddress}</li>
+                        <li>N{item.rate}</li>
+                        <li>N{item.price}</li>
                         <li><span>Quantity Confirmed</span></li>
                     </ul>
                     })}
