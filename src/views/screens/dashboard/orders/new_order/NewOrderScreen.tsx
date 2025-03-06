@@ -55,7 +55,6 @@ const NewOrderScreen: React.FC = () => {
                         </select>}
                     </div>
 
-
                     <div className="input-col">
                         <label htmlFor="">Unit </label>
                         {orderModel.isFetchingUnits ? <Loader /> : <select name="unit" id="">
@@ -86,7 +85,7 @@ const NewOrderScreen: React.FC = () => {
                 <div className="row">
                     <div className="input-col">
                         <label htmlFor="">Price</label>
-                        <input type="text" name="" id="rate[value]" placeholder="Enter price" />
+                        <input type="text" id="" name="rate[value]" placeholder="Enter price" />
                     </div>
                     <div className="input-col">
                         <label htmlFor="">Plan date</label>
@@ -167,7 +166,7 @@ const NewOrderScreen: React.FC = () => {
                                 <HiOutlineCloudUpload />
                                 <span>tap to upload document</span>
                             </>}
-                            <input hidden type="file" multiple name="nomination[]" id="attachment" onChange={orderModel.handleFileInout} />
+                            <input hidden type="file" multiple name="nomination" id="attachment" onChange={orderModel.handleFileInout} />
                         </label>
                     </div>
                 </div>

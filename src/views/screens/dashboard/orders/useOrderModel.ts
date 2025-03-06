@@ -112,7 +112,7 @@ const useOrderModel = () => {
 
             setIsPlacingOrder(false)
             if (res.status == "success") {
-                setUnits(res.data)
+
             } else {
                 Message.error(res.message)
             }
