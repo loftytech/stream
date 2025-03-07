@@ -2,6 +2,7 @@ import { useState } from "react"
 import { Product, Purchase, Terminal, UnitQuantity } from "./types"
 import AxiosCall from "../../../../utils/axios"
 import Message from "../../../components/message/Message"
+import { useNavigate } from "react-router-dom"
 
 const useOrderModel = () => {
     const [attacchments, setAttachments] = useState<string[]>([])
@@ -14,6 +15,7 @@ const useOrderModel = () => {
     const [isPlacingOrder, setIsPlacingOrder] = useState(false)
     const [orders, setOrders] = useState<Purchase[]>([])
     const [isFetchingOrders, setIsFetchingOrders] = useState(false)
+    const navigate = useNavigate()
 
     const fetchOrders = async () => {
         try {
@@ -112,7 +114,8 @@ const useOrderModel = () => {
 
             setIsPlacingOrder(false)
             if (res.status == "success") {
-
+                Message.success("Order created successfully")
+                navigate("/dashboard")
             } else {
                 Message.error(res.message)
             }
