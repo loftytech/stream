@@ -39,7 +39,7 @@ const Sidebar: React.FC = () => {
         <SidebarWrapper ref={sidebarRef} onClick={e => closeMenu(e)} $navigationState={toggleState.dashboard}>
             <SidebarContent $navigationState={toggleState.dashboard}>
                 <Head>
-                    <HeadContent onClick={() => dispatch(setNavigation({dashboard: false}))} to="/">
+                    <HeadContent to="#">
                         <img src="/assets/img/banner-img.png" />
 
                         <MezoLtd>
