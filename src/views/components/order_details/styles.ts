@@ -77,6 +77,28 @@ export const PurchaseModal = styled.div`
         }
     }
 
+    .attachment {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        background-color: #F2F2F3;
+        height: 40px;
+        padding: 15px 15px;
+        border-radius: 4px;
+        width: fit-content;
+        max-width: 480px;
+
+        a {
+            color: #667085;
+            font-size: 14px;
+        }
+
+        img {
+            width: 25px;
+            height: 25px;
+        }
+    }
+
     .row-alt {
         &::after {
             content: "";

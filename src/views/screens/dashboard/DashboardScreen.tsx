@@ -118,7 +118,7 @@ const DashboardScreen: React.FC = () => {
                 
             </RecentOrders>
             
-            <OrderDetails showModal={orderModel.showPurchaseModal} closeModal={() => orderModel.setShowPurchaseModal(false)} isLoading={orderModel.isFetchingOrder} />
+            <OrderDetails showModal={orderModel.showPurchaseModal} closeModal={() => orderModel.setShowPurchaseModal(false)} isLoading={orderModel.isFetchingOrder} order={orderModel?.order!} />
         </Wrapper>
     )
 }
