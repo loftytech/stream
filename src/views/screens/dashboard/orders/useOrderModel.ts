@@ -3,6 +3,7 @@ import { Product, Purchase, Terminal, UnitQuantity } from "./types"
 import AxiosCall from "../../../../utils/axios"
 import Message from "../../../components/message/Message"
 import { useNavigate } from "react-router-dom"
+import { PurcchaseDetails } from "../../../components/order_details/types"
 
 const useOrderModel = () => {
     const [attacchments, setAttachments] = useState<string[]>([])
@@ -14,7 +15,10 @@ const useOrderModel = () => {
     const [isFetchingUnits, setIsFetchingUnits] = useState(false)
     const [isPlacingOrder, setIsPlacingOrder] = useState(false)
     const [orders, setOrders] = useState<Purchase[]>([])
+    const [order, setOrder] = useState<PurcchaseDetails>()
     const [isFetchingOrders, setIsFetchingOrders] = useState(false)
+    const [isFetchingOrder, setIsFetchingOrder] = useState(false)
+    const [showPurchaseModal, setShowPurchaseModal] = useState(false)
     const navigate = useNavigate()
 
     const fetchOrders = async () => {
@@ -33,6 +37,27 @@ const useOrderModel = () => {
             }
         } catch (err: any) {
             setIsFetchingOrders(false)
+            Message.error(err?.response.data.message)
+        }
+    }
+
+    const fetchOrder = async (id: string) => {
+        try {
+            setIsFetchingOrder(true)
+            setShowPurchaseModal(true)
+            const res: any = await AxiosCall({
+                method: "GET",
+                path: "/v1/purchase/" + id
+            });
+
+            setIsFetchingOrder(false)
+            if (res.status == "success") {
+                setOrder(res.data)
+            } else {
+                Message.error(res.message)
+            }
+        } catch (err: any) {
+            setIsFetchingOrder(false)
             Message.error(err?.response.data.message)
         }
     }
@@ -153,7 +178,12 @@ const useOrderModel = () => {
         newOrder,
         isFetchingOrders,
         orders,
-        fetchOrders
+        fetchOrders,
+        isFetchingOrder,
+        order,
+        fetchOrder,
+        setShowPurchaseModal,
+        showPurchaseModal
     }
 }
 

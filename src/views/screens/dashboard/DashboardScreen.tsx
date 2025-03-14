@@ -5,6 +5,7 @@ import useOrderModel from './orders/useOrderModel'
 import { useEffect } from 'react'
 import dayjs from 'dayjs'
 import Loader from '../../components/Loader/Loader'
+import OrderDetails from '../../components/order_details/OrderDetails'
 
 const DashboardScreen: React.FC = () => {
     const orderModel = useOrderModel()
@@ -101,7 +102,7 @@ const DashboardScreen: React.FC = () => {
                     </ul>
 
                     {orderModel.isFetchingOrders ? <Loader topPadding="20px" bottomPadding="20px" styleTwo center /> : orderModel.orders.map((item, idx) => {
-                        return <ul key={idx} className="table-row">
+                        return <ul key={idx} className="table-row" onClick={() => orderModel.fetchOrder(item?.id!)}>
                         <li>{dayjs(item.orderDate).format("DD, MMM YYYY")}</li>
                         <li>{dayjs(item.loadingDate).format("DD, MMM YYYY")}</li>
                         <li>{item.purchaseNumber}</li>
@@ -116,7 +117,8 @@ const DashboardScreen: React.FC = () => {
                 </div>
                 
             </RecentOrders>
-
+            
+            <OrderDetails showModal={orderModel.showPurchaseModal} closeModal={() => orderModel.setShowPurchaseModal(false)} isLoading={orderModel.isFetchingOrder} />
         </Wrapper>
     )
 }
