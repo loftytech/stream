@@ -101,7 +101,7 @@ const DashboardScreen: React.FC = () => {
                         <li>Status</li>
                     </ul>
 
-                    {orderModel.isFetchingOrders ? <Loader topPadding="20px" bottomPadding="20px" styleTwo center /> : orderModel.orders.map((item, idx) => {
+                    {orderModel.isFetchingOrders ? <Loader topPadding="20px" bottomPadding="20px" styleTwo center /> : orderModel.purchases.map((item, idx) => {
                         return <ul key={idx} className="table-row" onClick={() => orderModel.fetchOrder(item?.id!)}>
                         <li>{dayjs(item.orderDate).format("DD, MMM YYYY")}</li>
                         <li>{dayjs(item.loadingDate).format("DD, MMM YYYY")}</li>
