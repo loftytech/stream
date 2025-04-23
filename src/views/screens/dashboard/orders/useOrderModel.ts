@@ -4,6 +4,9 @@ import AxiosCall from "../../../../utils/axios"
 import Message from "../../../components/message/Message"
 import { useNavigate } from "react-router-dom"
 import { PurcchaseDetails } from "../../../components/order_details/types"
+import { Order } from "./meta.types"
+
+
 
 const useOrderModel = () => {
     const [attacchments, setAttachments] = useState<string[]>([])
@@ -14,24 +17,46 @@ const useOrderModel = () => {
     const [isFetchingTerminals, setIsFetchingTerminals] = useState(false)
     const [isFetchingUnits, setIsFetchingUnits] = useState(false)
     const [isPlacingOrder, setIsPlacingOrder] = useState(false)
-    const [orders, setOrders] = useState<Purchase[]>([])
+    const [purchases, setPurchases] = useState<Purchase[]>([])
+    const [orders, setOrders] = useState<Order[]>([])
     const [order, setOrder] = useState<PurcchaseDetails>()
+    const [isFetchingPurchases, setIsFetchingPurchases] = useState(false)
     const [isFetchingOrders, setIsFetchingOrders] = useState(false)
     const [isFetchingOrder, setIsFetchingOrder] = useState(false)
     const [showPurchaseModal, setShowPurchaseModal] = useState(false)
     const navigate = useNavigate()
+
+    const fetchPurchases = async () => {
+        try {
+            setIsFetchingPurchases(true)
+            const res: any = await AxiosCall({
+                method: "GET",
+                path: "/v1/purchase"
+            });
+
+            setIsFetchingPurchases(false)
+            if (res.status == "success") {
+                setPurchases(res.data)
+            } else {
+                Message.error(res.message)
+            }
+        } catch (err: any) {
+            setIsFetchingPurchases(false)
+            Message.error(err?.response.data.message)
+        }
+    }
 
     const fetchOrders = async () => {
         try {
             setIsFetchingOrders(true)
             const res: any = await AxiosCall({
                 method: "GET",
-                path: "/v1/purchase"
+                path: "/v1/order"
             });
 
             setIsFetchingOrders(false)
             if (res.status == "success") {
-                setOrders(res.data)
+                setOrders(res.data.orders)
             } else {
                 Message.error(res.message)
             }
@@ -176,14 +201,18 @@ const useOrderModel = () => {
         handleFileInout,
         isPlacingOrder,
         newOrder,
-        isFetchingOrders,
+        isFetchingPurchases,
+        purchases,
         orders,
-        fetchOrders,
+        fetchPurchases,
         isFetchingOrder,
         order,
         fetchOrder,
         setShowPurchaseModal,
-        showPurchaseModal
+        showPurchaseModal,
+        setIsFetchingOrders,
+        isFetchingOrders,
+        fetchOrders
     }
 }
 

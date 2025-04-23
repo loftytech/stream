@@ -7,6 +7,7 @@ import { IoIosArrowDown } from 'react-icons/io';
 import { RxDashboard } from 'react-icons/rx';
 import { HiOutlineCash } from 'react-icons/hi';
 import { CgLogOut } from 'react-icons/cg';
+import { RiFileListLine } from 'react-icons/ri';
 
 
 const Sidebar: React.FC = () => {
@@ -59,8 +60,14 @@ const Sidebar: React.FC = () => {
                         </MenuItems>
                         <MenuItems $isActive={location.pathname === "/dashboard/orders" ? true : false}>
                             <Link onClick={() => dispatch(setNavigation({dashboard: false}))} to="/dashboard/orders">
-                                <HiOutlineCash />
+                                <RiFileListLine />
                                 <span>Orders</span>
+                            </Link>
+                        </MenuItems>
+                        <MenuItems $isActive={location.pathname === "/dashboard/purchases" ? true : false}>
+                            <Link onClick={() => dispatch(setNavigation({dashboard: false}))} to="/dashboard/purchases">
+                                <HiOutlineCash />
+                                <span>Purechases</span>
                             </Link>
                         </MenuItems>
                     </ul>

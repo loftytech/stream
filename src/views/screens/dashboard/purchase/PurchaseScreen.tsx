@@ -2,17 +2,17 @@ import { useNavigate } from 'react-router-dom'
 import DashboardHeader from '../../../components/dashboardHeader/DashboardHeader'
 import { HeaderContainer, HeaderStats, RecentOrders, Wrapper } from './styles'
 import { HiOutlineSearch } from 'react-icons/hi'
-import useOrderModel from './useOrderModel'
 import { useEffect } from 'react'
 import dayjs from 'dayjs'
 import Loader from '../../../components/Loader/Loader'
+import useOrderModel from '../orders/useOrderModel'
 
-const OrdersScreen: React.FC = () => {
+const PurchaseScreen: React.FC = () => {
     const orderModel = useOrderModel()
     const navigate = useNavigate()
 
     useEffect(() => {
-        orderModel.fetchOrders()
+        orderModel.fetchPurchases()
     }, [])
 
 
@@ -62,28 +62,35 @@ const OrdersScreen: React.FC = () => {
                 <div className="table">
                     <ul className="table-head">
                         <li>Order Date</li>
+                        <li>Loading Date</li>
                         <li>Order Number</li>
-                        <li>Capcity</li>
-                        <li>Customer Name</li>
+                        <li>Account</li>
+                        <li>Plant</li>
+                        <li>Plant Name & Address</li>
                         <li>Price</li>
+                        <li>Price Amount</li>
                         <li>Status</li>
                     </ul>
 
-                    {orderModel.isFetchingOrders ? <Loader topPadding="20px" bottomPadding="20px" styleTwo center /> : orderModel.orders.map((item, idx) => {
+                    {orderModel.isFetchingPurchases ? <Loader topPadding="20px" bottomPadding="20px" styleTwo center /> : orderModel.purchases.map((item, idx) => {
                         return <ul key={idx} className="table-row">
-                        <li>{dayjs(item.date).format("DD, MMM YYYY")}</li>
-                        <li>#{item.id}</li>
-                        <li>{item.quantity}</li>
-                        <li>{item.clientName}</li>
-                        <li>{item.price?.value}</li>
-                        <li><span>{item.status}</span></li>
+                        <li>{dayjs(item.orderDate).format("DD, MMM YYYY")}</li>
+                        <li>{dayjs(item.loadingDate).format("DD, MMM YYYY")}</li>
+                        <li>{item.purchaseNumber}</li>
+                        <li>{item.marketer}</li>
+                        <li>{item.logistics![0].plantName}</li>
+                        <li>{item.logistics![0].plantAddress}</li>
+                        <li>N{item.rate}</li>
+                        <li>N{item.price}</li>
+                        <li><span>Quantity Confirmed</span></li>
                     </ul>
                     })}
                 </div>
+                
             </RecentOrders>
 
         </Wrapper>
     )
 }
 
-export default OrdersScreen
+export default PurchaseScreen
