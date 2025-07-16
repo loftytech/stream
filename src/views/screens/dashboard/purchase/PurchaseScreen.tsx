@@ -69,6 +69,7 @@ const PurchaseScreen: React.FC = () => {
                         <li>Plant Name & Address</li>
                         <li>Price</li>
                         <li>Price Amount</li>
+                        <li>Outstanding</li>
                         <li>Status</li>
                     </ul>
 
@@ -82,6 +83,7 @@ const PurchaseScreen: React.FC = () => {
                         <li>{item.logistics![0].plantAddress}</li>
                         <li>N{item.rate}</li>
                         <li>N{item.price}</li>
+                        <li>N{item.balance}</li>
                         <li><span>Quantity Confirmed</span></li>
                     </ul>
                     })}

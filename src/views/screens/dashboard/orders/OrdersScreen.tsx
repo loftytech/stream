@@ -53,7 +53,7 @@ const OrdersScreen: React.FC = () => {
                     <input type="text" placeholder="Search for an order" />
                 </div>
                 <div className="table-top-head">
-                    <h2>All Orders (1,293)</h2>
+                    <h2>All Orders</h2>
 
                     <select name="" id="">
                         <option value="none">filter</option>
@@ -66,6 +66,7 @@ const OrdersScreen: React.FC = () => {
                         <li>Capcity</li>
                         <li>Customer Name</li>
                         <li>Price</li>
+                        <li>Outstanding</li>
                         <li>Status</li>
                     </ul>
 
@@ -76,6 +77,7 @@ const OrdersScreen: React.FC = () => {
                         <li>{item.quantity}</li>
                         <li>{item.clientName}</li>
                         <li>{item.price?.value}</li>
+                        <li>{item.balance?.value}</li>
                         <li><span>{item.status}</span></li>
                     </ul>
                     })}
