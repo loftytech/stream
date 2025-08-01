@@ -71,7 +71,9 @@ const OrdersScreen: React.FC = () => {
                     </ul>
 
                     {orderModel.isFetchingOrders ? <Loader topPadding="20px" bottomPadding="20px" styleTwo center /> : orderModel.orders.map((item, idx) => {
-                        return <ul key={idx} className="table-row">
+                        return <ul key={idx} className="table-row" onClick={() => {
+                            navigate(`/dashboard/order/${item.id}/payments`)
+                        }}>
                         <li>{dayjs(item.date).format("DD, MMM YYYY")}</li>
                         <li>#{item.id}</li>
                         <li>{item.quantity}</li>

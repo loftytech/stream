@@ -22,6 +22,8 @@ const useOrderModel = () => {
     const [order, setOrder] = useState<PurcchaseDetails>()
     const [isFetchingPurchases, setIsFetchingPurchases] = useState(false)
     const [isFetchingOrders, setIsFetchingOrders] = useState(false)
+    const [isFetchingPayments, setIsFetchingPayments] = useState(false)
+    const [payments, setPayments] = useState<any[]>([])
     const [isFetchingOrder, setIsFetchingOrder] = useState(false)
     const [showPurchaseModal, setShowPurchaseModal] = useState(false)
     const navigate = useNavigate()
@@ -62,6 +64,26 @@ const useOrderModel = () => {
             }
         } catch (err: any) {
             setIsFetchingOrders(false)
+            Message.error(err?.response.data.message)
+        }
+    }
+
+    const fetchOrderPayments = async (orderId: any) => {
+        try {
+            setIsFetchingPayments(true)
+            const res: any = await AxiosCall({
+                method: "GET",
+                path: "/v1/order/" + orderId + "/payment"
+            });
+
+            setIsFetchingPayments(false)
+            if (res.status == "success") {
+                setPayments(res.data.payments)
+            } else {
+                Message.error(res.message)
+            }
+        } catch (err: any) {
+            setIsFetchingPayments(false)
             Message.error(err?.response.data.message)
         }
     }
@@ -212,7 +234,10 @@ const useOrderModel = () => {
         showPurchaseModal,
         setIsFetchingOrders,
         isFetchingOrders,
-        fetchOrders
+        fetchOrders,
+        fetchOrderPayments,
+        isFetchingPayments,
+        payments
     }
 }
 

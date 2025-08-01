@@ -7,6 +7,7 @@ import DashboardScreen from './views/screens/dashboard/DashboardScreen';
 import NewOrderScreen from './views/screens/dashboard/orders/new_order/NewOrderScreen';
 import OrdersScreen from './views/screens/dashboard/orders/OrdersScreen';
 import PurchaseScreen from './views/screens/dashboard/purchase/PurchaseScreen';
+import OrderPaymentsScreen from './views/screens/dashboard/orders/payments/OrderPaymentsScreen';
 
 function App() {
   
@@ -18,6 +19,7 @@ function App() {
             <Route path="/dashboard" element={<MainLayout title={""}><DashboardScreen /></MainLayout>} />
             <Route path="/dashboard/orders" element={<MainLayout title={""}><OrdersScreen /></MainLayout>} />
             <Route path="/dashboard/order/new" element={<MainLayout title={""}><NewOrderScreen /></MainLayout>} />
+            <Route path="/dashboard/order/:orderId/payments" element={<MainLayout title={""}><OrderPaymentsScreen /></MainLayout>} />
             <Route path="/dashboard/purchases" element={<MainLayout title={""}><PurchaseScreen /></MainLayout>} />
             <Route path="/signin" element={<SigninScreen />} />
 
