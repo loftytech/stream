@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
-export const Wrapper = styled.div<{showPopup: boolean, isDashboard: boolean}>`
-    display: ${props => props.showPopup ? "flex" : "none"};
+export const Wrapper = styled.div<{$showPopup: boolean, $isDashboard: boolean}>`
+    display: ${props => props.$showPopup ? "flex" : "none"};
     justify-content: center;
     align-items: center;
     background: #0006;
@@ -15,18 +15,18 @@ export const Wrapper = styled.div<{showPopup: boolean, isDashboard: boolean}>`
     z-index: 9999999999;
 
     @media screen and (min-width: 880px) {
-        width: ${props => props.isDashboard ? "calc(100% - 240px)" : "100%"};
+        width: ${props => props.$isDashboard ? "calc(100% - 240px)" : "100%"};
     }
 `;
 
-export const Content = styled.div<{maxWidth: string, background: string, scale: number, opacity: number}>`
+export const Content = styled.div<{$maxWidth: string, $background: string, scale: number, opacity: number}>`
     display: flex;
     flex-direction: column;
-    background-color: ${props => props.background};
+    background-color: ${props => props.$background};
     padding: 25px;
     border-radius: 10px;
     width: 100%;
-    max-width: ${props => props.maxWidth};
+    max-width: ${props => props.$maxWidth};
     max-height: calc(100vh - 40px);
     cursor: default;
     transform: scale(${props => props.scale});

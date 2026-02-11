@@ -9,11 +9,15 @@ export const HeaderWrapper = styled.header`
     height: 70px;
     z-index: 9999;
     padding: 0px 20px;
-    background-color: #fff;
+    background-color: #FDF8E5;
 
     @media screen and (min-width: 880px) {
-        padding: 0px 4%;
-        width: calc(100% - 240px);
+        padding: 0px 20px;
+        top: 4%;
+        right: 4%;
+        box-shadow: 0px 2px 5px -2px #ccc;
+        width: calc(88% - 100px);
+        border-radius: 20px;
     }
 `;
 export const Content = styled.div`
@@ -35,15 +39,25 @@ export const Content = styled.div`
         }
     }
 `;
-export const Title = styled.h5`
-    font-size: 14px;
-    font-weight: 600;
-    color: #0E141C;
+export const Title = styled.div`
+    h5 {
+        font-size: 14px;
+        font-weight: 600;
+        color: #476160;
+        margin-bottom: 2px;
+    }
+    
+    h6 {
+        font-size: 14px;
+        font-weight: 400;
+        color: #A0ABBB;
+    }
 
     @media screen and (min-width: 880px) {
         font-size: 17px;
     }
 `;
+
 export const HeadMeta = styled.div`
     display: flex;
     align-items: center;
@@ -62,21 +76,25 @@ export const HeadMeta = styled.div`
         gap: 2px;
 
         h4 {
-            font-size: 14px;
-            font-weight: 600;
-            color: #1D1D1D;
+            font-size: 13px;
+            font-weight: 500;
+            color: #7B8C82;
+            border-bottom: 1px solid #7B8C82;
         }
 
-        span {
-            font-size: 14px;
-            font-weight: 300;
-        }
-    }
-    
-    
-    .notification-wrapper {
-        svg {
-            font-size: 22px;
+        .row {
+            display: flex;
+            align-items: flex-end;
+            gap: 10px;
+
+            span {
+                font-size: 14px;
+                font-weight: 300;
+            }
+
+            svg {
+                margin-bottom: 2px;
+            }
         }
     }
 `;

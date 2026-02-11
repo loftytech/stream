@@ -9,7 +9,7 @@ const OrderDetails: React.FC<{isLoading: boolean, showModal: boolean, closeModal
 
 
     return (
-        <PopupModal showPopup={showModal} maxWidth="720px" closeModal={closeModal}>
+        <PopupModal $showPopup={showModal} maxWidth="720px" closeModal={closeModal}>
             {isLoading ? <Loader styleTwo center /> : <PurchaseModal>
                 <div className="header">
                     <div className="col">

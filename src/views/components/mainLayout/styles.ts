@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 export const MainLayoutWrapper = styled.div`
-    background-color: #FFFFFF;
+    background-color: #FEFBEF;
     min-height: 100vh;
 `;
 
@@ -14,6 +14,6 @@ export const Content = styled.div`
 
     @media screen and (min-width: 880px) {
         margin-left: 240px;
-        padding: 0px 4%;
+        padding: 4% 4%;
     }
 `;

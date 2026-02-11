@@ -50,8 +50,8 @@ const PopupModal: React.FC<PopupInterFace> = ({showPopup, closeModal = () => {},
     }, [showPopup])
     
     return (
-        <Wrapper isDashboard={isDashboard} showPopup={popupStatus} ref={topUpModalRef} onClick={hideTopUpModal}>
-            <Content opacity={opacity} scale={scale} maxWidth={maxWidth} background={background}>
+        <Wrapper $isDashboard={isDashboard} $showPopup={popupStatus} ref={topUpModalRef} onClick={hideTopUpModal}>
+            <Content opacity={opacity} scale={scale} $maxWidth={maxWidth} $background={background}>
                 {children}
             </Content>
         </Wrapper>

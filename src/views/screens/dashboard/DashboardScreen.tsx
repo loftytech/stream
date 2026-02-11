@@ -1,124 +1,211 @@
-import { useNavigate } from 'react-router-dom'
 import DashboardHeader from '../../components/dashboardHeader/DashboardHeader'
-import { HeaderContainer, HeaderStats, RecentOrders, TopSection, Wrapper } from './styles'
-import useOrderModel from './orders/useOrderModel'
+import { BalanceContainer, BalanceWrapper, Container, ExperienceContainer, HeadContainer, LiveStreamIndicator, LiveStreamWrapper, MoreFeatures, PlayerWrapper, RecentActivities, ReferralLink, TodayTrendingVideo, TrendingArtists, TrendingVideo, TrendingVideoWrapper, Wrapper } from './styles'
 import { useEffect } from 'react'
-import dayjs from 'dayjs'
-import Loader from '../../components/Loader/Loader'
-import OrderDetails from '../../components/order_details/OrderDetails'
+
 
 const DashboardScreen: React.FC = () => {
-    const orderModel = useOrderModel()
-    const navigate = useNavigate()
 
     useEffect(() => {
-        orderModel.fetchOrders()
+        
     }, [])
+
 
     return (
         <Wrapper>
-            <DashboardHeader>
+            <DashboardHeader title="Dashboard" subTitle="Welcome Jenny Willson!">
                 
             </DashboardHeader>
 
-            <HeaderContainer>
-                <HeaderStats>
-                    <li>
-                        <h5>Today's price</h5>
-                        <h2>N1,020,000.00</h2>
-                        <span>23 September 2024</span>
-                    </li>
+            <Container>
+                <HeadContainer>
+                    <BalanceContainer>
+                        <BalanceWrapper />
+                        <PlayerWrapper />
+                    </BalanceContainer>
 
-                    <li>
-                        <h4>Available MT</h4>
-                        <h5>Account balance NGN 0.00</h5>
-                        <h2>0.00 MTA</h2>
-                    </li>
-                </HeaderStats>
+                    <ExperienceContainer>
+                        <div className="experience">
+                            <h2>Experience<br /> The Feelings</h2>
+                            <span>Explore and Collaborate</span>
+                        </div>
 
-                <div className="side-section">
-                    <button onClick={() => {
-                        navigate("/dashboard/order/new")
-                    }}>
-                        <img src="/assets/svg/trending-icon.svg" alt="" />
-                        <span>New Order</span>
-                    </button>
-                </div>
-            </HeaderContainer>
+                        <div className="col">
+                            <div className="netflix">
+                                <div className="info">
+                                    <h2>An Adventurous Journey<br />into the unknown</h2>
+                                    <span>Explore and Collaborate</span>
+                                </div>
+                            </div>
 
-            <TopSection>
-                <div className="col-1">
-                    <div className="stats">
-                        <h5>Prices Chart</h5>
-                        <h2>5.987,34</h2>
-                        <h6>Secondary text</h6>
+                            <div className="pintrest">
+                                <div className="info">
+                                    <h2>Pinterest <br />Earn now!</h2>
+                                    <span>Pinterest Earn now!</span>
+                                </div>
+                            </div>
 
-                        <svg viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <circle cx="10.214" cy="10.214" r="10.214" fill="#BDBDBD"/>
-                            <rect x="8.51172" y="7.94434" width="3.40465" height="9.07905" rx="1.70232" fill="white"/>
-                            <rect x="8.51172" y="3.40479" width="3.40465" height="3.40465" rx="1.70232" fill="white"/>
-                        </svg>
-                    </div>
-
-                    <div className="graph">
-                        <img src="/assets/img/chart-img.png" alt="" />
-                    </div>
-
-                </div>
-                <div className="col-2">
-                    <h2>Payment List</h2>
-
-                    <ul className="table-head">
-                        <li>Entry date</li>
-                        <li>Amount</li>
-                        <li>Currency</li>
-                        <li>Reference</li>
-                        <li>Status</li>
-                    </ul>
-
-                    <ul className="table-row">
-                        <li>05-Mar-2024</li>
-                        <li>11,825,825.00</li>
-                        <li>NGN</li>
-                        <li>GTN24004</li>
-                        <li><span>Payment confirmed</span></li>
-                    </ul>
-                </div>
-            </TopSection>
-
-            <RecentOrders>
-                <h2>Recent Orders</h2>
-                <div className="table">
-                    <ul className="table-head">
-                        <li>Order Date</li>
-                        <li>Loading Date</li>
-                        <li>Order Number</li>
-                        <li>Account</li>
-                        <li>Plant</li>
-                        <li>Plant Name & Address</li>
-                        <li>Price</li>
-                        <li>Price Amount</li>
-                        <li>Status</li>
-                    </ul>
-
-                    {orderModel.isFetchingOrders ? <Loader topPadding="20px" bottomPadding="20px" styleTwo center /> : orderModel.purchases.map((item, idx) => {
-                        return <ul key={idx} className="table-row" onClick={() => orderModel.fetchOrder(item?.id!)}>
-                        <li>{dayjs(item.orderDate).format("DD, MMM YYYY")}</li>
-                        <li>{dayjs(item.loadingDate).format("DD, MMM YYYY")}</li>
-                        <li>{item.purchaseNumber}</li>
-                        <li>{item.marketer}</li>
-                        <li>{item.logistics![0].plantName}</li>
-                        <li>{item.logistics![0].plantAddress}</li>
-                        <li>N{item.rate}</li>
-                        <li>N{item.price}</li>
-                        <li><span>Quantity Confirmed</span></li>
-                    </ul>
-                    })}
-                </div>
+                            <div className="downloadables">
+                                <div className="info">
+                                    <h2>Downloadables</h2>
+                                    <span>Pinterest Earn now!</span>
+                                </div>
+                            </div>
+                        </div>
+                    </ExperienceContainer>
+                </HeadContainer>
                 
-            </RecentOrders>
-            
-            <OrderDetails showModal={orderModel.showPurchaseModal} closeModal={() => orderModel.setShowPurchaseModal(false)} isLoading={orderModel.isFetchingOrder} order={orderModel?.order!} />
+
+                <LiveStreamWrapper>
+                    <div className="items">
+                        <div className="info">
+                            <div className="meta">
+                                <img src="/assets/img/twitch-icon.png" alt="" />
+                                <span>LIVE NOW</span>
+                            </div>
+
+                            <h2>livestream collaboration</h2>
+                            <p>show up, engage premium visual content and get rewarded</p>
+                        </div>
+
+                        <img src="/assets/img/live-stream-img.png" alt="" />
+                    </div>
+
+                    <div className="items">
+                        <div className="info">
+                            <div className="meta">
+                                <img src="/assets/img/wish-hub-icon.png" alt="" />
+                                <span>Wish hub</span>
+                            </div>
+
+                            <h2>$3 to get JBL speaker</h2>
+                            <p>Enter Campaign and win amazing real time items.</p>
+                        </div>
+
+                        <img src="/assets/img/wish-hub-img.png" alt="" />
+                    </div>
+                </LiveStreamWrapper>
+
+                <LiveStreamIndicator>
+                    <span className='active'></span>
+                    <span></span>
+                    <span></span>
+                </LiveStreamIndicator>
+
+                <ReferralLink>
+                    <h2>STREAM PARTNER LINK: </h2>
+                    <a href="#">https://stream.vip/auth/register?ref=ifyiemedia</a>
+
+                    <svg width="37" height="32" viewBox="0 0 37 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="4.51562" y="3.98438" width="19.5677" height="17.2656" stroke="#476160" stroke-width="2.125" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M24.0837 10.625H31.6097V27.8906H12.042V21.25" stroke="#476160" stroke-width="2.125" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </ReferralLink>
+
+                <TrendingArtists>
+                    <div className="head">
+                        <h3>Trending Artists</h3>
+                        <a href="#">VIEW ALL</a>
+                    </div>
+
+                    <ul>
+                        {[1,2,3,4,5,6,7,8,9].map((item, idx) => {
+                            return <li>
+                                <img src="/assets/img/tmp/wizkid-img.png" alt="" />
+                                <div className="content">
+                                    <img src="/assets/img/music-icon.png" alt="" />
+                                    <div className="info">
+                                        <span>Wizkid</span>
+                                        <span>Collaborated</span>
+                                        <span>10 music available</span>
+                                    </div>
+                                </div>
+                            </li>
+                        })}
+                    </ul>
+                </TrendingArtists>
+
+                <TrendingVideoWrapper>
+                    <TodayTrendingVideo>
+                        <div className="head">
+                            <h3>TODAY TRENDING VIDEO</h3>
+                        </div>
+
+                        <img src="/assets/img/tmp/video-player-img.png" alt="" />
+                    </TodayTrendingVideo>
+                    <TrendingVideo>
+                        <div className="head">
+                            <h3>Trending video</h3>
+                            <a href="#">VIEW ALL</a>
+                        </div>
+
+                        <ul>
+                            {[1,2,3,4,5,6,7,8,9].map((item, idx) => {
+                                return <li key={idx}>
+                                    <img src="/assets/img/tmp/matrix-flyer.png" alt="" />
+                                    <img className="play-circle" src="/assets/img/play-circle-faded.png" alt="" />
+                                    <div className="content">
+                                        <img src="/assets/img/play-btn-img.png" alt="" />
+                                        <div className="info">
+                                            <span>the Matrix</span>
+                                            <span>Video available</span>
+                                        </div>
+                                    </div>
+                                </li>
+                            })}
+                        </ul>
+                    </TrendingVideo>
+                </TrendingVideoWrapper>
+
+                <MoreFeatures>
+                    <h2>More Features On Stream</h2>
+
+                    <ul>
+                        <li>
+                            <h4>WishHub</h4>
+                            <p>Win Amazing Things on Stream With the as low 1$</p>
+                            <a href="#">Enrol now</a>
+                        </li>
+                        <li>
+                            <h4>User Trigger</h4>
+                            <p>Register your Downline for Free now Without Streampasss</p>
+                            <a href="#">Start Now</a>
+                        </li>
+                    </ul>
+                </MoreFeatures>
+
+                <RecentActivities>
+                    <h2>Recent Activities </h2>
+
+                    <ul>
+                        {[1,2,3,4,5,6,7,8,9].map((item, idx) => {
+                            return <li key={idx}>
+                                <div className="info">
+                                    <div className="top">
+                                        <div className="icon-box">
+                                            <svg width="51" height="51" viewBox="0 0 51 51" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M44.5353 27.5694H40.2938C37.9514 27.5694 36.0524 29.4683 36.0524 31.8108V36.0523C36.0524 38.3947 37.9514 40.2937 40.2938 40.2937C42.6363 40.2937 44.5353 38.3947 44.5353 36.0522V27.5694ZM44.5353 27.5694C44.5353 17.0282 35.99 8.48288 25.4488 8.48288C14.9076 8.48288 6.3623 17.0282 6.3623 27.5694M6.3623 27.5694V36.0523C6.3623 38.3947 8.26126 40.2937 10.6037 40.2937C12.9462 40.2937 14.8452 38.3947 14.8452 36.0522V31.8108C14.8452 29.4683 12.9462 27.5694 10.6037 27.5694H6.3623Z" stroke="#FEFBEF" stroke-width="2.12072"/>
+                                            </svg>
+                                        </div>
+                                        <div className="text-content">
+                                            <h4>AudioCollab Earnings</h4>
+                                            <span>05 Nov 2025, 01:40PM</span>
+                                        </div>
+                                    </div>
+
+                                    <div className="trans-type">
+                                        Collab Wallet
+                                    </div>
+                                </div>
+
+                                <div className="meta">
+                                    <span>₦1550</span>
+                                    <span>Successful</span>
+                                </div>
+                            </li>
+                        })}
+                    </ul>
+                </RecentActivities>
+            </Container>
         </Wrapper>
     )
 }

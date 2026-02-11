@@ -27,8 +27,9 @@ export const SidebarWrapper = styled.div<{$navigationState: boolean}>`
     @media screen and (min-width: 800px) {
         display: flex;
         left: 0px;
-        width: 240px;
+        width: 50px;
         z-index: 999999999;
+        overflow: hidden;
     }
 `;
 
@@ -39,15 +40,19 @@ export const SidebarContent = styled.div<{$navigationState: boolean}>`
     left: ${props => props.$navigationState ? "0px" : "-240px"};
     top: 0px;
     width: 240px;
-    height: 100vh;
+    height: calc(100vh - 8%);
     transition: all 0.2s ease-in-out;
-    background: #203035;
+    background: #FDF8E5;
 
     @media screen and (min-width: 880px) {
         display: flex;
-        left: 0px;
+        top: 4%;
+        left: 4%;
         z-index: 999999999;
         transition: none;
+        width: 100px;
+        box-shadow: 0px 1px 6px -2px #ccc;
+        border-radius: 20px;
     }
 `;
 
@@ -65,24 +70,12 @@ export const HeadContent = styled(Link)`
     border-radius: 6px;
 
     img {
-        height: 45px;
+        /* height: 45px; */
+        width: 160px;
         margin-top: 10px;
         margin-bottom: 10px;
     }
 
-`;
-export const MezoLtd = styled.div`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    font-weight: 600;
-    width: 100%;
-    background-color: #FFFFFF;
-    color: #203035;
-    font-size: 14px;
-    padding: 10px 10px;
-    border-radius: 4px;
 `;
 export const Title = styled.h5`
    margin-bottom: 15px;
@@ -113,7 +106,7 @@ export const Home = styled.li<{isActive?: boolean}>`
     }
 `;
 export const Content = styled.div`
-    padding: 0px 0px 0px 0px;
+    padding: 0px 20px 0px 20px;
     overflow-y: auto;
 
     h3 {
@@ -125,68 +118,123 @@ export const Content = styled.div`
         text-transform: capitalize;
     }
 
-    ul {
-        margin-bottom: 40px;
+
+    .sub-menu {
+        margin-bottom: 0px;
     }
 `;
 
 
+export const SubMenuWrapper = styled.ul<{isActive?: boolean}>`
+    display: ${props => props.isActive ? "flex" : "none"};
+    padding: 0px 0px 0px 30px;
+    gap: 20px;
+`;
+
+
+export const Indicator = styled.ul<{isActive?: boolean}>`
+    display: flex;
+    padding: 0px 0px;
+    background-color: #2F4F4E;
+    position: relative;
+    width: 1px;
+
+    .pipe-wrapper {
+        padding: 0px 0px 65px 0px;
+        position: relative;
+        left: 2px;
+        height: 100%;
+
+        .pipe {
+            height: 100%;
+            width: 1px;
+        }
+    }
+
+    .markers {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100%;
+        padding: 0px 0px 0px 0px;
+
+        img {
+            width: 15px;
+        }
+    }
+`;
+
 export const MenuItems = styled.li<{$isActive?: boolean, isActiveSubMenu?: boolean}>`
     cursor: pointer;
+    margin-bottom: 15px;
+    
     a {
         display: flex;
         align-items: center;
         color: #fff;
-        padding: 10px 30px;
+        padding: 10px 10px;
         padding-bottom: ${props => props.isActiveSubMenu ? "10px" : "10px"};
         svg {
             /* width: 30px; */
             margin-right: 20px;
             font-size: 20px;
-            color: ${props => props.$isActive ? "#203035" : "#fff" };
+            color: ${props => props.$isActive ? "#203035" : "#476160" };
+
+             @media screen and (min-width: 880px) {
+                margin-right: 0px;
+             }
         }
         span {
             font-size: 15px;
             font-weight: 400;
-            color: ${props => props.$isActive ? "#203035" : "#fff" };
+            color: ${props => props.$isActive ? "#203035" : "#7B8C82" };
+
+            @media screen and (min-width: 880px) {
+                display: none;
+            }
         }
-        background-color: ${props => props.$isActive ? "#02CB63" : "transparent" };
-        border-left: 4px solid ${props => props.$isActive ? "#fff" : "transparent"};
+        background-color: ${props => props.$isActive ? "#E5EAF1" : "transparent" };
+    }
+
+    a.submenu-head {
+        padding-left: 10px !important;
+
+        svg {
+            font-size: 25px;
+            margin-right: 10px;
+        }
     }
 `;
 
 
 export const SubMenu = styled.ul<{isActive?: boolean}>`
-    display: ${props => props.isActive ? "block" : "none"};
-    padding: 0px 0px 0px 30px;
+    display: ${props => props.isActive ? "block" : "block"};
+    padding: 0px 0px 0px 0px;
     cursor: pointer;
 `;
 
 
-export const SubMenuItems = styled.li<{isActive?: boolean}>`
+export const SubMenuItems = styled.li<{$isActive?: boolean, isActiveSubMenu?: boolean}>`
+    
     a {
         display: flex;
         align-items: center;
-        color: ${props => props.isActive ? props.theme.primaryColor : "#fff" };
-        padding: 20px 30px;
-        img {
-            width: 30px;
+        color: #fff;
+        padding: 10px 0px;
+        padding-bottom: ${props => props.isActiveSubMenu ? "10px" : "10px"};
+        svg {
+            /* width: 30px; */
             margin-right: 20px;
             font-size: 20px;
-            filter:  ${props => props.isActive ? "invert(0%) sepia(75%) saturate(918%) hue-rotate(357deg) brightness(103%) contrast(100%)" : "none" };
-
-            :nth-of-type(2) {
-                margin-right: 0px;
-                margin-left: 20px;
-            }
+            color: ${props => props.$isActive ? "#203035" : "#476160" };
         }
         span {
             font-size: 15px;
-            font-weight: 300;
-            color: ${props => props.isActive ? props.theme.primaryColor : "#98A5B1" };
+            font-weight: 400;
+            color: ${props => props.$isActive ? "#203035" : "#7B8C82" };
         }
-        background-color: ${props => props.isActive ? "#151E2A" : "transparent" };
-        border-left: 4px solid ${props => props.isActive ? props.theme.primaryColor : "transparent"};
+        background-color: ${props => props.$isActive ? "#02CB63" : "transparent" };
+        border-left: 4px solid ${props => props.$isActive ? "#fff" : "transparent"};
     }
 `;
 
@@ -196,7 +244,8 @@ export const FooterContent = styled.div`
     justify-content: center;
     align-items: center;
     margin-top: auto;
-    margin-bottom: 40px;
+    padding-top: 10px;
+    margin-bottom: 20px;
 
     button {
         display: flex;

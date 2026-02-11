@@ -6,6 +6,7 @@ import useOrderModel from './useOrderModel'
 import { useEffect } from 'react'
 import dayjs from 'dayjs'
 import Loader from '../../../components/Loader/Loader'
+import Paginate from '../../../components/paginate/Paginate'
 
 const OrdersScreen: React.FC = () => {
     const orderModel = useOrderModel()
@@ -84,6 +85,13 @@ const OrdersScreen: React.FC = () => {
                     </ul>
                     })}
                 </div>
+
+
+                {!orderModel.isFetchingOrders && <Paginate
+                    limit={orderModel.transactionsMeta.limit}
+                    totalItems={orderModel.transactionsMeta.totalItems}
+                    pages={orderModel.transactionsMeta!.totalPages}
+                />}
             </RecentOrders>
 
         </Wrapper>

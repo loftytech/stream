@@ -17,7 +17,7 @@ const MainLayout: React.FC<{title?: String, children: React.ReactNode}> = ({chil
    
 
     useEffect(() => {
-        authModel.fetchProfile()
+        // authModel.fetchProfile()
     }, [])
 
     return (
