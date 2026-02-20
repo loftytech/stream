@@ -1,0 +1,55 @@
+import React, { useRef } from 'react'
+import { Link } from 'react-router-dom'
+import { HeadBar, HeaderWrapper, Nav, NavContent, SlideImgWrapper, SlideTextWrapper, SlideWrapper, ToggleMenu } from './styles'
+import { useAppDispatch, useAppSelector } from '../../../hooks/hooks';
+import { setNavigation } from '../../../slices/navigationSlice';
+
+const HeaderAlt: React.FC = ()  => {
+    const toggleState = useAppSelector(state => state.navigation.state);
+    const dispatch = useAppDispatch();
+
+    const sidebarRef = useRef(null)
+
+    const closeMenu = (e: { target: any }) => {
+        if (e.target === sidebarRef.current) {
+            dispatch(setNavigation({main: false}));
+        }
+    }
+
+    return (
+        <HeaderWrapper>
+            <div className="overlay-wrapper">
+                <img src="/assets/img/hero-overlay-img.png" alt="" />
+            </div>
+            <HeadBar>
+                <div className="banner">
+                    <img src="/assets/img/logo.png" alt="logo" />
+                    <h2>Stream</h2>
+                </div>
+                <Nav ref={sidebarRef} onClick={e => closeMenu(e)} navigationState={toggleState.main}>
+                    <NavContent navigationState={toggleState.main}>
+                        <div className="nav-head">
+                            <img src="/assets/img/logo.png" alt="logo" />
+                            <h2>Stream</h2>
+                        </div>
+                        <ul>
+                            <li><a href="#">Home</a></li>
+                            <li><a href="#">Features</a></li>
+                            <li><a href="#">Top Streamers</a></li>
+                            <li><a href="#">StreamPass</a></li>
+                            <li><a href="#">Support</a></li>
+                        </ul>
+                        <ul>
+                            <li><Link to="/">Sign up now</Link></li>
+                        </ul>
+                    </NavContent>
+                </Nav>
+                <ToggleMenu onClick={() => dispatch(setNavigation({main: true}))}>
+                    <span></span>
+                </ToggleMenu>
+            </HeadBar>
+        </HeaderWrapper>
+    )
+}
+
+export default HeaderAlt
