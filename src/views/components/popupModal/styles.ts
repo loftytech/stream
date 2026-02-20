@@ -15,7 +15,7 @@ export const Wrapper = styled.div<{$showPopup: boolean, $isDashboard: boolean}>`
     z-index: 9999999999;
 
     @media screen and (min-width: 880px) {
-        width: ${props => props.$isDashboard ? "calc(100% - 240px)" : "100%"};
+        /* width: ${props => props.$isDashboard ? "calc(100% - 240px)" : "100%"}; */
     }
 `;
 
