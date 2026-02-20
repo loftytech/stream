@@ -11,7 +11,7 @@ const Footer: React.FC = () => {
                     {/* <img src="/assets/img/logo-alt.png" alt="logo" /> */}
                     <FooterNav>
                         <FooterItem>
-                            <h4>Why Stream?</h4>
+                            <h4>Why Str?</h4>
                             <ul>
                                 <li><a href="#">Get a quote</a></li>
                                 <li><a href="#">Community groups</a></li>

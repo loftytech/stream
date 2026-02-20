@@ -2,6 +2,7 @@ import { Container, ContentRow, ExploreCard, ExploreCardWrapper, PlanTab, Wrappe
 import { useRef, useState } from 'react'
 import HeaderAlt from '../../../components/headerAlt/HeaderAlt'
 import FooterAlt from '../../../components/footerAlt/FooterAlt'
+import Message from '../../../components/message/Message'
 
 const SigninScreen: React.FC = () => {
     const [loading, setLoading] = useState(false)
@@ -40,11 +41,12 @@ const SigninScreen: React.FC = () => {
                 // Immediate redirect
                 window.location.href = '/dashboard'
             } else {
-                setError(data.message || 'Invalid username or password')
+               // setError(data.message || 'Invalid username or password')
+               Message.error(data.message);
                 setLoading(false)
             }
         } catch (err) {
-            setError('Network error. Please try again.')
+            Message.error('Network error. Please try again.')
             console.error('Login error:', err)
             setLoading(false)
         }
@@ -71,18 +73,7 @@ const SigninScreen: React.FC = () => {
                         <h3>Log in to Continue your journey — stay in motion, stay in the Stream</h3>
 
                         <form onSubmit={signin}>
-                            {error && (
-                                <div style={{ 
-                                    padding: '12px', 
-                                    background: '#fee2e2', 
-                                    color: '#991b1b', 
-                                    borderRadius: '8px', 
-                                    marginBottom: '16px',
-                                    fontSize: '14px'
-                                }}>
-                                    {error}
-                                </div>
-                            )}
+                           
 
                             <input 
                                 type="text" 

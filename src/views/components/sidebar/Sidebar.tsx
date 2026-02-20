@@ -224,7 +224,7 @@ const Sidebar: React.FC = () => {
                             <SubMenuWrapper>
                                 <SubMenuIndicator itemsLength={3} />
                                 <SubMenu>
-                                    <SubMenuItems $isActive={location.pathname === "/dashboard/transactions" ? true : false}>
+                                    <SubMenuItems $isActive={location.pathname === "/dashboard/audio-colab" ? true : false}>
                                         <Link onClick={() => dispatch(setNavigation({dashboard: false}))} to="/dashboard/purchases">
                                             <span>Snap Collab</span>
                                         </Link>

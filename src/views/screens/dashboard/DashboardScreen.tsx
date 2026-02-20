@@ -107,7 +107,7 @@ const DashboardScreen: React.FC = () => {
                         <a href="#">VIEW ALL</a>
                     </div>
 
-                    <ul>
+                    <ul className="hide-scrollbar">
                         {[1,2,3,4,5,6,7,8,9].map((item, idx) => {
                             return <li>
                                 <img src="/assets/img/tmp/wizkid-img.png" alt="" />
@@ -138,7 +138,7 @@ const DashboardScreen: React.FC = () => {
                             <a href="#">VIEW ALL</a>
                         </div>
 
-                        <ul>
+                        <ul className="hide-scrollbar">
                             {[1,2,3,4,5,6,7,8,9].map((item, idx) => {
                                 return <li key={idx}>
                                     <img src="/assets/img/tmp/matrix-flyer.png" alt="" />
@@ -176,7 +176,7 @@ const DashboardScreen: React.FC = () => {
                 <RecentActivities>
                     <h2>Recent Activities </h2>
 
-                    <ul>
+                    <ul className="hide-scrollbar">
                         {[1,2,3,4,5,6,7,8,9].map((item, idx) => {
                             return <li key={idx}>
                                 <div className="info">
