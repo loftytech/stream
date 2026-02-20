@@ -40,7 +40,7 @@ const HeaderAlt: React.FC = ()  => {
                             <li><a href="#">Support</a></li>
                         </ul>
                         <ul>
-                            <li><Link to="/">Sign up now</Link></li>
+                            <li><Link to="/signup">Sign up now</Link></li>
                         </ul>
                     </NavContent>
                 </Nav>

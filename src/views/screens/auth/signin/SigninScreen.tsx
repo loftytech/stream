@@ -1,55 +1,22 @@
 import { Container, ContentRow, ExploreCard, ExploreCardWrapper, PlanTab, Wrapper } from './styles'
-import { useRef, useState } from 'react'
+import { useRef } from 'react'
 import HeaderAlt from '../../../components/headerAlt/HeaderAlt'
 import FooterAlt from '../../../components/footerAlt/FooterAlt'
-import Message from '../../../components/message/Message'
+import useAuthModel from '../useAuthModel'
+import Loader from '../../../components/Loader/Loader'
 
 const SigninScreen: React.FC = () => {
-    const [loading, setLoading] = useState(false)
-    const [error, setError] = useState('')
+    const authModel = useAuthModel()
 
     const username = useRef<HTMLInputElement>(null)
     const password = useRef<HTMLInputElement>(null)
 
     const signin = async (e: React.FormEvent) => {
         e.preventDefault()
-        setError('')
-        setLoading(true)
-
-        try {
-            const response = await fetch('http://127.0.0.1:8000/api/login', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json'
-                },
-                body: JSON.stringify({
-                    username: username.current?.value,
-                    password: password.current?.value
-                })
-            })
-
-            const data = await response.json()
-
-            if (data.status === true) {
-                // Save token if provided
-                if (data.data?.token) {
-                    localStorage.setItem('token', data.data.token)
-                    localStorage.setItem('user', JSON.stringify(data.data.user))
-                }
-                
-                // Immediate redirect
-                window.location.href = '/dashboard'
-            } else {
-               // setError(data.message || 'Invalid username or password')
-               Message.error(data.message);
-                setLoading(false)
-            }
-        } catch (err) {
-            Message.error('Network error. Please try again.')
-            console.error('Login error:', err)
-            setLoading(false)
-        }
+        authModel.signin({
+            username: username.current?.value,
+            password: password.current?.value
+        })
     }
 
     return (
@@ -80,7 +47,7 @@ const SigninScreen: React.FC = () => {
                                 placeholder="Username" 
                                 ref={username}
                                 required
-                                disabled={loading}
+                                disabled={authModel.isSigningIn}
                             />
                             
                             <input 
@@ -88,15 +55,15 @@ const SigninScreen: React.FC = () => {
                                 placeholder="Password" 
                                 ref={password}
                                 required
-                                disabled={loading}
+                                disabled={authModel.isSigningIn}
                             />
 
                             <button 
                                 type="submit"
-                                disabled={loading}
-                                style={{ opacity: loading ? 0.6 : 1 }}
+                                disabled={authModel.isSigningIn}
+                                style={{ opacity: authModel.isSigningIn ? 0.6 : 1 }}
                             >
-                                {loading ? 'Logging in...' : 'Login'}
+                                {authModel.isSigningIn ? <Loader /> : 'Login'}
                             </button>
 
                             <div className="meta">

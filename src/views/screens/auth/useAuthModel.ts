@@ -8,6 +8,7 @@ import { setProfile } from "../../../slices/profileSlice";
 const useAuthModel = () => {
     const [isSigningUp, setIsSigningUp] = useState(false)
     const [isSigningIn, setIsSigningIn] = useState(false)
+    const [showSuccessModal, setShowSuccessModal] = useState(false)
     const userProfile: any = useAppSelector(state => state.profile.state);
     const dispatch = useAppDispatch()
 
@@ -18,16 +19,13 @@ const useAuthModel = () => {
             setIsSigningUp(true)
             const res: any = await AxiosCall({
                 method: "POST",
-                path: "/v1/auth/configure",
+                path: "/signup",
                 data: data
             });
 
             setIsSigningUp(false)
             if (res.success) {
-                navigation("/link-github")
-
-                localStorage.setItem("authToken", res.accessToken)
-
+                setShowSuccessModal(true)
             } else {
                 Message.error(res.message)
             }
@@ -42,22 +40,26 @@ const useAuthModel = () => {
             setIsSigningIn(true)
             const res: any = await AxiosCall({
                 method: "POST",
-                path: "/v1/auth/login",
+                path: "/login",
                 data: data
             });
 
             setIsSigningIn(false)
-            if (res.status == "success") {
-                localStorage.setItem("authToken", res.data.accessToken)
-                localStorage.setItem("user_id", res.data.id)
+            
+            if (res.status == true) {
+                // localStorage.setItem("authToken", res.data.accessToken)
+                // localStorage.setItem("user_id", res.data.id)
+
+                localStorage.setItem('authToken', res.data.token)
+                localStorage.setItem('user', JSON.stringify(res.data.user))
                 navigation("/dashboard")
 
-                dispatch(setProfile({
-                    email: res.data.email,
-                    name: res.data.name,
-                    phone: res.data.phone,
-                    fetchedProfile: true,
-                }))
+                // dispatch(setProfile({
+                //     email: res.data.email,
+                //     name: res.data.name,
+                //     phone: res.data.phone,
+                //     fetchedProfile: true,
+                // }))
 
                 Message.success("Signin in successfull")
 
@@ -213,7 +215,9 @@ const useAuthModel = () => {
         isSendingOtp,
         forgotPassword,
         resetPassword,
-        isResetingPassword
+        isResetingPassword,
+        showSuccessModal,
+        setShowSuccessModal
     }
 }
 

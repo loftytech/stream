@@ -1,39 +1,39 @@
 import { Container, ContentRow, ExploreCard, ExploreCardWrapper, PlanTab, SignupSuccess, Wrapper } from './styles'
 import { useRef, useState } from 'react'
 import useAuthModel from '../useAuthModel'
-import Footer from '../../../components/footer/Footer'
 import HeaderAlt from '../../../components/headerAlt/HeaderAlt'
 import FooterAlt from '../../../components/footerAlt/FooterAlt'
 import { CgCheck, CgClose } from 'react-icons/cg'
 import PopupModal from '../../../components/popupModal/PopupModal'
+import useQuery from '../../../../hooks/useQuery'
+import Loader from '../../../components/Loader/Loader'
+import { Link, useNavigate } from 'react-router-dom'
 
 
 const CreateAccountScreen: React.FC = () => {
-    const [showSucces, setShowSuccess] = useState(false)
     const [acceptedTerms, setAcceptedTerms] = useState(false);
+    const query = useQuery()
 
     const authModel = useAuthModel()
-
-    const name = useRef<HTMLInputElement>(null);
-    const phone = useRef<HTMLInputElement>(null);
-    const email = useRef<HTMLInputElement>(null);
-    const password = useRef<HTMLInputElement>(null);
-
-    const signin = (e: any) => {
-        e.preventDefault()
-        authModel.signin({
-            account: email.current?.value,
-            password: password.current?.value
-        })
-    }
+    
+    const fullnameRef = useRef<HTMLInputElement>(null)
+    const emailRef = useRef<HTMLInputElement>(null)
+    const passwordRef = useRef<HTMLInputElement>(null)
+    const countryRef = useRef<HTMLInputElement>(null)
+    const streamPassRef = useRef<HTMLInputElement>(null)
+    const phoneRef = useRef<HTMLInputElement>(null)
+    const usernameRef = useRef<HTMLInputElement>(null)
 
     const signup = (e: any) => {
         e.preventDefault()
         authModel.signup({
-            email: email.current?.value,
-            password: password.current?.value,
-            name: name.current?.value,
-            phone: phone.current?.value,
+            name: fullnameRef?.current?.value,
+            username: usernameRef.current?.value,
+            email: emailRef.current?.value,
+            phone: phoneRef.current?.value,
+            country: countryRef.current?.value,
+            scale_code: streamPassRef.current?.value,
+            ref: query.get("referred_by")
         })
     }
 
@@ -55,19 +55,19 @@ const CreateAccountScreen: React.FC = () => {
                 <ContentRow>
                     <div className="text-content">
                         <h2>Create an Account</h2>
-                        <h3>You're seconds away from joining a global wave of creators, listeners, and earners. Let’s start your flow!</h3>
+                        <h3>You're seconds away from joining a global wave of creators, listeners, and earners. Let's start your flow!</h3>
 
                         <form action="">
-                            <div className="referred">
-                                <span>Onboarding under: TalkwithBright</span>
-                            </div>
-                            <input type="text" placeholder="Full name" />
-                            <input type="text" placeholder="Username" />
-                            <input type="text" placeholder="Email Address" />
-                            <input type="text" placeholder="Phone Number" />
-                            <input type="text" placeholder="Country" />
-                            <input type="password" placeholder="Password" />
-                            <input type="text" placeholder="StreamPass" />
+                            {query.get("referred_by") ? <div className="referred">
+                                <span>Onboarding under: {query.get("referred_by") }</span>
+                            </div> : <></>}
+                            <input ref={fullnameRef} type="text" placeholder="Full name" />
+                            <input ref={usernameRef} type="text" placeholder="Username" />
+                            <input ref={emailRef} type="text" placeholder="Email Address" />
+                            <input ref={phoneRef} type="text" placeholder="Phone Number" />
+                            <input ref={countryRef} type="text" placeholder="Country" />
+                            <input ref={passwordRef} type="password" placeholder="Password" />
+                            <input ref={streamPassRef} type="text" placeholder="StreamPass" />
 
                             <div className="meta" style={{marginBottom: 20}}>
                                 <a href="#">Do not have a StreamPass? <span>check here!</span></a>
@@ -80,10 +80,7 @@ const CreateAccountScreen: React.FC = () => {
                                 <a href="#">i agree to the terms and conditions</a>
                             </div>
 
-                            <button onClick={(e) => {
-                                e.preventDefault()
-                                setShowSuccess(true)
-                            }}>Create Account</button>
+                            <button onClick={signup}>{authModel.isSigningUp ? <Loader /> : "Create Account"}</button>
 
                             <div className="meta">
                                 <a href="#">Already Have Account With us? <span>Login Now</span></a>
@@ -104,16 +101,16 @@ const CreateAccountScreen: React.FC = () => {
                 </ExploreCard>
             </ExploreCardWrapper>
 
-            <PopupModal background='transparent' showPopup={showSucces} closeModal={() => setShowSuccess(false)}>
+            <PopupModal background='transparent' showPopup={authModel.showSuccessModal} closeModal={() => authModel.setShowSuccessModal(false)}>
                 <SignupSuccess>
-                    <div className="close-btn" onClick={() => setShowSuccess(false)}>
+                    <div className="close-btn" onClick={() => authModel.setShowSuccessModal(false)}>
                         <CgClose />
                     </div>
                     <img src="/assets/img/welcome-img.png" alt="" />
                     <div className="content">
-                        <h2>Welcome, Olabisi Adeyemi</h2>
+                        <h2>Welcome, {fullnameRef.current?.value}</h2>
                         <p>Start earning effortlessly by watching videos, listening to music, streaming media, and downloading images. Explore, enjoy, and get rewarded for every moment you spend on the platform.</p>
-                        <a href="/dashboard">Go to Dashboard</a>
+                        <Link to="/signin">Go to Dashboard</Link>
                     </div>
                 </SignupSuccess>
             </PopupModal>

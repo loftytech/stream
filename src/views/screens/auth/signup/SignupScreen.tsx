@@ -1,40 +1,11 @@
 import { Container, ContentRow, ExploreCard, ExploreCardWrapper, PlanTab, Wrapper } from './styles'
-import { useRef, useState } from 'react'
-import useAuthModel from '../useAuthModel'
-import Header from '../../../components/header/Header'
-import Footer from '../../../components/footer/Footer'
 import HeaderAlt from '../../../components/headerAlt/HeaderAlt'
 import FooterAlt from '../../../components/footerAlt/FooterAlt'
+import { useNavigate } from 'react-router-dom'
 
 
 const SignupScreen: React.FC = () => {
-    const [isSignUp, setIsSignup] = useState(false)
-    const [showPassword, setShowPassword] = useState(false);
-
-    const authModel = useAuthModel()
-
-    const name = useRef<HTMLInputElement>(null);
-    const phone = useRef<HTMLInputElement>(null);
-    const email = useRef<HTMLInputElement>(null);
-    const password = useRef<HTMLInputElement>(null);
-
-    const signin = (e: any) => {
-        e.preventDefault()
-        authModel.signin({
-            account: email.current?.value,
-            password: password.current?.value
-        })
-    }
-
-    const signup = (e: any) => {
-        e.preventDefault()
-        authModel.signup({
-            email: email.current?.value,
-            password: password.current?.value,
-            name: name.current?.value,
-            phone: phone.current?.value,
-        })
-    }
+    const navigate = useNavigate()
 
     return (
         <Wrapper>
@@ -74,7 +45,7 @@ const SignupScreen: React.FC = () => {
                                         <span>18,000.00</span>
                                     </div>
 
-                                    <button>Get Onboard</button>
+                                    <button  onClick={() => navigate("/create-account")}>Get Onboard</button>
                                 </div>
                             </li>
 
