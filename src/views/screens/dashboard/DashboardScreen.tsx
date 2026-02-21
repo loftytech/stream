@@ -9,10 +9,12 @@ const DashboardScreen: React.FC = () => {
         
     }, [])
 
+    
+
 
     return (
         <Wrapper>
-            <DashboardHeader title="Dashboard" subTitle="Welcome Jenny Willson!">
+            <DashboardHeader title="Dashboard" subTitle="Welcome Jenny Willson2">
                 
             </DashboardHeader>
 

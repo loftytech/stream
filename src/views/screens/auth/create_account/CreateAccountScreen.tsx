@@ -32,6 +32,7 @@ const CreateAccountScreen: React.FC = () => {
             email: emailRef.current?.value,
             phone: phoneRef.current?.value,
             country: countryRef.current?.value,
+            password: passwordRef.current?.value,
             scale_code: streamPassRef.current?.value,
             ref: query.get("referred_by")
         })
@@ -83,7 +84,8 @@ const CreateAccountScreen: React.FC = () => {
                             <button onClick={signup}>{authModel.isSigningUp ? <Loader /> : "Create Account"}</button>
 
                             <div className="meta">
-                                <a href="#">Already Have Account With us? <span>Login Now</span></a>
+                            
+                             <Link to="/signin">Already Have Account With us? <span>Login Now</span></Link>
                             </div>
                         </form>
                     </div>

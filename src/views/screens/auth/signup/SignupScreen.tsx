@@ -41,8 +41,8 @@ const SignupScreen: React.FC = () => {
 
                                 <div className="action">
                                     <div className="amount">
-                                        <span>₦12,000.00</span>
-                                        <span>18,000.00</span>
+                                        <span>$12</span>
+                                        <span>$14</span>
                                     </div>
 
                                     <button  onClick={() => navigate("/create-account")}>Get Onboard</button>
@@ -66,7 +66,7 @@ const SignupScreen: React.FC = () => {
 
                                 <div className="action">
                                     <div className="locked-amount">
-                                        <span>₦</span>
+                                        <span>$</span>
                                         <img src="/assets/svg/limited-icon.svg" alt="" />
                                     </div>
 

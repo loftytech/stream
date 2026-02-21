@@ -4,6 +4,7 @@ import HeaderAlt from '../../../components/headerAlt/HeaderAlt'
 import FooterAlt from '../../../components/footerAlt/FooterAlt'
 import useAuthModel from '../useAuthModel'
 import Loader from '../../../components/Loader/Loader'
+import { Link, useNavigate } from 'react-router-dom'
 
 const SigninScreen: React.FC = () => {
     const authModel = useAuthModel()
@@ -67,7 +68,8 @@ const SigninScreen: React.FC = () => {
                             </button>
 
                             <div className="meta">
-                                <a href="/signup">Don't Have Account With us?<span> Create Here</span></a>
+                                
+                              <Link to="/signin">Don't Have Account With us?<span> Create Here</span></Link>
                             </div>
                         </form>
                     </div>
