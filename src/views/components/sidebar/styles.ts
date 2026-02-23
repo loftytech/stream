@@ -40,7 +40,7 @@ export const SidebarContent = styled.div<{$navigationState: boolean}>`
     left: ${props => props.$navigationState ? "0px" : "-240px"};
     top: 0px;
     width: 240px;
-    height: calc(100vh - 8%);
+    height: 100vh;
     transition: all 0.2s ease-in-out;
     background: #FDF8E5;
 

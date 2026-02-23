@@ -13,7 +13,7 @@ export const Content = styled.div`
     padding: 0px 20px;
 
     @media screen and (min-width: 880px) {
-        margin-left: 240px;
+        margin-left: 200px;
         padding: 4% 4%;
     }
 `;
