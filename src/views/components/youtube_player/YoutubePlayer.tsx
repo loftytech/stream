@@ -1,16 +1,16 @@
-import React, { useRef, useEffect } from "react";
+import { useRef, useEffect } from "react";
 import YouTube from "react-youtube";
 
 const YouTubePlayer = ({ videoId, onTwentySeconds }) => {
-  const playerRef = useRef(null);
-  const timerRef = useRef(null);
+  const playerRef: any = useRef(null);
+  const timerRef: any = useRef(null);
 
   const handleReady = (event) => {
     playerRef.current = event.target; // this is the YouTube player instance
   };
 
   const handleStateChange = (event) => {
-    const YT = window.YT;
+    const YT: any = window.YT;
     if (event.data === YT.PlayerState.PLAYING) {
       // Start 20-second timer
       clearTimeout(timerRef.current);

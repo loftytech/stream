@@ -11,7 +11,7 @@ const SubMenuIndicator: React.FC<{itemsLength: number}> = ({itemsLength}) => {
     const [_markerList, setMarkerList] = useState<string[]>([])
 
     const generatePages = () => {
-        let _markers = []
+        let _markers: any[] = []
         for (let index = 0; index < itemsLength; index++) {
             const markerString = index+1;
             _markers.push(markerString.toString())

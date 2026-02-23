@@ -18,7 +18,7 @@ const Paginate: React.FC<{totalItems: number, limit: number, pages: number, onRo
     const generatePages = () => {
         let totalPages = Math.ceil(totalItems / limit)
 
-        let _pages = []
+        let _pages: any[] = []
         if (totalPages > 10) {
             generateLongPages(totalPages)
         } else {
@@ -40,7 +40,7 @@ const Paginate: React.FC<{totalItems: number, limit: number, pages: number, onRo
     }
 
     const getLeftPages = (_totalPages: number) => {
-        let _pages = []
+        let _pages: any[] = []
 
         const _checkPrev = currentPage - 3;
 
@@ -63,7 +63,7 @@ const Paginate: React.FC<{totalItems: number, limit: number, pages: number, onRo
 
 
     const getRightPages = (totalPages: number) => {
-        let _pages = []
+        let _pages: any[] = []
 
         const _checkNext = parseInt(currentPage.toString()) + 3;
 
