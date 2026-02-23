@@ -48,7 +48,7 @@ const VideoColab: React.FC = () => {
                     </div>
 
                     <ul className="hide-scrollbar">
-                        {[1,2,3,4,5,6,7,8,9].map((item, idx) => {
+                        {[1,2,3,4,5,6,7,8,9].map((_item, idx) => {
                             return <li key={idx}>
                                 <img src="/assets/img/tmp/video-player-img.png" alt="" />
                                 <div className="content">
@@ -75,7 +75,7 @@ const VideoColab: React.FC = () => {
                     </div>
 
                     <ul className="hide-scrollbar">
-                        {[1,2,3,4,5,6,7,8,9].map((item, idx) => {
+                        {[1,2,3,4,5,6,7,8,9].map((_item, idx) => {
                             return <li key={idx}>
                                 <div className="container">
                                     <img src="/assets/img/tmp/matrix-flyer.png" alt="" />
@@ -104,7 +104,7 @@ const VideoColab: React.FC = () => {
                     </div>
 
                     <ul className="hide-scrollbar">
-                        {[1,2,3,4,5,6,7,8,9].map((item, idx) => {
+                        {[1,2,3,4,5,6,7,8,9].map((_item, idx) => {
                             return <li key={idx}>
                                 <div className="container">
                                     <img src="/assets/img/tmp/matrix-flyer.png" alt="" />

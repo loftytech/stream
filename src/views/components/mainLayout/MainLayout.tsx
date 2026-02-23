@@ -3,12 +3,10 @@ import { Content, MainLayoutWrapper } from './styles'
 import Sidebar from '../sidebar/Sidebar';
 
 import { useLocation } from 'react-router-dom';
-import useAuthModel from '../../screens/auth/useAuthModel';
 
 const MainLayout: React.FC<{title?: String, children: React.ReactNode}> = ({children}) => {
     // const { height, width } = useWindowDimensions()
     const { pathname } = useLocation();
-    const authModel = useAuthModel()
 
 
     useEffect(() => {

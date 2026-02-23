@@ -61,8 +61,8 @@ const AudioColab: React.FC = () => {
                     </div>
 
                     <ul>
-                        {[1,2,3,4,5,6,7,8,9].map((item, idx) => {
-                            return <li>
+                        {[1,2,3,4,5,6,7,8,9].map((_item, idx) => {
+                            return <li key={idx}>
                                 <img src="/assets/img/tmp/wizkid-img.png" alt="" />
                                 <div className="content">
                                     <img src="/assets/img/music-icon.png" alt="" />
@@ -82,7 +82,7 @@ const AudioColab: React.FC = () => {
                     <ForYou>
                         <h4>Just for you</h4>
                         <ul className="hide-scrollbar">
-                            {[1,2,3,4,5,6,7,8].map((item, idx) => {
+                            {[1,2,3,4,5,6,7,8].map((_item, idx) => {
                                 return <li key={idx}>
                                 <img src="/assets/img/tmp/foryou-img.png" alt="" />
                                     <div className="row">
@@ -98,7 +98,7 @@ const AudioColab: React.FC = () => {
                     <ForYou>
                         <h4>Trending</h4>
                         <ul className="hide-scrollbar">
-                            {[1,2,3,4,5,6,7,8].map((item, idx) => {
+                            {[1,2,3,4,5,6,7,8].map((_item, idx) => {
                                 return <li key={idx}>
                                 <img src="/assets/img/tmp/foryou-img.png" alt="" />
                                     <div className="row">
@@ -117,7 +117,7 @@ const AudioColab: React.FC = () => {
                     <ForYou>
                         <h4 style={{opacity: 0}}>Just for you</h4>
                         <ul className="hide-scrollbar">
-                            {[1,2,3,4,5,6,7,8].map((item, idx) => {
+                            {[1,2,3,4,5,6,7,8].map((_item, idx) => {
                                 return <li key={idx}>
                                 <img src="/assets/img/tmp/foryou-img.png" alt="" />
                                     <div className="row">
@@ -133,7 +133,7 @@ const AudioColab: React.FC = () => {
                     <ForYou>
                         <h4>Similarities</h4>
                         <ul className="hide-scrollbar">
-                            {[1,2,3,4,5,6,7,8].map((item, idx) => {
+                            {[1,2,3,4,5,6,7,8].map((_item, idx) => {
                                 return <li key={idx}>
                                 <img src="/assets/img/tmp/foryou-img.png" alt="" />
                                     <div className="row">

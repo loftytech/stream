@@ -199,7 +199,7 @@ const HomeScreen: React.FC = ()  => {
                     <h6>Everything you need to know about the STREAM</h6>
 
                     <ul>
-                        {[1,2,3,4,5,6].map((item, idx) => {
+                        {[1,2,3,4,5,6].map((_item, idx) => {
                             return <li key={idx}>
                                 <div className="info">
                                     <h4>How fast are payouts?</h4>

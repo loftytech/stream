@@ -8,7 +8,7 @@ import { CgLogOut } from 'react-icons/cg';
 
 
 const SubMenuIndicator: React.FC<{itemsLength: number}> = ({itemsLength}) => {
-    const [markerList, setMarkerList] = useState<string[]>([])
+    const [_markerList, setMarkerList] = useState<string[]>([])
 
     const generatePages = () => {
         let _markers = []

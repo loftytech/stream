@@ -7,7 +7,7 @@ import { CgCheck, CgClose } from 'react-icons/cg'
 import PopupModal from '../../../components/popupModal/PopupModal'
 import useQuery from '../../../../hooks/useQuery'
 import Loader from '../../../components/Loader/Loader'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 
 const CreateAccountScreen: React.FC = () => {

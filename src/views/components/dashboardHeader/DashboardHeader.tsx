@@ -3,11 +3,11 @@ import { Content, HeaderWrapper, HeadMeta, Title } from './styles';
 import { IoMenuOutline } from 'react-icons/io5';
 import { useDispatch } from 'react-redux';
 import { setNavigation } from '../../../slices/navigationSlice';
-import { useAppSelector } from '../../../hooks/hooks';
+
 
 
 const  DashboardHeader: React.FC<{title?: String, subTitle?: string, customHeader?: React.ReactNode}> = ({title, subTitle, customHeader}) => {
-    const userProfile = useAppSelector(state => state.profile.state);
+
     const dispatch = useDispatch();
     return (
         <HeaderWrapper>

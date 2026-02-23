@@ -4,7 +4,7 @@ import HeaderAlt from '../../../components/headerAlt/HeaderAlt'
 import FooterAlt from '../../../components/footerAlt/FooterAlt'
 import useAuthModel from '../useAuthModel'
 import Loader from '../../../components/Loader/Loader'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 const SigninScreen: React.FC = () => {
     const authModel = useAuthModel()

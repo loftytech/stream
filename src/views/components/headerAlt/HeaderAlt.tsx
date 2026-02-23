@@ -1,6 +1,6 @@
 import React, { useRef } from 'react'
 import { Link } from 'react-router-dom'
-import { HeadBar, HeaderWrapper, Nav, NavContent, SlideImgWrapper, SlideTextWrapper, SlideWrapper, ToggleMenu } from './styles'
+import { HeadBar, HeaderWrapper, Nav, NavContent, ToggleMenu } from './styles'
 import { useAppDispatch, useAppSelector } from '../../../hooks/hooks';
 import { setNavigation } from '../../../slices/navigationSlice';
 
