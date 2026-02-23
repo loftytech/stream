@@ -5,6 +5,7 @@ const initialState: {state: ProfileSliceInterface} = {
     name: "",
     email: "",
     phone: "",
+    username: "",
     builds: "",
     requests: "",
     domains: "",
@@ -47,6 +48,7 @@ export interface ProfileSliceInterface {
   domains: string
   sites: string
   coutry: string
+  username: string
   city: string
   isVerifiedBvn: number
   isVerifiedEmail: number

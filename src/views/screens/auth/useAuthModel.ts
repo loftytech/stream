@@ -180,17 +180,15 @@ const useAuthModel = () => {
             return;
         }
         try {
-            const userId = localStorage.getItem('user_id')
             const res = await AxiosCall({
                 method: "GET",
-                path: "/v1/user/" + userId
+                path: "/profile"
             });
-            if (res.status == "success") {
+            if (res.success == true) {
                 dispatch(setProfile({
-                    email: res.data.user.email,
-                    name: res.data.user.name,
-                    phone: res.data.user.phone,
-                    balance: res.data.user.balance
+                    email: res.data.email,
+                    name: res.data.name,
+                    username: res.data.username
                 }))
             } else {
                 Message.error(res.message)

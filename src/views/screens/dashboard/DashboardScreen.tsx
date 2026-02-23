@@ -1,27 +1,44 @@
 import DashboardHeader from '../../components/dashboardHeader/DashboardHeader'
-import { BalanceContainer, BalanceWrapper, Container, ExperienceContainer, HeadContainer, LiveStreamIndicator, LiveStreamWrapper, MoreFeatures, PlayerWrapper, RecentActivities, ReferralLink, TodayTrendingVideo, TrendingArtists, TrendingVideo, TrendingVideoWrapper, Wrapper } from './styles'
+import { BalanceCardContainer, BalanceContainer, BalanceWrapper, Container, ExperienceContainer, HeadContainer, LiveStreamIndicator, LiveStreamWrapper, MoreFeatures, PlayerWrapper, RecentActivities, ReferralLink, TodayTrendingVideo, TrendingArtists, TrendingVideo, TrendingVideoWrapper, Wrapper } from './styles'
 import { useEffect } from 'react'
-
+import useDashboardModel from './useDashboardModel'
+import dayjs from 'dayjs'
+import numberFormatter from '../../../utils/numberFormatter'
+import Loader from '../../components/Loader/Loader'
+import YouTubePlayer from '../../components/youtube_player/YoutubePlayer'
+import { useAppSelector } from '../../../hooks/hooks'
 
 const DashboardScreen: React.FC = () => {
+    const profile = useAppSelector(state => state.profile.state)
+    const dashboardModel = useDashboardModel()
 
     useEffect(() => {
-        
+        dashboardModel.fetchStats()
     }, [])
 
-    
+     const handleTwentySeconds = (videoId: string) => {
+        dashboardModel.earnVideoReward(videoId)
+        console.log("The video has played for 20 seconds!");
+    };
 
 
     return (
         <Wrapper>
-            <DashboardHeader title="Dashboard" subTitle="Welcome Jenny Willson2">
+            <DashboardHeader title="Dashboard" subTitle={"Welcome " + profile.name}>
                 
             </DashboardHeader>
 
             <Container>
                 <HeadContainer>
                     <BalanceContainer>
-                        <BalanceWrapper />
+                        <BalanceWrapper>
+                            <BalanceCardContainer>
+                                <div className="text-content">
+                                    <h4>TOTAL STREAM INCOME</h4>
+                                    <h2>₦{numberFormatter(dashboardModel.stats?.activity).toPrice()}</h2>
+                                </div>
+                            </BalanceCardContainer>
+                        </BalanceWrapper>
                         <PlayerWrapper />
                     </BalanceContainer>
 
@@ -95,7 +112,7 @@ const DashboardScreen: React.FC = () => {
 
                 <ReferralLink>
                     <h2>STREAM PARTNER LINK: </h2>
-                    <a href="#">https://stream.vip/auth/register?ref=ifyiemedia</a>
+                    <a href={import.meta.env.VITE_APP_URL+ "/create-account?referred_by=" + profile.username}>{import.meta.env.VITE_APP_URL}/create-account?referred_by={profile.username}</a>
 
                     <svg width="37" height="32" viewBox="0 0 37 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <rect x="4.51562" y="3.98438" width="19.5677" height="17.2656" stroke="#476160" stroke-width="2.125" stroke-linecap="round" stroke-linejoin="round"/>
@@ -110,15 +127,15 @@ const DashboardScreen: React.FC = () => {
                     </div>
 
                     <ul className="hide-scrollbar">
-                        {[1,2,3,4,5,6,7,8,9].map((_item, idx) => {
+                        {dashboardModel.stats?.artists?.map((item, idx) => {
                             return <li key={idx}>
-                                <img src="/assets/img/tmp/wizkid-img.png" alt="" />
+                                <img src={import.meta.env.VITE_FILE_URL + item?.image} alt="" />
                                 <div className="content">
                                     <img src="/assets/img/music-icon.png" alt="" />
                                     <div className="info">
-                                        <span>Wizkid</span>
+                                        <span>{item?.name}</span>
                                         <span>Collaborated</span>
-                                        <span>10 music available</span>
+                                        <span>{item?.count} music available</span>
                                     </div>
                                 </div>
                             </li>
@@ -132,7 +149,9 @@ const DashboardScreen: React.FC = () => {
                             <h3>TODAY TRENDING VIDEO</h3>
                         </div>
 
-                        <img src="/assets/img/tmp/video-player-img.png" alt="" />
+                        <div className="lofty-yt-video-player">
+                            {dashboardModel.stats?.artists_video?.[0]?.path ? <YouTubePlayer videoId={dashboardModel.stats?.artists_video?.[0]?.path} onTwentySeconds={() => handleTwentySeconds(dashboardModel.stats?.artists_video?.[0]?.path)} /> : <></>}
+                        </div>
                     </TodayTrendingVideo>
                     <TrendingVideo>
                         <div className="head">
@@ -141,14 +160,14 @@ const DashboardScreen: React.FC = () => {
                         </div>
 
                         <ul className="hide-scrollbar">
-                            {[1,2,3,4,5,6,7,8,9].map((_item, idx) => {
+                            {dashboardModel.stats?.artists.map((item, idx) => {
                                 return <li key={idx}>
-                                    <img src="/assets/img/tmp/matrix-flyer.png" alt="" />
+                                    <img src={import.meta.env.VITE_FILE_URL + item?.image} alt="" />
                                     <img className="play-circle" src="/assets/img/play-circle-faded.png" alt="" />
                                     <div className="content">
                                         <img src="/assets/img/play-btn-img.png" alt="" />
                                         <div className="info">
-                                            <span>the Matrix</span>
+                                            <span>{item?.title}</span>
                                             <span>Video available</span>
                                         </div>
                                     </div>
@@ -178,8 +197,8 @@ const DashboardScreen: React.FC = () => {
                 <RecentActivities>
                     <h2>Recent Activities </h2>
 
-                    <ul className="hide-scrollbar">
-                        {[1,2,3,4,5,6,7,8,9].map((_item, idx) => {
+                    {dashboardModel.isFetchingStats ? <Loader styleTwo /> : <ul className="hide-scrollbar">
+                        {dashboardModel.stats?.alerts?.map((item: any, idx: number) => {
                             return <li key={idx}>
                                 <div className="info">
                                     <div className="top">
@@ -189,23 +208,23 @@ const DashboardScreen: React.FC = () => {
                                             </svg>
                                         </div>
                                         <div className="text-content">
-                                            <h4>AudioCollab Earnings</h4>
-                                            <span>05 Nov 2025, 01:40PM</span>
+                                            <h4>{item?.title}</h4>
+                                            <span>{dayjs(item.created_at).format("DD MMM YYYY, hh:mmA")}</span>
                                         </div>
                                     </div>
 
                                     <div className="trans-type">
-                                        Collab Wallet
+                                       {item?.text}
                                     </div>
                                 </div>
 
                                 <div className="meta">
-                                    <span>₦1550</span>
+                                    <span>₦{numberFormatter(item?.price).toPrice()}</span>
                                     <span>Successful</span>
                                 </div>
                             </li>
                         })}
-                    </ul>
+                    </ul>}
                 </RecentActivities>
             </Container>
         </Wrapper>

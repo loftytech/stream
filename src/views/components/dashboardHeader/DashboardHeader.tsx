@@ -7,7 +7,7 @@ import { setNavigation } from '../../../slices/navigationSlice';
 
 
 const  DashboardHeader: React.FC<{title?: String, subTitle?: string, customHeader?: React.ReactNode}> = ({title, subTitle, customHeader}) => {
-
+    // const profile = useAppSelector(state => state.profile.state)
     const dispatch = useDispatch();
     return (
         <HeaderWrapper>

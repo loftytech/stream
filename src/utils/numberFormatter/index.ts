@@ -1,4 +1,11 @@
 const formatNumber = (num: number) => {
+    if (!num) {
+        return {
+            toPrice: () => "",
+            pad: ""
+        }
+    }
+
     return { 
         toPrice: () => num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,'),
         pad: (size: number) => {

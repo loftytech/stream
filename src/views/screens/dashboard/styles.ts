@@ -28,12 +28,46 @@ export const BalanceContainer = styled.div`
 `;
 
 export const BalanceWrapper = styled.div`
-    background-image: url("./assets/img/tmp/balance-img.png");
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url("./assets/img/tmp/balance-img-2.png");
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;
     height: 320px;
     width: 100%;
+`;
+
+export const BalanceCardContainer = styled.div`
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    height: 250px;
+    width: 100%;
+    max-width: 407px;
+    /* background-color: #031B1A; */
+    /* background-color: #f0f; */
+    margin-top: 22px;
+    border-radius: 20px;
+
+    .text-content {
+        margin-left: 40px;
+        margin-top: 40px;
+
+        h4 {
+            font-size: 14px;
+            font-weight: 400;
+            color: #FEFBEF;
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            font-size: 19px;
+            font-weight: 600;
+            color: #FEFBEF;
+        }
+    }
 `;
 
 export const PlayerWrapper = styled.div`
@@ -479,6 +513,18 @@ export const TodayTrendingVideo = styled.div`
         width: 100%;
         object-fit: cover;
         border-radius: 10px;
+    }
+
+    .lofty-yt-video-player {
+        width: 100%;
+        height: 250px;
+        border-radius: 8px;
+        overflow: hidden;
+        background-color: #ccc;
+
+        iframe {
+            height: 250px;
+        }
     }
 
     @media screen and (min-width: 880px) {
