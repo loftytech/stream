@@ -12,10 +12,10 @@ export const SidebarWrapper = styled.div<{$navigationState: boolean}>`
         position: fixed;
         left: 0px;
         top: 0px;
-        display: ${props => props.$navigationState ? "block" : "none"};
+        display: ${({ $navigationState }) => ($navigationState ? "block" : "none")};
         height: 100vh;
         width: 100%;
-        background-color: ${props => props.$navigationState ? "#0006" : "transparent"};
+        background-color: ${({ $navigationState }) => ($navigationState ? "#0006" : "transparent")};
         transition: all 0.2s ease-in-out;
         cursor: pointer;
 
@@ -37,7 +37,7 @@ export const SidebarContent = styled.div<{$navigationState: boolean}>`
     display:  flex;
     flex-direction: column;
     position: fixed;
-    left: ${props => props.$navigationState ? "0px" : "-240px"};
+    left: ${({ $navigationState }) => ($navigationState ? "0px" : "-240px")};
     top: 0px;
     width: 240px;
     height: 100vh;

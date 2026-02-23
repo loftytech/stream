@@ -11,6 +11,7 @@ export const  HeaderWrapper = styled.header`
         height: 100%;
         top: 0px;
         left: 0px;
+        z-index: 1;
 
         img {
             width: 100%;
@@ -32,6 +33,8 @@ export const  HeadBar = styled.div`
     border: 1px solid #FDF8E5;
     padding: 0px 20px;
     border-radius: 15px;
+    position: relative;
+    z-index: 2;
 
     .banner {
         display: flex;
@@ -108,7 +111,7 @@ export const  Nav = styled.nav<{$navigationState: boolean}>`
 `;
 export const NavContent = styled.div<{$navigationState: boolean}>`
     display: block;
-    background-color: #000;
+    background-color: #2F4F4E;
     position: fixed;
     left: ${props => props.$navigationState ? "0px" : "-240px"};
     width: 240px;
@@ -126,7 +129,7 @@ export const NavContent = styled.div<{$navigationState: boolean}>`
             font-size: 18px;
             font-weight: 500;
             margin-left: 10px;
-            color: ${props => props.theme.primaryColor};
+            color: #fff;
         }
         img {
             width: 40px;

@@ -26,10 +26,10 @@ const HeaderAlt: React.FC = ()  => {
                     <img src="/assets/img/logo.png" alt="logo" />
                     <h2>Stream</h2>
                 </div>
-                <Nav ref={sidebarRef} onClick={e => closeMenu(e)} navigationState={toggleState.main}>
-                    <NavContent navigationState={toggleState.main}>
+                <Nav ref={sidebarRef} onClick={e => closeMenu(e)} $navigationState={toggleState.main}>
+                    <NavContent $navigationState={toggleState.main}>
                         <div className="nav-head">
-                            <img src="/assets/img/logo.png" alt="logo" />
+                            <img src="/assets/img/white-logo.png" alt="logo" />
                             <h2>Stream</h2>
                         </div>
                         <ul>

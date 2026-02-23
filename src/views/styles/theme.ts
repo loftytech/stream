@@ -8,7 +8,7 @@ interface DefaultTheme {
   }
 
 export const lightTheme = {
-	primaryColor: "#02CB63",
+	primaryColor: "#2F4F4E",
 	secondaryColor: "#203035",
   lightPrimaryColor: "rgb(229, 177, 243)",
   textColor: "rgb(94, 94, 94)",
@@ -16,7 +16,7 @@ export const lightTheme = {
 };
 
 export const darkTheme: DefaultTheme = {
-	primaryColor: "#02CB63",
+	primaryColor: "#2F4F4E",
 	secondaryColor: "#203035",
   lightPrimaryColor: "rgb(229, 177, 243)",
   textColor: "rgb(94, 94, 94)",

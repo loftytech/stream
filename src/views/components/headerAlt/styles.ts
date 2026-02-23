@@ -29,7 +29,7 @@ export const  HeadBar = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
-
+    position: relative;
     .banner {
         display: flex;
         align-items: center;
@@ -69,7 +69,7 @@ export const ToggleMenu = styled.div`
     }
 `;
 
-export const  Nav = styled.nav<{navigationState: boolean}>`
+export const  Nav = styled.nav<{$navigationState: boolean}>`
     display: block;
     position: fixed;
     left: 0px;
@@ -82,10 +82,10 @@ export const  Nav = styled.nav<{navigationState: boolean}>`
         position: fixed;
         left: 0px;
         top: 0px;
-        display: ${props => props.navigationState ? "block" : "none"};
+        display: ${props => props.$navigationState ? "block" : "none"};
         height: 100vh;
         width: 100%;
-        background-color: ${props => props.navigationState ? "#0006" : "transparent"};
+        background-color: ${props => props.$navigationState ? "#0006" : "transparent"};
         transition: all 0.2s ease-in-out;
 
         @media screen and (min-width: 800px) {
@@ -103,11 +103,11 @@ export const  Nav = styled.nav<{navigationState: boolean}>`
         background-color: transparent;
     }
 `;
-export const NavContent = styled.div<{navigationState: boolean}>`
+export const NavContent = styled.div<{$navigationState: boolean}>`
     display: block;
-    background-color: #000;
+    background-color: #2F4F4E;
     position: fixed;
-    left: ${props => props.navigationState ? "0px" : "-240px"};
+    left: ${props => props.$navigationState ? "0px" : "-240px"};
     width: 240px;
     height: 100%;
     z-index: 999999;
@@ -123,7 +123,7 @@ export const NavContent = styled.div<{navigationState: boolean}>`
             font-size: 18px;
             font-weight: 500;
             margin-left: 10px;
-            color: ${props => props.theme.primaryColor};
+            color: #fff;
         }
         img {
             width: 40px;
@@ -139,7 +139,7 @@ export const NavContent = styled.div<{navigationState: boolean}>`
                 a {
                     display: block;
                     padding: 10px 10px;
-                    color: #476160;
+                    color: #fff;
                     font-weight: 400;
                 }
             }
@@ -158,7 +158,7 @@ export const NavContent = styled.div<{navigationState: boolean}>`
                     height: 50px;
                     font-weight: 600;
                     color: #476160;
-                    background-color: #476160;
+                    background-color: #fff;
                     font-size: 11px;
                     border:  1px solid ${props => props.theme.primaryColor};
                     border-radius: 4px;

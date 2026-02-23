@@ -14,12 +14,14 @@ import WishHubProduct from './views/screens/dashboard/wish_hub/wish_hub_product/
 import Downloadables from './views/screens/dashboard/downloadables/Downloadables';
 import SnapRoyalties from './views/screens/dashboard/snap_royalties/SnapRoyalties';
 import SnapRoyaltiesDetails from './views/screens/dashboard/snap_royalties/snap_royalties_details/SnapRoyaltiesDetails';
+import { ScrollToTop } from './views/components/scroll_to_top/ScrollToTop';
 
 function App() {
   
   return (
     <Router>
       <ThemeProvider theme={lightTheme}>
+          <ScrollToTop />
           <Routes>
             <Route path="/" element={<HomeScreen />} />
             <Route path="/dashboard" element={<MainLayout title={""}><DashboardScreen /></MainLayout>} />
