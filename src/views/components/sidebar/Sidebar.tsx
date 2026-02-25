@@ -39,6 +39,7 @@ const SubMenuIndicator: React.FC<{itemsLength: number}> = ({itemsLength}) => {
 }
 
 const Sidebar: React.FC = () => {
+    const [activeSubmenu, setActiveSubMenu] = useState("")
     const toggleState = useAppSelector(state => state.navigation.state);
     const dispatch = useAppDispatch();
     const [_isActiveSubMenu, setIsActiveSubMenu] = useState(false)
@@ -85,20 +86,66 @@ const Sidebar: React.FC = () => {
                             <span>Dashboard</span>
                             </Link>
                     </MenuItems>
-                    <MenuItems $isActive={location.pathname === "/dashboard/buy-gas" ? true : false}>
-                        <Link onClick={() => dispatch(setNavigation({dashboard: false}))} to="/dashboard/buy-gas">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <rect x="2" y="2" width="20" height="20" stroke="#2F4F4E" stroke-linejoin="round"/>
-                                <path d="M11 7H17" stroke="#2F4F4E" stroke-linecap="round"/>
-                                <path d="M11 12H17" stroke="#2F4F4E" stroke-linecap="round"/>
-                                <path d="M11 17H17" stroke="#2F4F4E" stroke-linecap="round"/>
-                                <path fill-rule="evenodd" clip-rule="evenodd" d="M7 8C7.55228 8 8 7.55228 8 7C8 6.44772 7.55228 6 7 6C6.44772 6 6 6.44772 6 7C6 7.55228 6.44772 8 7 8Z" fill="#2F4F4E"/>
-                                <path fill-rule="evenodd" clip-rule="evenodd" d="M7 13C7.55228 13 8 12.5523 8 12C8 11.4477 7.55228 11 7 11C6.44772 11 6 11.4477 6 12C6 12.5523 6.44772 13 7 13Z" fill="#2F4F4E"/>
-                                <path fill-rule="evenodd" clip-rule="evenodd" d="M7 18C7.55228 18 8 17.5523 8 17C8 16.4477 7.55228 16 7 16C6.44772 16 6 16.4477 6 17C6 17.5523 6.44772 18 7 18Z" fill="#2F4F4E"/>
-                            </svg>
 
-                            <span>Stream Box</span>
-                        </Link>
+                    <MenuItems>
+                        <div className="sub-menu" onClick={(e) => {
+                                e.preventDefault()
+                                if (activeSubmenu != "Stream Box") {
+                                    setActiveSubMenu("Stream Box")
+                                } else {
+                                    setActiveSubMenu("")
+                                }
+                            }}>
+                            <a className="submenu-head">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <rect x="2" y="2" width="20" height="20" stroke="#2F4F4E" stroke-linejoin="round"/>
+                                    <path d="M11 7H17" stroke="#2F4F4E" stroke-linecap="round"/>
+                                    <path d="M11 12H17" stroke="#2F4F4E" stroke-linecap="round"/>
+                                    <path d="M11 17H17" stroke="#2F4F4E" stroke-linecap="round"/>
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M7 8C7.55228 8 8 7.55228 8 7C8 6.44772 7.55228 6 7 6C6.44772 6 6 6.44772 6 7C6 7.55228 6.44772 8 7 8Z" fill="#2F4F4E"/>
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M7 13C7.55228 13 8 12.5523 8 12C8 11.4477 7.55228 11 7 11C6.44772 11 6 11.4477 6 12C6 12.5523 6.44772 13 7 13Z" fill="#2F4F4E"/>
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M7 18C7.55228 18 8 17.5523 8 17C8 16.4477 7.55228 16 7 16C6.44772 16 6 16.4477 6 17C6 17.5523 6.44772 18 7 18Z" fill="#2F4F4E"/>
+                                </svg>
+
+                                <span>Stream Box</span>
+                            </a>
+
+                            <SubMenuWrapper isActive={activeSubmenu == "Stream Box"}>
+                                <SubMenuIndicator itemsLength={3} />
+                                <SubMenu>
+                                    <SubMenuItems $isActive={location.pathname === "/dashboard/audio-colab" ? true : false}>
+                                        <Link onClick={() => dispatch(setNavigation({dashboard: false}))} to="/dashboard/snap-royalties">
+                                            <span>Snap Collab</span>
+                                        </Link>
+                                    </SubMenuItems>
+                                    <SubMenuItems $isActive={location.pathname === "/dashboard/transactions" ? true : false}>
+                                        <Link onClick={() => dispatch(setNavigation({dashboard: false}))} to="/dashboard/audio-colab">
+                                            <span>Audio Collab</span>
+                                        </Link>
+                                    </SubMenuItems>
+                                    <SubMenuItems $isActive={location.pathname === "/dashboard/transactions" ? true : false}>
+                                        <Link onClick={() => dispatch(setNavigation({dashboard: false}))} to="/dashboard/video-colab">
+                                            <span>Video Collab</span>
+                                        </Link>
+                                    </SubMenuItems>
+                                    <SubMenuItems $isActive={location.pathname === "/dashboard/transactions" ? true : false}>
+                                        <Link onClick={() => dispatch(setNavigation({dashboard: false}))} to="/dashboard/live-stream">
+                                            <span>LiveStream Collab</span>
+                                        </Link>
+                                    </SubMenuItems>
+                                    <SubMenuItems $isActive={location.pathname === "/dashboard/transactions" ? true : false}>
+                                        <Link onClick={() => dispatch(setNavigation({dashboard: false}))} to="/dashboard/downloadables">
+                                            <span>FileDownload Collab</span>
+                                        </Link>
+                                    </SubMenuItems>
+                                    <SubMenuItems $isActive={location.pathname === "/dashboard/transactions" ? true : false}>
+                                        <Link onClick={() => dispatch(setNavigation({dashboard: false}))} to="/dashboard/purchases">
+                                            <span>Royalties Report</span>
+                                        </Link>
+                                    </SubMenuItems>
+                                </SubMenu>
+                            </SubMenuWrapper>
+                        </div>
                     </MenuItems>
                     <MenuItems $isActive={location.pathname === "/dashboard/wallets" ? true : false}>
                         <Link onClick={() => dispatch(setNavigation({dashboard: false}))} to="/dashboard/wallets">
@@ -144,7 +191,14 @@ const Sidebar: React.FC = () => {
 
                     <MenuItems>
                         <div className="sub-menu">
-                            <a className="submenu-head">
+                            <a className="submenu-head" onClick={(e) => {
+                                e.preventDefault()
+                                if (activeSubmenu != "StreamPass") {
+                                    setActiveSubMenu("StreamPass")
+                                } else {
+                                    setActiveSubMenu("")
+                                }
+                            }}>
                                 <svg width="25" height="17" viewBox="0 0 25 17" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M2.08301 1H22.917C23.5151 1.00018 23.9998 1.48494 24 2.08301V5.41895C22.7886 5.83452 21.9171 6.98064 21.917 8.33301C21.917 9.68545 22.7886 10.8314 24 11.2471V14.583C24 15.1812 23.5152 15.6668 22.917 15.667H2.08301C1.48483 15.6668 1 15.1812 1 14.583V11.2471C2.21144 10.8314 3.08301 9.68545 3.08301 8.33301C3.08287 6.98064 2.21145 5.83452 1 5.41895V2.08301C1.00018 1.48494 1.48494 1.00018 2.08301 1ZM5.20801 1.77734C4.08061 1.77752 3.16705 2.69191 3.16699 3.81934V12.8477C3.16723 13.9749 4.08071 14.8885 5.20801 14.8887H19.792C20.9193 14.8885 21.8328 13.9749 21.833 12.8477V3.81934C21.8329 2.69191 20.9194 1.77752 19.792 1.77734H5.20801ZM18.4443 5.16699V11.5H6.55566V5.16699H18.4443Z" stroke="#476160" stroke-width="2"/>
                                 </svg>
@@ -152,7 +206,7 @@ const Sidebar: React.FC = () => {
                                 <span>StreamPass</span>
                             </a>
 
-                            <SubMenuWrapper>
+                            <SubMenuWrapper isActive={activeSubmenu == "StreamPass"}>
                                 <SubMenuIndicator itemsLength={3} />
                                 <SubMenu>
                                     <SubMenuItems $isActive={location.pathname === "/dashboard/products" ? true : false}>
@@ -177,12 +231,20 @@ const Sidebar: React.FC = () => {
 
                     <MenuItems>
                         <div className="sub-menu">
-                            <a className="submenu-head">
+                            <a className="submenu-head" onClick={(e) => {
+                                e.preventDefault()
+
+                                if (activeSubmenu != "withdrawal") {
+                                    setActiveSubMenu("withdrawal")
+                                } else {
+                                    setActiveSubMenu("")
+                                }
+                            }}>
                                 <HiOutlineCash />
                                 <span>Withdrawal</span>
                             </a>
 
-                            <SubMenuWrapper>
+                            <SubMenuWrapper isActive={activeSubmenu == "withdrawal"}>
                                 <SubMenuIndicator itemsLength={3} />
                                 <SubMenu>
                                     <SubMenuItems $isActive={location.pathname === "/dashboard/revenue" ? true : false}>
@@ -205,62 +267,8 @@ const Sidebar: React.FC = () => {
                         </div>
                     </MenuItems>
 
-                    <MenuItems>
-                        <div className="sub-menu">
-                            <a className="submenu-head">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <rect x="2" y="2" width="20" height="20" stroke="#2F4F4E" stroke-linejoin="round"/>
-                                    <path d="M11 7H17" stroke="#2F4F4E" stroke-linecap="round"/>
-                                    <path d="M11 12H17" stroke="#2F4F4E" stroke-linecap="round"/>
-                                    <path d="M11 17H17" stroke="#2F4F4E" stroke-linecap="round"/>
-                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M7 8C7.55228 8 8 7.55228 8 7C8 6.44772 7.55228 6 7 6C6.44772 6 6 6.44772 6 7C6 7.55228 6.44772 8 7 8Z" fill="#2F4F4E"/>
-                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M7 13C7.55228 13 8 12.5523 8 12C8 11.4477 7.55228 11 7 11C6.44772 11 6 11.4477 6 12C6 12.5523 6.44772 13 7 13Z" fill="#2F4F4E"/>
-                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M7 18C7.55228 18 8 17.5523 8 17C8 16.4477 7.55228 16 7 16C6.44772 16 6 16.4477 6 17C6 17.5523 6.44772 18 7 18Z" fill="#2F4F4E"/>
-                                </svg>
-
-                                <span>Stream Box</span>
-                            </a>
-
-                            <SubMenuWrapper>
-                                <SubMenuIndicator itemsLength={3} />
-                                <SubMenu>
-                                    <SubMenuItems $isActive={location.pathname === "/dashboard/audio-colab" ? true : false}>
-                                        <Link onClick={() => dispatch(setNavigation({dashboard: false}))} to="/dashboard/purchases">
-                                            <span>Snap Collab</span>
-                                        </Link>
-                                    </SubMenuItems>
-                                    <SubMenuItems $isActive={location.pathname === "/dashboard/transactions" ? true : false}>
-                                        <Link onClick={() => dispatch(setNavigation({dashboard: false}))} to="/dashboard/purchases">
-                                            <span>Audio Collab</span>
-                                        </Link>
-                                    </SubMenuItems>
-                                    <SubMenuItems $isActive={location.pathname === "/dashboard/transactions" ? true : false}>
-                                        <Link onClick={() => dispatch(setNavigation({dashboard: false}))} to="/dashboard/purchases">
-                                            <span>Video Collab</span>
-                                        </Link>
-                                    </SubMenuItems>
-                                    <SubMenuItems $isActive={location.pathname === "/dashboard/transactions" ? true : false}>
-                                        <Link onClick={() => dispatch(setNavigation({dashboard: false}))} to="/dashboard/purchases">
-                                            <span>LiveStream Collab</span>
-                                        </Link>
-                                    </SubMenuItems>
-                                    <SubMenuItems $isActive={location.pathname === "/dashboard/transactions" ? true : false}>
-                                        <Link onClick={() => dispatch(setNavigation({dashboard: false}))} to="/dashboard/purchases">
-                                            <span>FileDownload Collab</span>
-                                        </Link>
-                                    </SubMenuItems>
-                                    <SubMenuItems $isActive={location.pathname === "/dashboard/transactions" ? true : false}>
-                                        <Link onClick={() => dispatch(setNavigation({dashboard: false}))} to="/dashboard/purchases">
-                                            <span>Royalties Report</span>
-                                        </Link>
-                                    </SubMenuItems>
-                                </SubMenu>
-                            </SubMenuWrapper>
-                        </div>
-                    </MenuItems>
-
                     <MenuItems $isActive={location.pathname === "/dashboard/wallets" ? true : false}>
-                        <Link onClick={() => dispatch(setNavigation({dashboard: false}))} to="/dashboard/wallets">
+                        <Link onClick={() => dispatch(setNavigation({dashboard: false}))} to="/dashboard/wish-hub">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M21.2922 6L19.9463 14.1627C19.8666 14.6457 19.4491 15 18.9596 15H7.04304C6.55355 15 6.136 14.6457 6.05636 14.1627L4.84851 6.83731C4.76887 6.35434 4.35133 6 3.86183 6H2" stroke="#2F4F4E" stroke-linecap="round" stroke-linejoin="round"/>
                                 <path fill-rule="evenodd" clip-rule="evenodd" d="M8 20C8.55228 20 9 19.5523 9 19C9 18.4477 8.55228 18 8 18C7.44772 18 7 18.4477 7 19C7 19.5523 7.44772 20 8 20Z" stroke="#2F4F4E"/>
@@ -276,7 +284,14 @@ const Sidebar: React.FC = () => {
 
                     <MenuItems>
                         <div className="sub-menu">
-                            <a className="submenu-head">
+                            <a className="submenu-head" onClick={(e) => {
+                                e.preventDefault()
+                                if (activeSubmenu != "Marketplace") {
+                                    setActiveSubMenu("Marketplace")
+                                } else {
+                                    setActiveSubMenu("")
+                                }
+                            }}>
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <rect x="5" y="7" width="14" height="12" stroke="#2F4F4E" stroke-linecap="round" stroke-linejoin="round"/>
                                     <path d="M8 7C8 4.79086 9.79086 3 12 3C14.2091 3 16 4.79086 16 7" stroke="#2F4F4E" stroke-linecap="round" stroke-linejoin="round"/>
@@ -285,7 +300,7 @@ const Sidebar: React.FC = () => {
                                 <span>Marketplace</span>
                             </a>
 
-                            <SubMenuWrapper>
+                            <SubMenuWrapper isActive={activeSubmenu == "Marketplace"}>
                                 <SubMenuIndicator itemsLength={3} />
                                 <SubMenu>
                                     <SubMenuItems $isActive={location.pathname === "/dashboard/transactions" ? true : false}>
@@ -311,7 +326,14 @@ const Sidebar: React.FC = () => {
 
                     <MenuItems>
                         <div className="sub-menu">
-                            <a className="submenu-head">
+                            <a className="submenu-head" onClick={(e) => {
+                                e.preventDefault()
+                                if (activeSubmenu != "Skills Centre") {
+                                    setActiveSubMenu("Skills Centre")
+                                } else {
+                                    setActiveSubMenu("")
+                                }
+                            }}>
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M9 4C9 2.89543 9.89543 2 11 2C12.1046 2 13 2.89543 13 4V6H18V11H20C21.1046 11 22 11.8954 22 13C22 14.1046 21.1046 15 20 15H18V20H13V18C13 16.8954 12.1046 16 11 16C9.89543 16 9 16.8954 9 18V20H4V15H6C7.10457 15 8 14.1046 8 13C8 11.8954 7.10457 11 6 11H4V6H9V4Z" stroke="#2F4F4E"/>
                                 </svg>
@@ -319,7 +341,7 @@ const Sidebar: React.FC = () => {
                                 <span>Skills Centre</span>
                             </a>
 
-                            <SubMenuWrapper>
+                            <SubMenuWrapper isActive={activeSubmenu == "Skills Centre"}>
                                 <SubMenuIndicator itemsLength={3} />
                                 <SubMenu>
                                     <SubMenuItems $isActive={location.pathname === "/dashboard/transactions" ? true : false}>

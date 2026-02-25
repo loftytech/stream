@@ -7,7 +7,7 @@ const VideoColab: React.FC = () => {
 
     return (
         <Wrapper>
-            <DashboardHeader title={"Sound Royalties"} subTitle="Welcome Jenny Willson!">
+            <DashboardHeader title={"Video Colab"} subTitle="Welcome Jenny Willson!">
                 
             </DashboardHeader>
 

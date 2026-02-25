@@ -6,7 +6,7 @@ const AudioColab: React.FC = () => {
 
     return (
         <Wrapper>
-            <DashboardHeader title={"Sound Royalties"} subTitle="Welcome Jenny Willson!">
+            <DashboardHeader title={"Audio Colab"} subTitle="Welcome Jenny Willson!">
                 
             </DashboardHeader>
 
@@ -18,7 +18,7 @@ const AudioColab: React.FC = () => {
                     <div className="text-content">
                         <h4>Wallet Balance</h4>
                         <h2>₦306,896.92</h2>
-                        <h5>Total Streamed Video : 13 Videos</h5>
+                        <h5>Total Streamed Music : 13 Videos</h5>
 
                         <div className="row">
                             <button>Withdraw</button>

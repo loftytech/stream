@@ -15,6 +15,8 @@ import Downloadables from './views/screens/dashboard/downloadables/Downloadables
 import SnapRoyalties from './views/screens/dashboard/snap_royalties/SnapRoyalties';
 import SnapRoyaltiesDetails from './views/screens/dashboard/snap_royalties/snap_royalties_details/SnapRoyaltiesDetails';
 import { ScrollToTop } from './views/components/scroll_to_top/ScrollToTop';
+import LiveStream from './views/screens/dashboard/live_stream/LiveStream';
+import LiveStreamDetails from './views/screens/dashboard/live_stream/live_stream_details/LiveStreamDetails';
 
 function App() {
   
@@ -32,6 +34,8 @@ function App() {
             <Route path="/dashboard/snap-royalties/:royaltyId" element={<MainLayout title={""}><SnapRoyaltiesDetails /></MainLayout>} />
             <Route path="/dashboard/wish-hub" element={<MainLayout title={""}><WishHub /></MainLayout>} />
             <Route path="/dashboard/wish-hub/:productId" element={<MainLayout title={""}><WishHubProduct /></MainLayout>} />
+            <Route path="/dashboard/live-stream" element={<MainLayout title={""}><LiveStream /></MainLayout>} />
+            <Route path="/dashboard/live-stream/:id" element={<MainLayout title={""}><LiveStreamDetails /></MainLayout>} />
             <Route path="/signin" element={<SigninScreen />} />
             <Route path="/signup" element={<SignupScreen />} />
             <Route path="/create-account" element={<CreateAccountScreen />} />

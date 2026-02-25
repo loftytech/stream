@@ -69,7 +69,7 @@ export const BalanceContent = styled.div`
 
         h2 {
             color: #FEFBEF;
-            font-size: 30px;
+            font-size: 20px;
             margin-bottom: 20px;
             font-weight: 600;
         }

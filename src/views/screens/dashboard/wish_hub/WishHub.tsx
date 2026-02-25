@@ -8,7 +8,7 @@ const WishHub: React.FC = () => {
 
     return (
         <Wrapper>
-            <DashboardHeader title={"Sound Royalties"} subTitle="Welcome Jenny Willson!">
+            <DashboardHeader title={"Wish Hub"} subTitle="Welcome Jenny Willson!">
                 
             </DashboardHeader>
 
@@ -24,7 +24,7 @@ const WishHub: React.FC = () => {
                         </div>
 
                         <h4>Countdown</h4>
-                        <h2>08 hours : 34 Minutes : 10 Sec</h2>
+                        <h2>08 days : 08 hours : 34 Minutes : 10 Sec</h2>
                         <p>This special offer will automatically expire once the countdown timer reaches zero, so act fast before time runs out.</p>
                     </div>
 

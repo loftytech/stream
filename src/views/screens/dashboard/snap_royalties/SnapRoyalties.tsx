@@ -9,7 +9,7 @@ const SnapRoyalties: React.FC = () => {
 
     return (
         <Wrapper>
-            <DashboardHeader title={"Sound Royalties"} subTitle="Welcome Jenny Willson!">
+            <DashboardHeader title={"Snap Colab"} subTitle="Welcome Jenny Willson!">
                 
             </DashboardHeader>
 

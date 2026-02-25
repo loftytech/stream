@@ -6,7 +6,7 @@ const WishHubProduct: React.FC = () => {
 
     return (
         <Wrapper>
-            <DashboardHeader title={"Sound Royalties"} subTitle="Welcome Jenny Willson!">
+            <DashboardHeader title={"Wish Hub"} subTitle="Welcome Jenny Willson!">
                 
             </DashboardHeader>
 

@@ -31,7 +31,7 @@ const  DashboardHeader: React.FC<{title?: String, subTitle?: string, customHeade
                         <div className="info">
                             <h4>PREMIUM</h4>
                             <div className="row">
-                                <span>nga</span>
+                                <span>NGN</span>
                                 <svg width="13" height="8" viewBox="0 0 13 8" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M0.5 0.5L6.5 6.5L12.5 0.5" stroke="#2F4F4E" stroke-linecap="round"/>
                                 </svg>
@@ -61,7 +61,7 @@ const  DashboardHeader: React.FC<{title?: String, subTitle?: string, customHeade
                         </svg>
                         <h4>PREMIUM</h4>
                         <div className="row">
-                            <span>nga</span>
+                            <span>NGN</span>
                             <svg width="13" height="8" viewBox="0 0 13 8" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M0.5 0.5L6.5 6.5L12.5 0.5" stroke="#2F4F4E" stroke-linecap="round"/>
                             </svg>
