@@ -35,7 +35,7 @@ const DashboardScreen: React.FC = () => {
                             <BalanceCardContainer>
                                 <div className="text-content">
                                     <h4>TOTAL STREAM INCOME</h4>
-                                    <h2>₦{numberFormatter(dashboardModel.stats?.activity).toPrice()}</h2>
+                                    <h2>${numberFormatter(dashboardModel.stats?.activity).toPrice()}</h2>
                                 </div>
                             </BalanceCardContainer>
                         </BalanceWrapper>
@@ -219,7 +219,7 @@ const DashboardScreen: React.FC = () => {
                                 </div>
 
                                 <div className="meta">
-                                    <span>₦{numberFormatter(item?.price).toPrice()}</span>
+                                    <span>${numberFormatter(item?.price).toPrice()}</span>
                                     <span>Successful</span>
                                 </div>
                             </li>

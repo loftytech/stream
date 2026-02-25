@@ -39,7 +39,6 @@ const useDashboardModel = () => {
 
 
             if (res.success) {
-                setStats(res.data)
                 Message.success("Reward credited successfully")
             } else {
                 Message.error(res?.message ?? "An error occurred")

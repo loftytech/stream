@@ -1,8 +1,15 @@
+import { useEffect } from 'react'
 import DashboardHeader from '../../../components/dashboardHeader/DashboardHeader'
 import { BalanceContent, BalanceWrapper, Categories, Wrapper, Container, TrendingArtists, ForYou, Row } from './styles'
+import useAudioColabModel from './useAudioColabModel'
+import Loader from '../../../components/Loader/Loader'
 
 const AudioColab: React.FC = () => {
-    
+    const audioColabModel = useAudioColabModel()
+
+    useEffect(() => {
+        audioColabModel.fetchAudioColab()
+    }, [])
 
     return (
         <Wrapper>
@@ -17,7 +24,7 @@ const AudioColab: React.FC = () => {
                     </div>
                     <div className="text-content">
                         <h4>Wallet Balance</h4>
-                        <h2>₦306,896.92</h2>
+                        <h2>₦{audioColabModel.audioFiles?.wallet_balance}</h2>
                         <h5>Total Streamed Music : 13 Videos</h5>
 
                         <div className="row">
@@ -82,14 +89,14 @@ const AudioColab: React.FC = () => {
                     <ForYou>
                         <h4>Just for you</h4>
                         <ul className="hide-scrollbar">
-                            {[1,2,3,4,5,6,7,8].map((_item, idx) => {
+                            {audioColabModel.isFetchingAudioFiles ? <Loader styleTwo center /> : audioColabModel.audioFiles?.audio_files.map((item, idx) => {
                                 return <li key={idx}>
-                                <img src="/assets/img/tmp/foryou-img.png" alt="" />
+                                <img src={item?.image} alt="" />
                                     <div className="row">
                                         <b>Daily Mix </b>
-                                        <span>₦1450</span>
+                                        <span>₦1550</span>
                                     </div>
-                                    <p>Jonas Blue, NOTD, David Guetta and more</p>
+                                    <p>{item?.title}</p>
                                 </li>
                             })}
                         </ul>
@@ -103,7 +110,7 @@ const AudioColab: React.FC = () => {
                                 <img src="/assets/img/tmp/foryou-img.png" alt="" />
                                     <div className="row">
                                         <b>Daily Mix </b>
-                                        <span>₦1450</span>
+                                        <span>₦1550</span>
                                     </div>
                                     <p>Jonas Blue, NOTD, David Guetta and more</p>
                                 </li>
@@ -122,7 +129,7 @@ const AudioColab: React.FC = () => {
                                 <img src="/assets/img/tmp/foryou-img.png" alt="" />
                                     <div className="row">
                                         <b>Daily Mix </b>
-                                        <span>₦1450</span>
+                                        <span>₦1550</span>
                                     </div>
                                     <p>Jonas Blue, NOTD, David Guetta and more</p>
                                 </li>
@@ -138,7 +145,7 @@ const AudioColab: React.FC = () => {
                                 <img src="/assets/img/tmp/foryou-img.png" alt="" />
                                     <div className="row">
                                         <b>Daily Mix </b>
-                                        <span>₦1450</span>
+                                        <span>₦1550</span>
                                     </div>
                                     <p>Jonas Blue, NOTD, David Guetta and more</p>
                                 </li>

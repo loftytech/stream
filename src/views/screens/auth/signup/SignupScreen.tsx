@@ -42,18 +42,18 @@ const SignupScreen: React.FC = () => {
                                 <div className="action">
                                     <div className="amount">
                                         <span>$12</span>
-                                        <span>$14</span>
+                                        <span>$18</span>
                                     </div>
 
                                     <button  onClick={() => navigate("/create-account")}>Get Onboard</button>
                                 </div>
                             </li>
 
-                            <div className="limited">
+                            <div className="limited" style={{display: "none"}}>
                                 <img src="/assets/svg/limited-icon.svg" alt="" />
                                 <span>Limited</span>
                             </div>
-                            <li>
+                            <li style={{display: "none"}}>
                                 <div className="col">
                                     <div className="save">
                                         <div className="check-box"></div>

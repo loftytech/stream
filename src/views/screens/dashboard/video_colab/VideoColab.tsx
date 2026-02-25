@@ -44,7 +44,7 @@ const VideoColab: React.FC = () => {
                 
                 <TodayTrendingVideo>
                     <div className="head">
-                        <h3>TODAY TRENDING VIDEO</h3>
+                        <h3>TRENDING VIDEOS</h3>
                     </div>
 
                     <ul className="hide-scrollbar">
@@ -71,7 +71,7 @@ const VideoColab: React.FC = () => {
 
                 <TrendingVideo>
                     <div className="head">
-                        <h3>Trending video</h3>
+                        <h3>Other videos</h3>
                     </div>
 
                     <ul className="hide-scrollbar">
@@ -100,7 +100,7 @@ const VideoColab: React.FC = () => {
 
                 <TrendingVideoAlt>
                     <div className="head">
-                        <h3>Trending Video</h3>
+                        <h3>More Videos</h3>
                     </div>
 
                     <ul className="hide-scrollbar">

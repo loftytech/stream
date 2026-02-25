@@ -166,14 +166,15 @@ export const ContentRow = styled.div`
                         text-align: right;
 
                         span {
-                            font-size: 17px;
-                            font-weight: 400;
+                            font-size: 20px;
+                            font-weight: 600;
                             color: #476160;
 
                             &:last-child {
                                 color: rgba(71, 97, 96, 0.3);
                                 margin-top: 8px;
                                 font-size: 13px;
+                                text-decoration: line-through;
                             }
                         }
                     }
