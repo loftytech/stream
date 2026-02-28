@@ -1,11 +1,9 @@
 import { useEffect } from 'react'
 import DashboardHeader from '../../../components/dashboardHeader/DashboardHeader'
-import { ProfileContent, ProfileCard, Wrapper, Container, TabWrapper, TableWrapper, ResubCard, DeleteAccount, Row, SaveChanges } from './styles'
+import { Wrapper, Container, TableWrapper } from './styles'
 import useAudioColabModel from './useAudioColabModel'
-import { AiOutlineCloudUpload, AiOutlineDownload } from "react-icons/ai"
-import { BiSave, BiTrash } from 'react-icons/bi'
+import { AiOutlineDownload } from "react-icons/ai"
 import Loader from '../../../components/Loader/Loader'
-import { CgEye } from 'react-icons/cg'
 import { FiEyeOff } from 'react-icons/fi'
 
 const StreamPass: React.FC = () => {

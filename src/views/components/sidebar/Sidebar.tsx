@@ -39,7 +39,6 @@ const SubMenuIndicator: React.FC<{itemsLength: number}> = ({itemsLength}) => {
 }
 
 const Sidebar: React.FC = () => {
-    const [activeSubmenu, setActiveSubMenu] = useState("")
     const toggleState = useAppSelector(state => state.navigation.state);
     const dispatch = useAppDispatch();
     const [_isActiveSubMenu, setIsActiveSubMenu] = useState(false)
