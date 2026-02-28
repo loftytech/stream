@@ -178,7 +178,7 @@ export const MenuItems = styled.li<{$isActive?: boolean, isActiveSubMenu?: boole
             /* width: 30px; */
             margin-right: 20px;
             font-size: 20px;
-            color: ${props => props.$isActive ? "#203035" : "#476160" };
+            color: ${props => props.$isActive ? "#fff" : "#476160" };
 
              @media screen and (min-width: 880px) {
                 margin-right: 0px;
@@ -187,13 +187,13 @@ export const MenuItems = styled.li<{$isActive?: boolean, isActiveSubMenu?: boole
         span {
             font-size: 15px;
             font-weight: 400;
-            color: ${props => props.$isActive ? "#203035" : "#7B8C82" };
+            color: ${props => props.$isActive ? "#fff" : "#7B8C82" };
 
             @media screen and (min-width: 880px) {
                 display: none;
             }
         }
-        background-color: ${props => props.$isActive ? "#E5EAF1" : "transparent" };
+        background-color: ${props => props.$isActive ? "#2F4F4E" : "transparent" };
     }
 
     a.submenu-head {
@@ -221,7 +221,8 @@ export const SubMenuItems = styled.li<{$isActive?: boolean, isActiveSubMenu?: bo
         align-items: center;
         color: #fff;
         padding: 10px 0px;
-        padding-bottom: ${props => props.isActiveSubMenu ? "10px" : "10px"};
+        padding-bottom: ${props => props.$isActive ? "10px" : "10px"};
+        padding-left: ${props => props.$isActive ? "10px" : "0px"};
         svg {
             /* width: 30px; */
             margin-right: 20px;
@@ -231,9 +232,9 @@ export const SubMenuItems = styled.li<{$isActive?: boolean, isActiveSubMenu?: bo
         span {
             font-size: 15px;
             font-weight: 400;
-            color: ${props => props.$isActive ? "#203035" : "#7B8C82" };
+            color: ${props => props.$isActive ? "#fff" : "#7B8C82" };
         }
-        background-color: ${props => props.$isActive ? "#02CB63" : "transparent" };
+        background-color: ${props => props.$isActive ? "#2F4F4E" : "transparent" };
         border-left: 4px solid ${props => props.$isActive ? "#fff" : "transparent"};
     }
 `;

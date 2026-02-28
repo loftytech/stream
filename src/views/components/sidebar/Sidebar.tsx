@@ -90,10 +90,10 @@ const Sidebar: React.FC = () => {
                     <MenuItems>
                         <div className="sub-menu" onClick={(e) => {
                                 e.preventDefault()
-                                if (activeSubmenu != "Stream Box") {
-                                    setActiveSubMenu("Stream Box")
+                                if (toggleState.subMenu != "Stream Box") {
+                                    dispatch(setNavigation({subMenu: "Stream Box"}))
                                 } else {
-                                    setActiveSubMenu("")
+                                    // dispatch(setNavigation({subMenu: ""}))
                                 }
                             }}>
                             <a className="submenu-head">
@@ -110,35 +110,35 @@ const Sidebar: React.FC = () => {
                                 <span>Stream Box</span>
                             </a>
 
-                            <SubMenuWrapper isActive={activeSubmenu == "Stream Box"}>
+                            <SubMenuWrapper isActive={toggleState.subMenu == "Stream Box"}>
                                 <SubMenuIndicator itemsLength={3} />
                                 <SubMenu>
-                                    <SubMenuItems $isActive={location.pathname === "/dashboard/audio-colab" ? true : false}>
+                                    <SubMenuItems $isActive={location.pathname === "/dashboard/snap-royalties" ? true : false}>
                                         <Link onClick={() => dispatch(setNavigation({dashboard: false}))} to="/dashboard/snap-royalties">
                                             <span>Snap Collab</span>
                                         </Link>
                                     </SubMenuItems>
-                                    <SubMenuItems $isActive={location.pathname === "/dashboard/transactions" ? true : false}>
+                                    <SubMenuItems $isActive={location.pathname === "/dashboard/audio-colab" ? true : false}>
                                         <Link onClick={() => dispatch(setNavigation({dashboard: false}))} to="/dashboard/audio-colab">
                                             <span>Audio Collab</span>
                                         </Link>
                                     </SubMenuItems>
-                                    <SubMenuItems $isActive={location.pathname === "/dashboard/transactions" ? true : false}>
+                                    <SubMenuItems $isActive={location.pathname === "/dashboard/video-colab" ? true : false}>
                                         <Link onClick={() => dispatch(setNavigation({dashboard: false}))} to="/dashboard/video-colab">
                                             <span>Video Collab</span>
                                         </Link>
                                     </SubMenuItems>
-                                    <SubMenuItems $isActive={location.pathname === "/dashboard/transactions" ? true : false}>
+                                    <SubMenuItems $isActive={location.pathname === "/dashboard/live-stream" ? true : false}>
                                         <Link onClick={() => dispatch(setNavigation({dashboard: false}))} to="/dashboard/live-stream">
                                             <span>LiveStream Collab</span>
                                         </Link>
                                     </SubMenuItems>
-                                    <SubMenuItems $isActive={location.pathname === "/dashboard/transactions" ? true : false}>
+                                    <SubMenuItems $isActive={location.pathname === "/dashboard/downloadables" ? true : false}>
                                         <Link onClick={() => dispatch(setNavigation({dashboard: false}))} to="/dashboard/downloadables">
                                             <span>FileDownload Collab</span>
                                         </Link>
                                     </SubMenuItems>
-                                    <SubMenuItems $isActive={location.pathname === "/dashboard/transactions" ? true : false}>
+                                    <SubMenuItems $isActive={location.pathname === "/dashboard/purchases" ? true : false}>
                                         <Link onClick={() => dispatch(setNavigation({dashboard: false}))} to="/dashboard/purchases">
                                             <span>Royalties Report</span>
                                         </Link>
@@ -193,10 +193,10 @@ const Sidebar: React.FC = () => {
                         <div className="sub-menu">
                             <a className="submenu-head" onClick={(e) => {
                                 e.preventDefault()
-                                if (activeSubmenu != "StreamPass") {
-                                    setActiveSubMenu("StreamPass")
+                                if (toggleState.subMenu != "StreamPass") {
+                                    dispatch(setNavigation({subMenu: "StreamPass"}))
                                 } else {
-                                    setActiveSubMenu("")
+                                    dispatch(setNavigation({subMenu: ""}))
                                 }
                             }}>
                                 <svg width="25" height="17" viewBox="0 0 25 17" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -206,7 +206,7 @@ const Sidebar: React.FC = () => {
                                 <span>StreamPass</span>
                             </a>
 
-                            <SubMenuWrapper isActive={activeSubmenu == "StreamPass"}>
+                            <SubMenuWrapper isActive={toggleState.subMenu == "StreamPass"}>
                                 <SubMenuIndicator itemsLength={3} />
                                 <SubMenu>
                                     <SubMenuItems $isActive={location.pathname === "/dashboard/products" ? true : false}>
@@ -234,17 +234,17 @@ const Sidebar: React.FC = () => {
                             <a className="submenu-head" onClick={(e) => {
                                 e.preventDefault()
 
-                                if (activeSubmenu != "withdrawal") {
-                                    setActiveSubMenu("withdrawal")
+                                if (toggleState.subMenu != "withdrawal") {
+                                    dispatch(setNavigation({subMenu: "withdrawal"}))
                                 } else {
-                                    setActiveSubMenu("")
+                                    dispatch(setNavigation({subMenu: ""}))
                                 }
                             }}>
                                 <HiOutlineCash />
                                 <span>Withdrawal</span>
                             </a>
 
-                            <SubMenuWrapper isActive={activeSubmenu == "withdrawal"}>
+                            <SubMenuWrapper isActive={toggleState.subMenu == "withdrawal"}>
                                 <SubMenuIndicator itemsLength={3} />
                                 <SubMenu>
                                     <SubMenuItems $isActive={location.pathname === "/dashboard/revenue" ? true : false}>
@@ -286,10 +286,10 @@ const Sidebar: React.FC = () => {
                         <div className="sub-menu">
                             <a className="submenu-head" onClick={(e) => {
                                 e.preventDefault()
-                                if (activeSubmenu != "Marketplace") {
-                                    setActiveSubMenu("Marketplace")
+                                if (toggleState.subMenu != "Marketplace") {
+                                    dispatch(setNavigation({subMenu: "Marketplace"}))
                                 } else {
-                                    setActiveSubMenu("")
+                                    dispatch(setNavigation({subMenu: ""}))
                                 }
                             }}>
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -300,7 +300,7 @@ const Sidebar: React.FC = () => {
                                 <span>Marketplace</span>
                             </a>
 
-                            <SubMenuWrapper isActive={activeSubmenu == "Marketplace"}>
+                            <SubMenuWrapper isActive={toggleState.subMenu == "Marketplace"}>
                                 <SubMenuIndicator itemsLength={3} />
                                 <SubMenu>
                                     <SubMenuItems $isActive={location.pathname === "/dashboard/transactions" ? true : false}>
@@ -328,10 +328,10 @@ const Sidebar: React.FC = () => {
                         <div className="sub-menu">
                             <a className="submenu-head" onClick={(e) => {
                                 e.preventDefault()
-                                if (activeSubmenu != "Skills Centre") {
-                                    setActiveSubMenu("Skills Centre")
+                                if (toggleState.subMenu != "Skills Centre") {
+                                    dispatch(setNavigation({subMenu: "Skills Centre"}))
                                 } else {
-                                    setActiveSubMenu("")
+                                    dispatch(setNavigation({subMenu: ""}))
                                 }
                             }}>
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -341,7 +341,7 @@ const Sidebar: React.FC = () => {
                                 <span>Skills Centre</span>
                             </a>
 
-                            <SubMenuWrapper isActive={activeSubmenu == "Skills Centre"}>
+                            <SubMenuWrapper isActive={toggleState.subMenu == "Skills Centre"}>
                                 <SubMenuIndicator itemsLength={3} />
                                 <SubMenu>
                                     <SubMenuItems $isActive={location.pathname === "/dashboard/transactions" ? true : false}>

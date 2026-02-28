@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const  HeaderWrapper = styled.header`
     background-color: #FEFBEF;
-    padding: 20px 8% 20px 8%;
+    padding: 20px 4% 20px 4%;
     position: relative;
 
     .overlay-wrapper {

@@ -1,8 +1,8 @@
 const formatNumber = (num: number) => {
     if (!num) {
         return {
-            toPrice: () => "",
-            pad: ""
+            toPrice: () => "0",
+            pad: "0"
         }
     }
 

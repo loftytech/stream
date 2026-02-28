@@ -17,6 +17,10 @@ import SnapRoyaltiesDetails from './views/screens/dashboard/snap_royalties/snap_
 import { ScrollToTop } from './views/components/scroll_to_top/ScrollToTop';
 import LiveStream from './views/screens/dashboard/live_stream/LiveStream';
 import LiveStreamDetails from './views/screens/dashboard/live_stream/live_stream_details/LiveStreamDetails';
+import ProfileScreen from './views/screens/dashboard/profile/ProfileScreen';
+import VendorScreen from './views/screens/vendor/VendorScreen';
+import TopStreamers from './views/screens/top_streamers/TopStreamers';
+import StreamPass from './views/screens/dashboard/stream_pass/StreamPass';
 
 function App() {
   
@@ -27,10 +31,12 @@ function App() {
           <Routes>
             <Route path="/" element={<HomeScreen />} />
             <Route path="/dashboard" element={<MainLayout title={""}><DashboardScreen /></MainLayout>} />
+            <Route path="/dashboard/profile" element={<MainLayout title={""}><ProfileScreen /></MainLayout>} />
             <Route path="/dashboard/audio-colab" element={<MainLayout title={""}><AudioColab /></MainLayout>} />
             <Route path="/dashboard/video-colab" element={<MainLayout title={""}><VideoColab /></MainLayout>} />
             <Route path="/dashboard/downloadables" element={<MainLayout title={""}><Downloadables /></MainLayout>} />
             <Route path="/dashboard/snap-royalties" element={<MainLayout title={""}><SnapRoyalties /></MainLayout>} />
+            <Route path="/dashboard/stream-pass" element={<MainLayout title={""}><StreamPass /></MainLayout>} />
             <Route path="/dashboard/snap-royalties/:royaltyId" element={<MainLayout title={""}><SnapRoyaltiesDetails /></MainLayout>} />
             <Route path="/dashboard/wish-hub" element={<MainLayout title={""}><WishHub /></MainLayout>} />
             <Route path="/dashboard/wish-hub/:productId" element={<MainLayout title={""}><WishHubProduct /></MainLayout>} />
@@ -39,6 +45,8 @@ function App() {
             <Route path="/signin" element={<SigninScreen />} />
             <Route path="/signup" element={<SignupScreen />} />
             <Route path="/create-account" element={<CreateAccountScreen />} />
+            <Route path="/vendors" element={<VendorScreen />} />
+            <Route path="/top-streamers" element={<TopStreamers />} />
 
           </Routes>
       </ThemeProvider>

@@ -40,6 +40,7 @@ const Header: React.FC = ()  => {
                             <li><a href="#">Support</a></li>
                         </ul>
                         <ul>
+                            <li><Link to="/signin">Signin</Link></li>
                             <li><Link to="/signup">Sign up now</Link></li>
                         </ul>
                     </NavContent>

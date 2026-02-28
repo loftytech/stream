@@ -2,7 +2,6 @@ import styled from 'styled-components'
 
 export const Wrapper = styled.div`
     width: 100%;
-    min-height: 100vh;
     background-color: #FEFBEF;
     overflow: hidden;
     -ms-overflow-style: none;
@@ -24,7 +23,7 @@ export const PlanTab = styled.div`
     align-items: center;
     width: 100%;
     gap: 10px;
-    padding: 0px 8%;
+    padding: 0px 4%;
 
     &::before {
         content: "";
@@ -71,15 +70,14 @@ export const PlanTab = styled.div`
 `;
 
 export const ContentRow = styled.div`
-    padding: 0px 8%;
-    margin-top: 100px;
+    padding: 0px 4%;
     position: relative;
 
     @media screen and (min-width: 880px) {
         display: flex;
         justify-content: space-between;
         gap: 20px;
-        padding: 0px 0px 0px 8%;
+        padding: 0px 0px 0px 4%;
     }
 
     .text-content {
@@ -95,24 +93,11 @@ export const ContentRow = styled.div`
             font-weight: 300;
             font-size: 16px;
             margin-bottom: 40px;
+            max-width: 480px;
         }
 
         form {
-            .referred {
-                width: 100%;
-                padding: 15px 20px;
-                border-radius: 20px;
-                margin-bottom: 20px;
-                background-color: rgba(47, 79, 78, 0.55);
-                box-shadow: 0px 0px 2px -1px #2F4F4E inset;
-
-                span {
-                    color: #FEFBEF;
-                    font-size: 14px;
-                    font-weight: 600;
-                }
-            }
-            input, select {
+            input {
                 height: 45px;
                 padding: 0px 0px;
                 width: 100%;
@@ -124,39 +109,6 @@ export const ContentRow = styled.div`
                 color: #476160;
                 font-size: 14px;
                 font-weight: 400;
-            }
-
-            .row {
-                display: flex;
-                gap: 10px;
-                select {
-                    width: 50px;
-                }
-            }
-
-            .password-input {
-                display: flex;
-                height: 45px;
-                padding: 0px 0px;
-                width: 100%;
-                background-color: transparent;
-                border: none;
-                border-bottom: 1px solid #E5EAF1;
-                margin-bottom: 20px;
-                border-radius: 0px;
-                color: #476160;
-                font-size: 14px;
-                font-weight: 400;
-
-                input {
-                    flex: 1;
-                    border: none;
-                }
-
-                svg {
-                    font-size: 20px;
-                    color: #2F4F4E;
-                }
             }
 
             button {
@@ -168,46 +120,6 @@ export const ContentRow = styled.div`
                 font-size: 14px;
                 font-weight: 400;
                 background-color: #2F4F4E;
-            }
-
-            .terms {
-                display: flex;
-                width: 100%;
-                margin-bottom: 25px;
-                gap: 12px;
-                cursor: pointer;
-
-                div.check-box {
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    height: 16px;
-                    width: 16px;
-                    border-radius: 3px;
-                    border: 1px solid #E5EAF1;
-
-                    svg {
-                        display: none;
-                        font-size: 17px;
-                    }
-                }
-
-                div.checked {
-                    background-color: #2F4F4E;
-
-                    svg {
-                        display: block;
-                        color: #fff;
-                    }
-                }
-
-                a {
-                    font-size: 14px;
-                    font-weight: 300;
-                    flex: 1;
-                    color: #7B8C82;
-                    text-transform: capitalize;
-                }
             }
 
             .meta {
@@ -239,10 +151,110 @@ export const ContentRow = styled.div`
     }
 `;
 
+export const VendorList = styled.div`
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 0px 4%;
+    gap: 40px;
+
+    @media screen and (min-width: 880px) {
+        flex-direction: row;
+        justify-content: flex-start;
+    }
+
+    .items {
+        display: flex;
+        width: 100%;
+        background-color: #FDF9EA;
+        padding: 20px 20px;
+        border-radius: 10px;
+        align-items: center;
+        box-shadow: 0px 4px 10px -5px #476160;
+
+        @media screen and (min-width: 880px) {
+            width: calc(50% - 20px);
+        }
+
+        .img-wrapper {
+            width: 80px;
+            height: 80px;
+            padding: 10px;
+            border-radius: 50%;
+            background-color: #E5EAF1;
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+        }
+
+        .text-content {
+            flex: 1;
+            margin-left: 15px;
+
+            h3 {
+                font-size: 14px;
+                font-weight: 600;
+                color: #476160;
+                margin-bottom: 10px;
+            }
+
+            .row {
+                display: flex;
+                align-items: center;
+
+                img {
+                    height: 14px;
+                    margin-right: 4px;
+                }
+
+                span {
+                    font-weight: 400;
+                    color: #7B8C82;
+                    font-size: 13px;
+                    margin-right: 10px;
+                }
+
+                .status {
+                    display: flex;
+                    align-items: center;
+                    gap: 2px;
+                    padding: 4px 6px;
+                    margin-left: 4px;
+                    border-radius: 4px;
+                    background-color: rgba(255, 0, 0, 0.19);
+
+                    svg {
+                        font-size: 14px;
+                        color: #D30707;
+                    }
+
+                    b {
+                        color: #D30707;
+                        font-weight: 400;
+                        font-size: 12px;
+                    }
+                }
+            }
+        }
+
+        button {
+            background-color: #2F4F4E;
+            height: 40px;
+            padding: 0px 20px;
+            border-radius: 8px;
+            border: none;
+            color: #FDF9EA;
+        }
+    }
+`;
+
 export const ExploreCardWrapper = styled.div`
     display: flex;
     justify-content: center;
-    padding: 20px 8%;
+    padding: 20px 4%;
 `;
 export const ExploreCard = styled.div`
     display: flex;
@@ -306,69 +318,5 @@ export const ExploreCard = styled.div`
         background-color: #fff;
         color: #476160;
         margin-top: 20px;
-    }
-`;
-
-export const SignupSuccess = styled.div`
-    display: flex;
-    flex-direction: column;
-    background-color: #2F4F4E;
-    border-radius: 20px;
-    overflow: hidden;
-    position: relative;
-
-    .close-btn {
-        position: absolute;
-        right: 20px;
-        top: 10px;
-        cursor: pointer;
-        
-        svg {
-            color: #FDF8E5;
-            font-size: 20px;
-        }
-    }
-
-    img {
-        flex: 1;
-        height: 200px;
-    }
-
-    .content {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        padding: 20px 20px;
-        margin-bottom: 20px;
-
-        h2 {
-            color: #FDF8E5;
-            font-size: 20px;
-            font-weight: 600;
-            margin-bottom: 10px;
-        }
-
-        p {
-            text-align: center;
-            font-size: 14px;
-            font-weight: 400;
-            line-height: 22px;
-            color: #FDF8E5;
-            margin-bottom: 20px;
-        }
-
-        a {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 100%;
-            border: none;
-            font-size: 14px;
-            font-weight: 600;
-            height: 40px;
-            border-radius: 20px;
-            background-color: #FEFBEF;
-            color: #476160;
-        }
     }
 `;

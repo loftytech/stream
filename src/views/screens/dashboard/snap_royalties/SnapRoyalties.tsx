@@ -3,13 +3,23 @@ import DashboardHeader from '../../../components/dashboardHeader/DashboardHeader
 import { BalanceContent, BalanceWrapper, Wrapper, Container, ProductWrapper } from './styles'
 import { FaRegComment } from 'react-icons/fa'
 import { useNavigate } from 'react-router-dom'
+import { useAppSelector } from '../../../../hooks/hooks'
+import useDashboardModel from '../useDashboardModel'
+import { useEffect } from 'react'
+import formatNumber from '../../../../utils/numberFormatter'
 
 const SnapRoyalties: React.FC = () => {
-    const navigate = useNavigate()    
+    const profile = useAppSelector(state => state.profile.state)
+    const navigate = useNavigate()   
+    const dashboardModel = useDashboardModel()
+
+    useEffect(() => {
+        dashboardModel.fetchSnapCollab()
+    }, [])
 
     return (
         <Wrapper>
-            <DashboardHeader title={"Snap Colab"} subTitle="Welcome Jenny Willson!">
+            <DashboardHeader title="Snap Collab" subTitle={"Welcome " + profile.name}>
                 
             </DashboardHeader>
 
@@ -20,12 +30,12 @@ const SnapRoyalties: React.FC = () => {
                     </div>
                     <div className="text-content">
                         <h4>Wallet Balance</h4>
-                        <h2>₦306,896.92</h2>
-                        <h5>Total Streamed Video : 13 files</h5>
+                        <h2>${formatNumber(dashboardModel?.snap?.wallet_balance).toPrice()}</h2>
+                        {/* <h5>Total Streamed Video : 13 files</h5> */}
 
                         <div className="row">
                             <button>Withdraw</button>
-                            <span>Withdrawal Limit : $100</span>
+                            {/* <span>Withdrawal Limit : $100</span> */}
                         </div>
                     </div>
 
@@ -39,13 +49,13 @@ const SnapRoyalties: React.FC = () => {
                     </div>
 
                     <ul className="hide-scrollbar">
-                        {[1,2, 4,5,6,7,8,8,9].map((item, idx) => {
+                        {dashboardModel?.snap?.posts.map((item, idx) => {
                             return <li key={idx} onClick={() => {
                                 navigate("/dashboard/snap-royalties/" + item)
                             }}>
-                                <b>How To get more Followers</b>
+                                <b>{item?.title}</b>
                                 <div className="img-wrapper">
-                                    <img src="/assets/img/tmp/more-followers-img.png" alt="" />
+                                    <img src={import.meta.env.VITE_FILE_URL + item?.image} alt="" />
                                 </div>
                                 <div className="content">
                                     <h4>Earn by Participating in daily Task</h4>
@@ -53,7 +63,7 @@ const SnapRoyalties: React.FC = () => {
                                     <div className="actions">
                                         <div className='sub-action'>
                                             <BiSolidLike />
-                                            <span>3</span>
+                                            <span>{item?.likes}</span>
                                         </div>
                                         <div className='sub-action'>
                                             <BiDislike />
@@ -62,57 +72,12 @@ const SnapRoyalties: React.FC = () => {
 
                                         <div className='sub-action'>
                                             <FaRegComment />
-                                            <span>0</span>
+                                            <span>{item?.comments}</span>
                                         </div>
                                     </div>
                                     
                                     <div className="meta">
-                                        <span>₦1050</span>
-                                        <span>Daily</span>
-                                    </div>
-
-                                    <button>Earn Now</button>
-                                </div>
-                            </li>
-                        })}
-                    </ul>
-                </ProductWrapper>
-
-                <ProductWrapper>
-                    <div className="head">
-                        <h3>Available Cars Snaps</h3>
-                    </div>
-
-                    <ul className="hide-scrollbar">
-                        {[1,2, 4,5,6,7,8,8,9].map((item, idx) => {
-                            return <li key={idx} onClick={() => {
-                                navigate("/dashboard/snap-royalties/" + item)
-                            }}>
-                                <b>How To get more Followers</b>
-                                <div className="img-wrapper">
-                                    <img src="/assets/img/tmp/more-followers-img.png" alt="" />
-                                </div>
-                                <div className="content">
-                                    <h4>Earn by Participating in daily Task</h4>
-
-                                    <div className="actions">
-                                        <div className='sub-action'>
-                                            <BiSolidLike />
-                                            <span>3</span>
-                                        </div>
-                                        <div className='sub-action'>
-                                            <BiDislike />
-                                            <span>0</span>
-                                        </div>
-
-                                        <div className='sub-action'>
-                                            <FaRegComment />
-                                            <span>0</span>
-                                        </div>
-                                    </div>
-                                    
-                                    <div className="meta">
-                                        <span>₦1050</span>
+                                        <span>$1.15</span>
                                         <span>Daily</span>
                                     </div>
 

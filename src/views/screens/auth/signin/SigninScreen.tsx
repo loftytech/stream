@@ -69,7 +69,7 @@ const SigninScreen: React.FC = () => {
 
                             <div className="meta">
                                 
-                              <Link to="/signin">Don't Have Account With us?<span> Create Here</span></Link>
+                              <Link to="/signup">Don't Have Account With us?<span> Create Here</span></Link>
                             </div>
                         </form>
                     </div>

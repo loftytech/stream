@@ -1,11 +1,37 @@
-import { useEffect } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import DashboardHeader from '../../../components/dashboardHeader/DashboardHeader'
 import { BalanceContent, BalanceWrapper, Categories, Wrapper, Container, TrendingArtists, ForYou, Row } from './styles'
 import useAudioColabModel from './useAudioColabModel'
 import Loader from '../../../components/Loader/Loader'
+import { useAppSelector } from '../../../../hooks/hooks'
 
 const AudioColab: React.FC = () => {
+    const [selectedAudio, setSelectedAudio] = useState("")
+    const profile = useAppSelector(state => state.profile.state)
     const audioColabModel = useAudioColabModel()
+    const audioRef = useRef<any>(null);
+
+    const playAudio = (src, audioId, title) => {
+        console.log("src: ", src);
+
+        if (selectedAudio == src || selectedAudio != "") {
+            audioRef.current.pause()
+            setSelectedAudio("")
+            return
+        }
+
+        setSelectedAudio(src)
+        
+        audioRef.current = new Audio(src)
+        audioRef.current.play()
+
+        setTimeout(() => {
+            audioColabModel.rewardAudioCollab({
+                 audio_id: audioId,
+                 name: title
+            })
+        }, 30000);
+    }
 
     useEffect(() => {
         audioColabModel.fetchAudioColab()
@@ -13,7 +39,7 @@ const AudioColab: React.FC = () => {
 
     return (
         <Wrapper>
-            <DashboardHeader title={"Audio Colab"} subTitle="Welcome Jenny Willson!">
+            <DashboardHeader title={"Audio Collab"} subTitle={"Welcome " + profile.name}>
                 
             </DashboardHeader>
 
@@ -25,11 +51,11 @@ const AudioColab: React.FC = () => {
                     <div className="text-content">
                         <h4>Wallet Balance</h4>
                         <h2>₦{audioColabModel.audioFiles?.wallet_balance}</h2>
-                        <h5>Total Streamed Music : 13 Videos</h5>
+                        {/* <h5>Total Streamed Music : 13 Videos</h5> */}
 
                         <div className="row">
                             <button>Withdraw</button>
-                            <span>Withdrawal Limit : $100</span>
+                            {/* <span>Withdrawal Limit : $100</span> */}
                         </div>
                     </div>
 
@@ -89,9 +115,11 @@ const AudioColab: React.FC = () => {
                     <ForYou>
                         <h4>Just for you</h4>
                         <ul className="hide-scrollbar">
-                            {audioColabModel.isFetchingAudioFiles ? <Loader styleTwo center /> : audioColabModel.audioFiles?.audio_files.map((item, idx) => {
-                                return <li key={idx}>
-                                <img src={item?.image} alt="" />
+                            {audioColabModel.isFetchingAudioFiles ? <Loader styleTwo center /> : audioColabModel.audioFiles?.just_for_you?.map((item, idx) => {
+                                return <li key={idx} onClick={() => {
+                                    playAudio(import.meta.env.VITE_FILE_URL + item?.path, item?.id, item?.title)
+                                }}>
+                                <img src={import.meta.env.VITE_FILE_URL + item?.image} alt="" />
                                     <div className="row">
                                         <b>Daily Mix </b>
                                         <span>₦1550</span>

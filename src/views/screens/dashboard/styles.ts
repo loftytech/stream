@@ -82,6 +82,7 @@ export const PlayerWrapper = styled.div`
 
 export const ExperienceContainer = styled.div`
     display: flex;
+    /* flex-direction: column; */
     gap: 20px;
     flex: 1;
     .experience {

@@ -48,12 +48,36 @@ const useDashboardModel = () => {
         }
     }
 
+    const [snap, setSnap] = useState<any>(null)
+    const fetchSnapCollab = async () => {
+        try {
+            setIsFetchingStats(true)
+            const res: any = await AxiosCall({
+                method: "GET",
+                path: "/dashboard/snap"
+            });
+
+            if (res.success) {
+                setSnap(res.data)
+                console.log("data: ", res.data);
+                
+                Message.success("Fetched snap successfully")
+            } else {
+                Message.error(res?.message ?? "An error occurred")
+            }
+        } catch (err: any) {
+            Message.error(err?.response.data.message ?? "An error occurred")
+        }
+    }
+
 
     return {
         fetchStats,
         isFetchingStats,
         stats,
-        earnVideoReward
+        earnVideoReward,
+        fetchSnapCollab,
+        snap
     }
 }
 

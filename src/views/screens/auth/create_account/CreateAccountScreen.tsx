@@ -3,15 +3,18 @@ import { useRef, useState } from 'react'
 import useAuthModel from '../useAuthModel'
 import HeaderAlt from '../../../components/headerAlt/HeaderAlt'
 import FooterAlt from '../../../components/footerAlt/FooterAlt'
-import { CgCheck, CgClose } from 'react-icons/cg'
+import { CgCheck, CgClose, CgEye } from 'react-icons/cg'
 import PopupModal from '../../../components/popupModal/PopupModal'
 import useQuery from '../../../../hooks/useQuery'
 import Loader from '../../../components/Loader/Loader'
 import { Link } from 'react-router-dom'
+import { countryList } from './data'
+import { FiEyeOff } from 'react-icons/fi'
 
 
 const CreateAccountScreen: React.FC = () => {
     const [acceptedTerms, setAcceptedTerms] = useState(false);
+    const [isPassVisible, setIsPassVisible] = useState(false)
     const query = useQuery()
 
     const authModel = useAuthModel()
@@ -19,18 +22,31 @@ const CreateAccountScreen: React.FC = () => {
     const fullnameRef = useRef<HTMLInputElement>(null)
     const emailRef = useRef<HTMLInputElement>(null)
     const passwordRef = useRef<HTMLInputElement>(null)
-    const countryRef = useRef<HTMLInputElement>(null)
+    const countryRef = useRef<HTMLSelectElement>(null)
     const streamPassRef = useRef<HTMLInputElement>(null)
     const phoneRef = useRef<HTMLInputElement>(null)
+    const phoneCodeRef = useRef<HTMLSelectElement>(null)
     const usernameRef = useRef<HTMLInputElement>(null)
 
     const signup = (e: any) => {
         e.preventDefault()
+
+        const phone = phoneRef?.current?.value.length!
+
+        let filteredPhone
+
+        if (phone > 11) {
+            const result = phone.toString().slice(1);
+            filteredPhone = phoneCodeRef.current?.value + result
+        } else {
+            filteredPhone =  phoneCodeRef.current!.value + phoneRef?.current?.value.length!
+        }
+
         authModel.signup({
             name: fullnameRef?.current?.value,
             username: usernameRef.current?.value,
             email: emailRef.current?.value,
-            phone: phoneRef.current?.value,
+            phone: filteredPhone,
             country: countryRef.current?.value,
             password: passwordRef.current?.value,
             scale_code: streamPassRef.current?.value,
@@ -65,9 +81,23 @@ const CreateAccountScreen: React.FC = () => {
                             <input ref={fullnameRef} type="text" placeholder="Full name" />
                             <input ref={usernameRef} type="text" placeholder="Username" />
                             <input ref={emailRef} type="text" placeholder="Email Address" />
-                            <input ref={phoneRef} type="text" placeholder="Phone Number" />
-                            <input ref={countryRef} type="text" placeholder="Country" />
-                            <input ref={passwordRef} type="password" placeholder="Password" />
+                            <div className="row">
+                                <select ref={phoneCodeRef} name="" id="">
+                                    {countryList.map((item, idx) => {
+                                        return <option key={idx} value="">{item.phone_code}</option>
+                                    })}
+                                </select>
+                                <input ref={phoneRef} type="text" placeholder="Phone Number" />
+                            </div>
+                            <select ref={countryRef} name="" id="">
+                                {countryList.map((item, idx) => {
+                                    return <option key={idx} value="">{item.name}</option>
+                                })}
+                            </select>
+                            <div className="password-input">
+                                <input ref={passwordRef} type={isPassVisible ? "text" : "password" }placeholder="Password" />
+                                {!isPassVisible ? <FiEyeOff onClick={() => {setIsPassVisible(true)}} /> : <CgEye onClick={() => {setIsPassVisible(false)}} />}
+                            </div>
                             <input ref={streamPassRef} type="text" placeholder="StreamPass" />
 
                             <div className="meta" style={{marginBottom: 20}}>

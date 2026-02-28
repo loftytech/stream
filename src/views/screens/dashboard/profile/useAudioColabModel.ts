@@ -27,32 +27,12 @@ const useAudioColabModel = () => {
         }
     }
 
-    const rewardAudioCollab = async (payload: any) => {
-        try {
-            const res: any = await AxiosCall({
-                method: "POST",
-                path: "/audio/reward",
-                data: payload
-            });
-
-
-            if (res.success) {
-                Message.success("Reward Earned")
-            } else {
-                Message.error(res?.message ?? "An error occurred")
-            }
-        } catch (err: any) {
-            Message.error(err?.response.data.message ?? "An error occurred")
-        }
-    }
-
 
 
     return {
         fetchAudioColab,
         isFetchingAudioFiles,
-        audioFiles,
-        rewardAudioCollab
+        audioFiles
     }
 }
 
