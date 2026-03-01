@@ -49,12 +49,11 @@ const useDownloadablesModel = () => {
         }
     }
 
-    const rewardLiveStream = async (payload: any) => {
+    const rewardDownloadables = async (fileId: any) => {
         try {
             const res: any = await AxiosCall({
                 method: "POST",
-                path: "/reward",
-                data: payload
+                path: "/downloadables/" + fileId,
             });
 
 
@@ -74,7 +73,7 @@ const useDownloadablesModel = () => {
         fetchDownloadables,
         isFetchingDownloadables,
         downloadables,
-        rewardLiveStream,
+        rewardDownloadables,
         fetchDownloadablesDetails,
         liveStreamDetails
     }

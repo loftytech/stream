@@ -1,9 +1,11 @@
+import { useAppSelector } from '../../../../hooks/hooks'
 import DashboardHeader from '../../../components/dashboardHeader/DashboardHeader'
-import { BalanceContent, BalanceWrapper, Categories, Wrapper, Container, TrendingVideo, TrendingVideoAlt } from './styles'
+import { BalanceContent, BalanceWrapper, Categories, Wrapper, Container, TrendingVideo } from './styles'
 import useDownloadablesModel from './useDownloadablesModel'
 import { useEffect } from 'react'
 
 const Downloadables: React.FC = () => {
+    const profile = useAppSelector(state => state.profile.state)
     const downloadableModel = useDownloadablesModel()
 
     useEffect(() => {
@@ -13,9 +15,7 @@ const Downloadables: React.FC = () => {
 
     return (
         <Wrapper>
-            <DashboardHeader title={"Sound Royalties"} subTitle="Welcome Jenny Willson!">
-                
-            </DashboardHeader>
+            <DashboardHeader title={"Downloadables"} subTitle={"Welcome " + profile.name} />
 
             <BalanceWrapper>
                 <BalanceContent>
@@ -48,20 +48,17 @@ const Downloadables: React.FC = () => {
                 </Categories>
 
                 <TrendingVideo>
-                    <div className="head">
-                        <h3>Trending video</h3>
-                    </div>
-
                     <ul className="hide-scrollbar">
                         {downloadableModel.downloadables?.artists?.map((item, idx) => {
-                            return <li key={idx}>
+                            return <li key={idx} onClick={() => {
+                                downloadableModel.rewardDownloadables(item.id)
+                            }}>
                                 <div className="container">
-                                    <img src={item?.path} alt="" />
-                                    <img className="play-circle" src="/assets/img/play-circle-faded.png" alt="" />
+                                    <img src={import.meta.env.VITE_FILE_URL + item?.image} alt="" />
                                     <div className="content">
-                                        <img src="/assets/img/play-btn-img.png" alt="" />
+
                                         <div className="info">
-                                            <span>the Matrix</span>
+                                            <span>{item?.title}</span>
                                             <span>Video available</span>
                                         </div>
                                     </div>
@@ -69,41 +66,12 @@ const Downloadables: React.FC = () => {
 
                                 <div className="row">
                                     <h4>Top Gun</h4>
-                                    <b>₦2550</b>
+                                    <b>$1</b>
                                 </div>
                             </li>
                         })}
                     </ul>
                 </TrendingVideo>
-
-                <TrendingVideoAlt>
-                    <div className="head">
-                        <h3>Trending Video</h3>
-                    </div>
-
-                    <ul className="hide-scrollbar">
-                        {[1,2,3,4,5,6,7,8,9].map((_item, idx) => {
-                            return <li key={idx}>
-                                <div className="container">
-                                    <img src="/assets/img/tmp/matrix-flyer.png" alt="" />
-                                    <img className="play-circle" src="/assets/img/play-circle-faded.png" alt="" />
-                                    <div className="content">
-                                        <img src="/assets/img/play-btn-img.png" alt="" />
-                                        <div className="info">
-                                            <span>the Matrix</span>
-                                            <span>Video available</span>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div className="row">
-                                    <h4>Top Gun</h4>
-                                    <b>₦2550</b>
-                                </div>
-                            </li>
-                        })}
-                    </ul>
-                </TrendingVideoAlt>
             </Container>
         </Wrapper>
     )

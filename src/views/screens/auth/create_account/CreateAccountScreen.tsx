@@ -31,15 +31,15 @@ const CreateAccountScreen: React.FC = () => {
     const signup = (e: any) => {
         e.preventDefault()
 
-        const phone = phoneRef?.current?.value.length!
+        const phone = phoneRef?.current?.value!
 
         let filteredPhone
 
-        if (phone > 11) {
+        if (phone.length > 11) {
             const result = phone.toString().slice(1);
             filteredPhone = phoneCodeRef.current?.value + result
         } else {
-            filteredPhone =  phoneCodeRef.current!.value + phoneRef?.current?.value.length!
+            filteredPhone =  phoneCodeRef.current!.value + phone!
         }
 
         authModel.signup({

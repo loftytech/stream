@@ -186,6 +186,7 @@ export const VendorList = styled.div`
             img {
                 width: 100%;
                 height: 100%;
+                border-radius: 50%;
                 object-fit: cover;
             }
         }
@@ -235,6 +236,18 @@ export const VendorList = styled.div`
                         color: #D30707;
                         font-weight: 400;
                         font-size: 12px;
+                    }
+                }
+
+                .status.active {
+                    background-color: rgba(0, 154, 73, 0.19);
+
+                     svg {
+                        color: #009A49;
+                    }
+
+                    b {
+                        color: #009A49;
                     }
                 }
             }

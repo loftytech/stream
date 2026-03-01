@@ -198,6 +198,28 @@ const useAuthModel = () => {
         }
     }
 
+    const [vendors, setVendors] = useState([])
+    const [isFetchingVendors, setIsFetchingVendors] = useState(false)
+
+    const fetchVendors = async () => {
+        setIsFetchingVendors(true)
+        try {
+            const res = await AxiosCall({
+                method: "GET",
+                path: "/vendors"
+            });
+            setIsFetchingVendors(false)
+            if (res.success == true) {
+                setVendors(res.data)
+            } else {
+                Message.error(res.message)
+            }
+        } catch (err: any) {
+            setIsFetchingVendors(false)
+            Message.error(err?.response.data.message)
+        }
+    }
+
 
     return {
         signup,
@@ -215,7 +237,10 @@ const useAuthModel = () => {
         resetPassword,
         isResetingPassword,
         showSuccessModal,
-        setShowSuccessModal
+        setShowSuccessModal,
+        fetchVendors,
+        vendors,
+        isFetchingVendors
     }
 }
 
