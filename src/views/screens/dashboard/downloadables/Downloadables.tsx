@@ -1,6 +1,5 @@
-import { MdMoreVert } from 'react-icons/md'
 import DashboardHeader from '../../../components/dashboardHeader/DashboardHeader'
-import { BalanceContent, BalanceWrapper, Categories, Wrapper, Container, TodayTrendingVideo, TrendingVideo, TrendingVideoAlt } from './styles'
+import { BalanceContent, BalanceWrapper, Categories, Wrapper, Container, TrendingVideo, TrendingVideoAlt } from './styles'
 import useDownloadablesModel from './useDownloadablesModel'
 import { useEffect } from 'react'
 
