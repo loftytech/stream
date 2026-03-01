@@ -35,9 +35,9 @@ const Header: React.FC = ()  => {
                         <ul>
                             <li><a href="#">Home</a></li>
                             <li><a href="#">Features</a></li>
-                            <li><a href="#">Top Streamers</a></li>
-                            <li><a href="#">StreamPass</a></li>
-                            <li><a href="#">Support</a></li>
+                            <li><Link to="/top-streamers">Top Streamers</Link></li>
+                            <li><Link to="/vendors">StreamPass</Link></li>
+                            <li><Link to="#">Support</Link></li>
                         </ul>
                         <ul>
                             <li><Link to="/signin">Signin</Link></li>

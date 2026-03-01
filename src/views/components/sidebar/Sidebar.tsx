@@ -358,8 +358,8 @@ const Sidebar: React.FC = () => {
                         </div>
                     </MenuItems>
 
-                    <MenuItems $isActive={location.pathname === "/dashboard/wallets" ? true : false}>
-                        <Link onClick={() => dispatch(setNavigation({dashboard: false}))} to="/dashboard/wallets">
+                    <MenuItems $isActive={location.pathname === "/dashboard/profile" ? true : false}>
+                        <Link onClick={() => dispatch(setNavigation({dashboard: false}))} to="/dashboard/profile">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <g clip-path="url(#clip0_43_17716)">
                                 <path d="M12 15C13.6569 15 15 13.6569 15 12C15 10.3431 13.6569 9 12 9C10.3431 9 9 10.3431 9 12C9 13.6569 10.3431 15 12 15Z" stroke="#2F4F4E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
