@@ -222,6 +222,10 @@ export const TableWrapper = styled.div`
             color: rgba(25, 29, 35, 1);
             width: 200px;
 
+            &:first-child {
+                width: 300px;
+            }
+
             /* &:first-child {
                 width: 50px;
             }
@@ -252,12 +256,9 @@ export const TableWrapper = styled.div`
 
 
 
-            /* &:nth-child(6) {
-                text-overflow: ellipsis;
-                word-break: break-all;
-                white-space: normal !important;
-                word-wrap: break-word !important;
-            } */
+            &:first-child {
+                width: 300px;
+            }
 
             &:last-child {
                 display: flex;

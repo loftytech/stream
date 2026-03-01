@@ -39,6 +39,7 @@ export const TabWrapper = styled.div`
         display: flex;
         align-items: center;
         gap: 25px;
+        cursor: pointer;
 
         &:first-of-type {
             order: 1;
@@ -76,7 +77,7 @@ export const TabWrapper = styled.div`
             }
         }
 
-        &:first-of-type {
+        &.active {
             span {
                 &:first-child {
                     background-color: #2F4F4E;
@@ -102,14 +103,16 @@ export const ProfileContent = styled.div`
     gap: 20px;
     overflow: hidden;
 
-    .profile-img {
+    .-profileimg {
         width: 100px;
         height: 100px;
         border-radius: 50%;
+        overflow: hidden;
 
         img {
             width: 100%;
             height: 100%;
+            border-radius: 50%;
             object-fit: cover;
         }
     }
@@ -219,7 +222,7 @@ export const ProfileInfo = styled.div`
                 gap: 20px;
             }
         }
-        input {
+        input, select {
             height: 45px;
             padding: 0px 0px;
             width: 100%;
@@ -411,5 +414,70 @@ export const SaveChanges = styled.div`
         font-size: 15px;
         font-weight: 400;
         color: #FEFBEF;
+    }
+`;
+
+export const ConfirmBank = styled.div`
+    padding: 0px 20px;
+    background-color: #FEFBEF;
+    img {
+        width: 50px;
+        margin: 0px auto;
+    }
+
+    h2 {
+        text-align: center;
+        font-size: 14px;
+        font-weight: 600;
+        color: #2F4F4E;
+        margin-top: 20px;
+        margin-bottom: 30px;
+    }
+
+    ul {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        margin-bottom: 20px;
+
+        li {
+            display: flex;
+            gap: 10px;
+            width: calc(50% - 10px);
+
+            svg {
+                font-size: 15px;
+                color: #2F4F4E;
+            }
+
+            span {
+                font-size: 14px;
+                font-weight: 500;
+                color: #2F4F4E;
+            }
+        }
+    }
+
+    .actions {
+        display: flex;
+        gap: 20px;
+
+        button {
+            &:first-child {
+                background-color: #2DD13B;
+            }
+
+            &:last-child {
+                background-color: #FF0000;
+            }
+        }
+    }
+
+    p {
+        font-weight: 400;
+        text-align: center;
+        margin-top: 20px;
+        color: #2F4F4E;
+        font-size: 14px;
     }
 `;

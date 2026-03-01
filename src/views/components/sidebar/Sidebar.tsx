@@ -208,8 +208,8 @@ const Sidebar: React.FC = () => {
                             <SubMenuWrapper isActive={toggleState.subMenu == "StreamPass"}>
                                 <SubMenuIndicator itemsLength={3} />
                                 <SubMenu>
-                                    <SubMenuItems $isActive={location.pathname === "/dashboard/products" ? true : false}>
-                                        <Link onClick={() => dispatch(setNavigation({dashboard: false}))} to="/dashboard/purchases">
+                                    <SubMenuItems $isActive={location.pathname === "/dashboard/stream-pass" ? true : false}>
+                                        <Link onClick={() => dispatch(setNavigation({dashboard: false}))} to="/dashboard/stream-pass">
                                             <span>StreamPass Code</span>
                                         </Link>
                                     </SubMenuItems>

@@ -24,9 +24,7 @@ const DashboardScreen: React.FC = () => {
 
     return (
         <Wrapper>
-            <DashboardHeader title="Dashboard" subTitle={"Welcome " + profile.name}>
-                
-            </DashboardHeader>
+            <DashboardHeader title="Dashboard" subTitle={"Welcome " + profile.name} />
 
             <Container>
                 <HeadContainer>

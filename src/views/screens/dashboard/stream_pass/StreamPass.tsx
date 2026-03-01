@@ -1,23 +1,24 @@
 import { useEffect } from 'react'
 import DashboardHeader from '../../../components/dashboardHeader/DashboardHeader'
 import { Wrapper, Container, TableWrapper } from './styles'
-import useAudioColabModel from './useAudioColabModel'
 import { AiOutlineDownload } from "react-icons/ai"
 import Loader from '../../../components/Loader/Loader'
 import { FiEyeOff } from 'react-icons/fi'
+import useStreamPassModel from './useStreamPassModel'
+import { useAppSelector } from '../../../../hooks/hooks'
+import dayjs from 'dayjs'
 
 const StreamPass: React.FC = () => {
-    const audioColabModel = useAudioColabModel()
+    const profile = useAppSelector(state => state.profile.state)
+    const streamPassModel = useStreamPassModel()
 
     useEffect(() => {
-        audioColabModel.fetchAudioColab()
+        streamPassModel.fetchStreamPassCode()
     }, [])
 
     return (
         <Wrapper>
-            <DashboardHeader title={"Audio Colab"} subTitle="Welcome Jenny Willson!">
-                
-            </DashboardHeader>
+            <DashboardHeader title={"Stream Pass"} subTitle={"Welcome " + profile.name} />
 
             <Container>
                 <TableWrapper>
@@ -25,22 +26,20 @@ const StreamPass: React.FC = () => {
                         <ul className="table-head">
                             <li>Reference</li>
                             <li>Package</li>
-                            <li>Used</li>
                             <li>Total</li>
                             <li>Created</li>
                             <li>Action</li>
                         </ul>
 
-                        {1 > 2 ? <Loader topPadding="20px" bottomPadding="20px" styleTwo center /> : [1,2,3,4,5,6].map((_item, idx) => {
+                        {streamPassModel.isFetchingStreamPass ? <Loader topPadding="20px" bottomPadding="20px" styleTwo center /> : streamPassModel.streamPass?.coupons?.data?.map((item, idx) => {
                             return <ul key={idx} className="table-row">
-                            <li>VB2025101013</li>
-                            <li>PREMIUM</li>
-                            <li>10</li>
-                            <li>20</li>
-                            <li>10/23/2026 <br />110:39</li>
+                            <li>{item?.batch_id}</li>
+                            <li>{item?.package}</li>
+                            <li>{item?.amount}</li>
+                            <li>{dayjs(item?.created_at).format("DD MMM YYYY")} <br />{dayjs(item?.created_at).format("hh:mmA")}</li>
                             <li>
                                 <FiEyeOff />
-                                <AiOutlineDownload />
+                                {streamPassModel.currentBatch == item?.batch_id ? <Loader styleTwo /> : <AiOutlineDownload onClick={() => streamPassModel.exportTransactions(item?.batch_id)} />}
                             </li>
                         </ul>
                         })}
