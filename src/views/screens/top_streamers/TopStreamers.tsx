@@ -1,9 +1,16 @@
 import { Container, ContentHead, ExploreCard, ExploreCardWrapper, StreamersList, TopThreeStreamers, Wrapper } from './styles'
 import HeaderAlt from '../../components/headerAlt/HeaderAlt'
 import FooterAlt from '../../components/footerAlt/FooterAlt'
+import useAuthModel from '../auth/useAuthModel'
+import { useEffect } from 'react'
+import Loader from '../../components/Loader/Loader'
 
 const TopStreamers: React.FC = () => {
+    const authModel = useAuthModel()
     
+    useEffect(() => {
+        authModel.fetchTopEarners()
+    }, [])
 
     return (
         <Wrapper>
@@ -24,29 +31,28 @@ const TopStreamers: React.FC = () => {
                 </ContentHead>
 
                 <TopThreeStreamers>
-                    <div className="items">
+                    {authModel.topEarners?.[0] && <div className="items">
                         <div className="img-wrapper">
                             <img src="/assets/svg/crown-vector.svg" alt="" className="crown" />
-                            <img src="/assets/img/avatar-img.png" alt="" className="avatar" />
+                            <img src={authModel.topEarners?.[0]?.profile_photo ? import.meta.env.VITE_FILE_URL + authModel.topEarners?.[0]?.profile_photo : "/assets/img/avatar-img.png"} alt="" className="avatar" />
 
                             <span>1.</span>
                         </div>
 
                         <div className="text-info">
                             <div className="head">
-                                <h3>Bisi Olamide</h3>
+                                <h3>{authModel.topEarners?.[0]?.username}</h3>
                                 <img src="/assets/svg/nigeria-flag.svg" alt="" />
                             </div>
 
-                            <h4>$4500</h4>
+                            <h4>${authModel.topEarners?.[0]?.total_amount?.toFixed(2)}</h4>
                         </div>
-                    </div>
+                    </div>}
 
                     <div className="row">
-
-                        <div className="items">
+                        {authModel.topEarners?.[1] && <div className="items">
                             <div className="img-wrapper">
-                                <img src="/assets/img/avatar-img.png" alt="" className="avatar" />
+                                <img src={authModel.topEarners?.[1]?.profile_photo ? import.meta.env.VITE_FILE_URL + authModel.topEarners?.[1]?.profile_photo : "/assets/img/avatar-img.png"} alt="" className="avatar" />
 
                                 <span>2.</span>
                                 <img src="/assets/svg/second-badge.svg" alt="" className="badge" />
@@ -54,18 +60,18 @@ const TopStreamers: React.FC = () => {
 
                             <div className="text-info">
                                 <div className="head">
-                                    <h3>Bisi Olamide</h3>
+                                    <h3>{authModel.topEarners?.[1]?.username}</h3>
                                     <img src="/assets/svg/nigeria-flag.svg" alt="" />
                                 </div>
 
-                                <h4>$4500</h4>
+                                <h4>${authModel.topEarners?.[1]?.total_amount?.toFixed(2)}</h4>
                             </div>
-                        </div>
+                        </div>}
 
 
-                        <div className="items">
+                        {authModel.topEarners?.[2] && <div className="items">
                             <div className="img-wrapper">
-                                <img src="/assets/img/avatar-img.png" alt="" className="avatar" />
+                                <img src={authModel.topEarners?.[2]?.profile_photo ? import.meta.env.VITE_FILE_URL + authModel.topEarners?.[1]?.profile_photo : "/assets/img/avatar-img.png"} alt="" className="avatar" />
 
                                 <span>3.</span>
                                 <img src="/assets/svg/third-badge.svg" alt="" className="badge" />
@@ -73,33 +79,33 @@ const TopStreamers: React.FC = () => {
 
                             <div className="text-info">
                                 <div className="head">
-                                    <h3>Bisi Olamide</h3>
+                                    <h3>{authModel.topEarners?.[2]?.username}</h3>
                                     <img src="/assets/svg/nigeria-flag.svg" alt="" />
                                 </div>
 
-                                <h4>$4500</h4>
+                                <h4>${authModel.topEarners?.[2]?.total_amount?.toFixed(2)}</h4>
                             </div>
-                        </div>
+                        </div>}
                     </div>
                 </TopThreeStreamers>
 
                 <StreamersList>
-                    {[4,5,6,7].map((item, idx) => {
+                    {authModel.isFetchingTopEarners ? <Loader styleTwo center /> : authModel.topEarners?.slice(3)?.map((item, idx) => {
                         return <div key={idx} className="items">
-                            <h4>{item}.</h4>
+                            <h4>{idx+4}.</h4>
                             <div className="img-wrapper">
-                                <img src="/assets/img/avatar-img.png" alt="" />
+                                <img src={item?.profile_photo ? import.meta.env.VITE_FILE_URL + item?.profile_photo : "/assets/img/avatar-img.png"} alt="" className="avatar" />
                             </div>
 
                             <div className="text-content">
-                                <h3>Mideola0001</h3>
+                                <h3>{item?.username}</h3>
                                 <div className="row">
                                     <img src="/assets/svg/nigeria-flag.svg" alt="" />
                                     <span>Nigeria</span>
                                 </div>
                             </div>
 
-                            <b>$3900</b>
+                            <b>${item?.total_amount?.toFixed(2)}</b>
                         </div>
                     })}
                 </StreamersList>

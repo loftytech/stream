@@ -47,7 +47,9 @@ const VendorScreen: React.FC = () => {
                                 </div>
                             </div>
 
-                            <button>Message</button>
+                            <button onClick={() => {
+                                window.open("https://wa.me/"+item?.phone, "_blank")
+                            }}>Message</button>
                         </div>
                     })}
                 </VendorList>

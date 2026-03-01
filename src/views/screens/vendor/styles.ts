@@ -260,6 +260,7 @@ export const VendorList = styled.div`
             border-radius: 8px;
             border: none;
             color: #FDF9EA;
+            cursor: pointer;
         }
     }
 `;

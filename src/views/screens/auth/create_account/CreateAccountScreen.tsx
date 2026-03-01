@@ -10,6 +10,7 @@ import Loader from '../../../components/Loader/Loader'
 import { Link } from 'react-router-dom'
 import { countryList } from './data'
 import { FiEyeOff } from 'react-icons/fi'
+import Message from '../../../components/message/Message'
 
 
 const CreateAccountScreen: React.FC = () => {
@@ -31,11 +32,15 @@ const CreateAccountScreen: React.FC = () => {
     const signup = (e: any) => {
         e.preventDefault()
 
-        const phone = phoneRef?.current?.value!
+        const phone = phoneRef?.current?.value?.trim()!
 
         let filteredPhone
 
-        if (phone.length > 11) {
+        if (phone.length < 10 || phone.length > 11) {
+            return Message.error("Invalid phone number")
+        }
+
+        if (phone.length == 11) {
             const result = phone.toString().slice(1);
             filteredPhone = phoneCodeRef.current?.value + result
         } else {

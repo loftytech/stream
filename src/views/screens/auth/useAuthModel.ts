@@ -220,6 +220,28 @@ const useAuthModel = () => {
         }
     }
 
+    const [topEarners, setTopEarners] = useState<any[]>([])
+    const [isFetchingTopEarners, setIsFetchingTopEarners] = useState(false)
+
+    const fetchTopEarners = async () => {
+        setIsFetchingTopEarners(true)
+        try {
+            const res = await AxiosCall({
+                method: "GET",
+                path: "/top-earners"
+            });
+            setIsFetchingTopEarners(false)
+            if (res.success == true) {
+                setTopEarners(res.data)
+            } else {
+                Message.error(res.message)
+            }
+        } catch (err: any) {
+            setIsFetchingTopEarners(false)
+            Message.error(err?.response.data.message)
+        }
+    }
+
 
     return {
         signup,
@@ -240,7 +262,10 @@ const useAuthModel = () => {
         setShowSuccessModal,
         fetchVendors,
         vendors,
-        isFetchingVendors
+        isFetchingVendors,
+        topEarners,
+        fetchTopEarners,
+        isFetchingTopEarners
     }
 }
 
