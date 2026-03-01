@@ -1,4 +1,5 @@
 export const countryList = [
+{ "name": "Nigeria", "iso_code": "NG", "phone_code": "+234" },
 { "name": "United States", "iso_code": "USA", "phone_code": "+1" },
 { "name": "Canada", "iso_code": "CAD", "phone_code": "+1" },
 { "name": "United Kingdom", "iso_code": "UK", "phone_code": "+44" },
@@ -39,7 +40,6 @@ export const countryList = [
 { "name": "Mozambique", "iso_code": "MZ", "phone_code": "+258" },
 { "name": "Namibia", "iso_code": "NA", "phone_code": "+264" },
 { "name": "Niger", "iso_code": "NE", "phone_code": "+227" },
-{ "name": "Nigeria", "iso_code": "NG", "phone_code": "+234" },
 { "name": "Rwanda", "iso_code": "RW", "phone_code": "+250" },
 { "name": "São Tomé and Príncipe", "iso_code": "ST", "phone_code": "+239" },
 { "name": "Senegal", "iso_code": "SN", "phone_code": "+221" },
