@@ -2,14 +2,27 @@ import { BiDislike, BiSolidLike } from 'react-icons/bi'
 import DashboardHeader from '../../../../components/dashboardHeader/DashboardHeader'
 import { Wrapper, Container, ProductWrapper, RoyaltyDetails, MainContent, SideBar } from './styles'
 import { FaRegComment } from 'react-icons/fa'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
+import { useEffect } from 'react'
+import useDashboardModel from '../../useDashboardModel'
+import { useAppSelector } from '../../../../../hooks/hooks'
 
 const SnapRoyalties: React.FC = () => {
-    const navigate = useNavigate()    
+    const profile = useAppSelector(state => state.profile.state)
+    const params: any = useParams()
+    const navigate = useNavigate()
+    const dashboardModel = useDashboardModel()
+    
+    useEffect(() => {
+        if (params?.snapId) {
+            dashboardModel.fetchSnapCollabDetails(params?.snapId ?? 0)
+            dashboardModel.fetchSnapCollab()
+        }
+    }, [params?.snapId])
 
     return (
         <Wrapper>
-            <DashboardHeader title={"Snap Colab"} subTitle="Welcome Jenny Willson!">
+            <DashboardHeader title="Snap Collab" subTitle={"Welcome " + profile.name}>
                 
             </DashboardHeader>
 
@@ -17,13 +30,13 @@ const SnapRoyalties: React.FC = () => {
                 <Container>
                     <RoyaltyDetails>
                         <div className="img-wrapper">
-                            <img src="/assets/img/tmp/more-followers-img.png" alt="" />
+                            <img src={import.meta.env.VITE_FILE_URL + dashboardModel.snapDetails?.image} alt="" />
                         </div>
 
                         <div className="actions">
                             <div className='sub-action'>
                                 <BiSolidLike />
-                                <span>53.7k</span>
+                                <span>{dashboardModel?.snapDetails?.likes}k</span>
                             </div>
                             <div className='sub-action'>
                                 <BiDislike />
@@ -32,22 +45,20 @@ const SnapRoyalties: React.FC = () => {
 
                             <div className='sub-action'>
                                 <FaRegComment />
-                                <span>1.3k</span>
+                                <span>{dashboardModel?.snapDetails?.comments}k</span>
                             </div>
                         </div>
 
-                        <h2>How To Get More Followers On Streams</h2>
+                        <h2>{dashboardModel.snapDetails?.title}</h2>
                         <h4>Please Preform The task Probably to get your earns</h4>
 
-                        <p>
-                            Gaining more followers on your streaming platform requires consistency, authenticity, and engagement. First, identify your niche—whether it’s gaming, music, talk shows, or lifestyle—and stick to it so viewers know what to expect. Consistency is key: stream regularly and at scheduled times to build a loyal audience. Engage actively with your viewers through live chats, shout-outs, and Q&A sessions to make them feel valued. Use eye-catching titles, thumbnails, and quality visuals to attract new viewers. Promote your streams on social media platforms like TikTok, Instagram, and X to reach a wider audience. Lastly, collaborate with other streamers to tap into their follower base. Remember, growth takes time—focus on building genuine connections and offering entertaining or valuable content, and your follower count will rise naturally.
-                        </p>
+                        <p dangerouslySetInnerHTML={{__html: dashboardModel.snapDetails?.content}}></p>
 
                         <div className="earn-actions">
-                            <button>Tiktok</button>
-                            <button>Earn with Instagram</button>
-                            <button>Earn To Telegram</button>
-                            <button>Share To Earn</button>
+                            <a onClick={() => dashboardModel.earnSnapReward(params?.snapId)} target="_blank" href={dashboardModel.snapDetails?.tiktok}>Tiktok</a>
+                            <a onClick={() => dashboardModel.earnSnapReward(params?.snapId)} target="_blank" href={dashboardModel.snapDetails?.instagram}>Earn with Instagram</a>
+                            <a onClick={() => dashboardModel.earnSnapReward(params?.snapId)} target="_blank" href={dashboardModel.snapDetails?.telegram}>Earn To Telegram</a>
+                            <a onClick={() => dashboardModel.earnSnapReward(params?.snapId)} target="_blank" href={dashboardModel.snapDetails?.link}>Share To Earn</a>
                         </div>
                     </RoyaltyDetails>
                 </Container>
@@ -59,42 +70,42 @@ const SnapRoyalties: React.FC = () => {
                         </div>
 
                         <ul className="hide-scrollbar">
-                            {[1,2, 4,5,6,7,8,8,9].map((item, idx) => {
-                                return <li key={idx} onClick={() => {
-                                    navigate("/dashboard/wish-hub/" + item)
-                                }}>
-                                    <b>How To get more Followers</b>
-                                    <div className="img-wrapper">
-                                        <img src="/assets/img/tmp/more-followers-img.png" alt="" />
-                                    </div>
-                                    <div className="content">
-                                        <h4>Earn by Participating in daily Task</h4>
+                            {dashboardModel?.snap?.posts.map((item, idx) => {
+                            return <li key={idx} onClick={() => {
+                                navigate("/dashboard/snap-royalties/" + item.id)
+                            }}>
+                                <b>{item?.title}</b>
+                                <div className="img-wrapper">
+                                    <img src={import.meta.env.VITE_FILE_URL + item?.image} alt="" />
+                                </div>
+                                <div className="content">
+                                    <h4>Earn by Participating in daily Task</h4>
 
-                                        <div className="actions">
-                                            <div className='sub-action'>
-                                                <BiSolidLike />
-                                                <span>3</span>
-                                            </div>
-                                            <div className='sub-action'>
-                                                <BiDislike />
-                                                <span>0</span>
-                                            </div>
-
-                                            <div className='sub-action'>
-                                                <FaRegComment />
-                                                <span>0</span>
-                                            </div>
+                                    <div className="actions">
+                                        <div className='sub-action'>
+                                            <BiSolidLike />
+                                            <span>{item?.likes}</span>
                                         </div>
-                                        
-                                        <div className="meta">
-                                            <span>₦1050</span>
-                                            <span>Daily</span>
+                                        <div className='sub-action'>
+                                            <BiDislike />
+                                            <span>0</span>
                                         </div>
 
-                                        <button>Earn Now</button>
+                                        <div className='sub-action'>
+                                            <FaRegComment />
+                                            <span>{item?.comments}</span>
+                                        </div>
                                     </div>
-                                </li>
-                            })}
+                                    
+                                    <div className="meta">
+                                        <span>$1.15</span>
+                                        <span>Daily</span>
+                                    </div>
+
+                                    <button>Earn Now</button>
+                                </div>
+                            </li>
+                        })}
                         </ul>
                     </ProductWrapper>
                 </SideBar>

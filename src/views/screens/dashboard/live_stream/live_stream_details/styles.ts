@@ -26,11 +26,36 @@ export const LiveStreamVideo = styled.div`
     .img-wrapper {
         border-radius: 18px;
         background-color:  #476160;
+        overflow: hidden;
+        height: 300px;
+
+        .lofty-yt-video-player {
+            width: 100%;
+            height: 300px;
+            border-radius: 8px;
+            overflow: hidden;
+
+            iframe {
+                height: 300px;
+            }
+        }
         
         img {
             width: 100%;
             object-fit: contain;
             border-radius: 10px;
+        }
+
+        @media screen and (min-width: 880px) {
+            height: 480px;
+            .lofty-yt-video-player {
+                width: 100%;
+                height: 480px;
+
+                iframe {
+                    height: 480px;
+                }
+            }
         }
     }
 

@@ -84,14 +84,14 @@ const CreateAccountScreen: React.FC = () => {
                             <div className="row">
                                 <select ref={phoneCodeRef} name="" id="">
                                     {countryList.map((item, idx) => {
-                                        return <option key={idx} value="">{item.phone_code}</option>
+                                        return <option key={idx} value={item.phone_code}>{item.phone_code}</option>
                                     })}
                                 </select>
                                 <input ref={phoneRef} type="text" placeholder="Phone Number" />
                             </div>
                             <select ref={countryRef} name="" id="">
                                 {countryList.map((item, idx) => {
-                                    return <option key={idx} value="">{item.name}</option>
+                                    return <option key={idx} value={item.name}>{item.name}</option>
                                 })}
                             </select>
                             <div className="password-input">

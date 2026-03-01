@@ -1,15 +1,22 @@
+import { useAppSelector } from '../../../../hooks/hooks'
 import DashboardHeader from '../../../components/dashboardHeader/DashboardHeader'
 import { BalanceContent, BalanceWrapper, Wrapper, Container, TrendingLiveStream } from './styles'
 import { useNavigate } from 'react-router-dom'
+import useLiveStreamModel from './useLiveStreamModel'
+import { useEffect } from 'react'
 
 const LiveStream: React.FC = () => {
+    const profile = useAppSelector(state => state.profile.state)
     const navigate = useNavigate()
+    const liveStreamModel = useLiveStreamModel()
+
+    useEffect(() => {
+        liveStreamModel.fetchLiveStreamColab()
+    }, [])
 
     return (
         <Wrapper>
-            <DashboardHeader title={"Sound Royalties"} subTitle="Welcome Jenny Willson!">
-                
-            </DashboardHeader>
+            <DashboardHeader title={"Live Stream Colab"} subTitle={"Welcome " + profile.name} />
 
             <BalanceWrapper>
                 <BalanceContent>
@@ -18,12 +25,12 @@ const LiveStream: React.FC = () => {
                     </div>
                     <div className="text-content">
                         <h4>Wallet Balance</h4>
-                        <h2>₦306,896.92</h2>
-                        <h5>Total Streamed Video : 13 Videos</h5>
+                        <h2>${liveStreamModel.liveStreamFiles?.wallet_balance}</h2>
+                        {/* <h5>Total Streamed Video : 13 Videos</h5> */}
 
                         <div className="row">
                             <button>Withdraw</button>
-                            <span>Withdrawal Limit : $100</span>
+                            {/* <span>Withdrawal Limit : $100</span> */}
                         </div>
                     </div>
 
@@ -41,9 +48,9 @@ const LiveStream: React.FC = () => {
                     </div>
 
                     <ul className="hide-scrollbar">
-                        {[1,2,3,4,5,6,7,8,9].map((_item, idx) => {
-                            return <li key={idx} onClick={() => navigate("/dashboard/live-stream/" + idx)}>
-                                <img src="/assets/img/tmp/stream-cover-img.png" alt="" />
+                        {liveStreamModel.liveStreamFiles?.livestreams?.map((item, idx) => {
+                            return <li key={idx} onClick={() => navigate("/dashboard/live-stream/" + item?.id)}>
+                                <img src={import.meta.env.VITE_FILE_URL + item?.image} alt="" />
                                 <div className="content">
                                     <div className="info">
                                         <img src="/assets/img/tmp/stream-icon-img.png" alt="" />

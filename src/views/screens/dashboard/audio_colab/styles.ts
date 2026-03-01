@@ -285,6 +285,7 @@ export const ForYou = styled.div`
                 width: 100%;
                 aspect-ratio: 1/1;
                 margin-bottom: 8px;
+                object-fit: cover;
             }
 
             .row {

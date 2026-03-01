@@ -19,7 +19,7 @@ const DashboardScreen: React.FC = () => {
      const handleTwentySeconds = (videoId: string) => {
         dashboardModel.earnVideoReward(videoId)
         console.log("The video has played for 20 seconds!");
-    };
+    }
 
 
     return (

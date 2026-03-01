@@ -1,8 +1,15 @@
 import { MdMoreVert } from 'react-icons/md'
 import DashboardHeader from '../../../components/dashboardHeader/DashboardHeader'
 import { BalanceContent, BalanceWrapper, Categories, Wrapper, Container, TodayTrendingVideo, TrendingVideo, TrendingVideoAlt } from './styles'
+import useDownloadablesModel from './useDownloadablesModel'
+import { useEffect } from 'react'
 
 const Downloadables: React.FC = () => {
+    const downloadableModel = useDownloadablesModel()
+
+    useEffect(() => {
+        downloadableModel.fetchDownloadables()
+    }, [])
     
 
     return (
@@ -18,12 +25,12 @@ const Downloadables: React.FC = () => {
                     </div>
                     <div className="text-content">
                         <h4>Wallet Balance</h4>
-                        <h2>₦306,896.92</h2>
-                        <h5>Total Streamed Video : 13 files</h5>
+                        <h2>${downloadableModel?.downloadables?.wallet_balance}</h2>
+                        {/* <h5>Total Streamed Video : 13 files</h5> */}
 
                         <div className="row">
                             <button>Withdraw</button>
-                            <span>Withdrawal Limit : $100</span>
+                            {/* <span>Withdrawal Limit : $100</span> */}
                         </div>
                     </div>
 
@@ -41,44 +48,16 @@ const Downloadables: React.FC = () => {
                     </ul>
                 </Categories>
 
-                
-                <TodayTrendingVideo>
-                    <div className="head">
-                        <h3>TODAY TRENDING VIDEO</h3>
-                    </div>
-
-                    <ul className="hide-scrollbar">
-                        {[1,2,3,4,5,6,7,8,9].map((_item, idx) => {
-                            return <li key={idx}>
-                                <img src="/assets/img/tmp/video-player-img.png" alt="" />
-                                <div className="content">
-                                    <img src="/assets/img/tmp/wizkid-img.png" alt="" />
-                                    <div className="info">
-                                        <h6>Beginner in UI/UX Design</h6>
-                                        <span>Dr Ola Yinka Badmus</span>
-                                    </div>
-
-                                    <div className="meta">
-                                        <span>₦2550</span>
-                                        <MdMoreVert />
-                                    </div>
-                                </div>
-                            </li>
-                        })}
-                    </ul>
-                </TodayTrendingVideo>
-
-
                 <TrendingVideo>
                     <div className="head">
                         <h3>Trending video</h3>
                     </div>
 
                     <ul className="hide-scrollbar">
-                        {[1,2,3,4,5,6,7,8,9].map((_item, idx) => {
+                        {downloadableModel.downloadables?.artists?.map((item, idx) => {
                             return <li key={idx}>
                                 <div className="container">
-                                    <img src="/assets/img/tmp/matrix-flyer.png" alt="" />
+                                    <img src={item?.path} alt="" />
                                     <img className="play-circle" src="/assets/img/play-circle-faded.png" alt="" />
                                     <div className="content">
                                         <img src="/assets/img/play-btn-img.png" alt="" />

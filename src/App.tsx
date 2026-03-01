@@ -37,11 +37,11 @@ function App() {
             <Route path="/dashboard/downloadables" element={<MainLayout title={""}><Downloadables /></MainLayout>} />
             <Route path="/dashboard/snap-royalties" element={<MainLayout title={""}><SnapRoyalties /></MainLayout>} />
             <Route path="/dashboard/stream-pass" element={<MainLayout title={""}><StreamPass /></MainLayout>} />
-            <Route path="/dashboard/snap-royalties/:royaltyId" element={<MainLayout title={""}><SnapRoyaltiesDetails /></MainLayout>} />
+            <Route path="/dashboard/snap-royalties/:snapId" element={<MainLayout title={""}><SnapRoyaltiesDetails /></MainLayout>} />
             <Route path="/dashboard/wish-hub" element={<MainLayout title={""}><WishHub /></MainLayout>} />
             <Route path="/dashboard/wish-hub/:productId" element={<MainLayout title={""}><WishHubProduct /></MainLayout>} />
             <Route path="/dashboard/live-stream" element={<MainLayout title={""}><LiveStream /></MainLayout>} />
-            <Route path="/dashboard/live-stream/:id" element={<MainLayout title={""}><LiveStreamDetails /></MainLayout>} />
+            <Route path="/dashboard/live-stream/:streamId" element={<MainLayout title={""}><LiveStreamDetails /></MainLayout>} />
             <Route path="/signin" element={<SigninScreen />} />
             <Route path="/signup" element={<SignupScreen />} />
             <Route path="/create-account" element={<CreateAccountScreen />} />

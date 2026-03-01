@@ -1,7 +1,7 @@
 import { useRef, useEffect } from "react";
 import YouTube from "react-youtube";
 
-const YouTubePlayer = ({ videoId, onTwentySeconds }) => {
+const YouTubePlayer = ({ videoId, onTwentySeconds, time = 20000 }) => {
   const playerRef: any = useRef(null);
   const timerRef: any = useRef(null);
 
@@ -16,7 +16,7 @@ const YouTubePlayer = ({ videoId, onTwentySeconds }) => {
       clearTimeout(timerRef.current);
       timerRef.current = setTimeout(() => {
         onTwentySeconds?.();
-      }, 20000);
+      }, time);
     } else {
       // paused, buffering, ended → clear timer
       clearTimeout(timerRef.current);

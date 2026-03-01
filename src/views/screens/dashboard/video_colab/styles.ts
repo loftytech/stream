@@ -193,6 +193,17 @@ export const TodayTrendingVideo = styled.div`
                 object-fit: cover;
                 border-radius: 8px;
             }
+            .lofty-yt-video-player {
+                width: 100%;
+                height: 250px;
+                border-radius: 8px;
+                overflow: hidden;
+                background-color: #ccc;
+
+                iframe {
+                    height: 250px;
+                }
+            }
 
             .content {
                 display: flex;
@@ -314,6 +325,19 @@ export const TrendingVideo = styled.div`
                     height: 100%;
                     object-fit: cover;
                     position: absolute;
+                }
+
+                .lofty-yt-video-player {
+                    width: 100%;
+                    height: 250px;
+                    border-radius: 8px;
+                    overflow: hidden;
+                    background-color: #ccc;
+                    position: absolute;
+
+                    iframe {
+                        height: 250px;
+                    }
                 }
 
                 img.play-circle {
@@ -450,6 +474,20 @@ export const TrendingVideoAlt = styled.div`
                     height: 100%;
                     object-fit: cover;
                     position: absolute;
+                }
+
+
+                .lofty-yt-video-player {
+                    width: 100%;
+                    height: 200px;
+                    border-radius: 8px;
+                    overflow: hidden;
+                    background-color: #ccc;
+                    position: absolute;
+
+                    iframe {
+                        height: 200px;
+                    }
                 }
 
                 img.play-circle {

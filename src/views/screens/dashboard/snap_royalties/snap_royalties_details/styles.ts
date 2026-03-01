@@ -26,6 +26,7 @@ export const RoyaltyDetails = styled.div`
     .img-wrapper {
         padding: 40px 15px;
         border-radius: 18px;
+        /* height: 400px; */
         background-color:  #476160;
         
         img {
@@ -94,7 +95,10 @@ export const RoyaltyDetails = styled.div`
         gap: 10px;
         margin-top: 40px;
 
-        button {
+        a {
+            display: flex;
+            justify-content: center;
+            align-items: center;
             height: 40px;
             border-radius: 8px;
             background-color: transparent;

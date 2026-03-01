@@ -50,7 +50,7 @@ const AudioColab: React.FC = () => {
                     </div>
                     <div className="text-content">
                         <h4>Wallet Balance</h4>
-                        <h2>₦{audioColabModel.audioFiles?.wallet_balance}</h2>
+                        <h2>₦{audioColabModel.audioFiles?.wallet_balance?.toFixed(2)}</h2>
                         {/* <h5>Total Streamed Music : 13 Videos</h5> */}
 
                         <div className="row">
@@ -94,15 +94,15 @@ const AudioColab: React.FC = () => {
                     </div>
 
                     <ul>
-                        {[1,2,3,4,5,6,7,8,9].map((_item, idx) => {
+                        {audioColabModel.audioFiles?.artists?.map((item, idx) => {
                             return <li key={idx}>
-                                <img src="/assets/img/tmp/wizkid-img.png" alt="" />
+                                <img src={import.meta.env.VITE_FILE_URL + item?.image} alt="" />
                                 <div className="content">
                                     <img src="/assets/img/music-icon.png" alt="" />
                                     <div className="info">
-                                        <span>Wizkid</span>
+                                        <span>{item?.name}</span>
                                         <span>Collaborated</span>
-                                        <span>10 music available</span>
+                                        <span>{item?.count} music available</span>
                                     </div>
                                 </div>
                             </li>
@@ -133,14 +133,16 @@ const AudioColab: React.FC = () => {
                     <ForYou>
                         <h4>Trending</h4>
                         <ul className="hide-scrollbar">
-                            {[1,2,3,4,5,6,7,8].map((_item, idx) => {
-                                return <li key={idx}>
-                                <img src="/assets/img/tmp/foryou-img.png" alt="" />
+                            {audioColabModel.isFetchingAudioFiles ? <Loader styleTwo center /> : audioColabModel.audioFiles?.trending_music?.map((item, idx) => {
+                                return <li key={idx} onClick={() => {
+                                    playAudio(import.meta.env.VITE_FILE_URL + item?.path, item?.id, item?.title)
+                                }}>
+                                <img src={import.meta.env.VITE_FILE_URL + item?.image} alt="" />
                                     <div className="row">
                                         <b>Daily Mix </b>
                                         <span>₦1550</span>
                                     </div>
-                                    <p>Jonas Blue, NOTD, David Guetta and more</p>
+                                    <p>{item?.title}</p>
                                 </li>
                             })}
                         </ul>
@@ -150,32 +152,36 @@ const AudioColab: React.FC = () => {
 
                 <Row>
                     <ForYou>
-                        <h4 style={{opacity: 0}}>Just for you</h4>
-                        <ul className="hide-scrollbar">
-                            {[1,2,3,4,5,6,7,8].map((_item, idx) => {
-                                return <li key={idx}>
-                                <img src="/assets/img/tmp/foryou-img.png" alt="" />
+                        <h4>New Releases</h4>
+                        <ul>
+                            {audioColabModel.isFetchingAudioFiles ? <Loader styleTwo center /> : audioColabModel.audioFiles?.new_releases?.map((item, idx) => {
+                                return <li key={idx} onClick={() => {
+                                    playAudio(import.meta.env.VITE_FILE_URL + item?.path, item?.id, item?.title)
+                                }}>
+                                <img src={import.meta.env.VITE_FILE_URL + item?.image} alt="" />
                                     <div className="row">
                                         <b>Daily Mix </b>
                                         <span>₦1550</span>
                                     </div>
-                                    <p>Jonas Blue, NOTD, David Guetta and more</p>
+                                    <p>{item?.title}</p>
                                 </li>
                             })}
                         </ul>
                     </ForYou>
 
                     <ForYou>
-                        <h4>Similarities</h4>
-                        <ul className="hide-scrollbar">
-                            {[1,2,3,4,5,6,7,8].map((_item, idx) => {
-                                return <li key={idx}>
-                                <img src="/assets/img/tmp/foryou-img.png" alt="" />
+                        <h4>Daily mix</h4>
+                        <ul>
+                            {audioColabModel.isFetchingAudioFiles ? <Loader styleTwo center /> : audioColabModel.audioFiles?.daily_mix?.map((item, idx) => {
+                                return <li key={idx} onClick={() => {
+                                    playAudio(import.meta.env.VITE_FILE_URL + item?.path, item?.id, item?.title)
+                                }}>
+                                <img src={import.meta.env.VITE_FILE_URL + item?.image} alt="" />
                                     <div className="row">
                                         <b>Daily Mix </b>
                                         <span>₦1550</span>
                                     </div>
-                                    <p>Jonas Blue, NOTD, David Guetta and more</p>
+                                    <p>{item?.title}</p>
                                 </li>
                             })}
                         </ul>

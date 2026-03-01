@@ -1,15 +1,29 @@
 import { MdMoreVert } from 'react-icons/md'
 import DashboardHeader from '../../../components/dashboardHeader/DashboardHeader'
 import { BalanceContent, BalanceWrapper, Categories, Wrapper, Container, TodayTrendingVideo, TrendingVideo, TrendingVideoAlt } from './styles'
+import { useAppSelector } from '../../../../hooks/hooks'
+import { useEffect } from 'react'
+import useVideoColabModel from './useVideoColabModel'
+import YouTubePlayer from '../../../components/youtube_player/YoutubePlayer'
+import useDashboardModel from '../useDashboardModel'
 
 const VideoColab: React.FC = () => {
+    const profile = useAppSelector(state => state.profile.state)
+    const videoModel = useVideoColabModel()
+    const dashboardModel = useDashboardModel()
+
+    const handleTwentySeconds = (videoId: string) => {
+        dashboardModel.earnVideoReward(videoId)
+        console.log("The video has played for 20 seconds!");
+    }
     
+    useEffect(() => {
+        videoModel.fetchVideoColab()
+    }, [])
 
     return (
         <Wrapper>
-            <DashboardHeader title={"Video Colab"} subTitle="Welcome Jenny Willson!">
-                
-            </DashboardHeader>
+            <DashboardHeader title={"Video Colab"} subTitle={"Welcome " + profile.name} />
 
             <BalanceWrapper>
                 <BalanceContent>
@@ -18,12 +32,12 @@ const VideoColab: React.FC = () => {
                     </div>
                     <div className="text-content">
                         <h4>Wallet Balance</h4>
-                        <h2>₦306,896.92</h2>
-                        <h5>Total Streamed Video : 13 Videos</h5>
+                        <h2>${videoModel?.videoFiles?.wallet_balance}</h2>
+                        {/* <h5>Total Streamed Video : 13 Videos</h5> */}
 
                         <div className="row">
                             <button>Withdraw</button>
-                            <span>Withdrawal Limit : $100</span>
+                            {/* <span>Withdrawal Limit : $100</span> */}
                         </div>
                     </div>
 
@@ -48,18 +62,20 @@ const VideoColab: React.FC = () => {
                     </div>
 
                     <ul className="hide-scrollbar">
-                        {[1,2,3,4,5,6,7,8,9].map((_item, idx) => {
+                        {videoModel.videoFiles?.trending_video?.map((item, idx) => {
                             return <li key={idx}>
-                                <img src="/assets/img/tmp/video-player-img.png" alt="" />
+                                <div className="lofty-yt-video-player">
+                                    {item?.path ? <YouTubePlayer videoId={item?.path} onTwentySeconds={() => handleTwentySeconds(item?.path)} /> : <></>}
+                                </div>
                                 <div className="content">
-                                    <img src="/assets/img/tmp/wizkid-img.png" alt="" />
+                                    <img src={import.meta.env.VITE_FILE_URL + item?.image} alt="" />
                                     <div className="info">
-                                        <h6>Beginner in UI/UX Design</h6>
-                                        <span>Dr Ola Yinka Badmus</span>
+                                        <h6>{item?.title}</h6>
+                                        <span>{item?.name}</span>
                                     </div>
 
                                     <div className="meta">
-                                        <span>₦2550</span>
+                                        <span>$2.75</span>
                                         <MdMoreVert />
                                     </div>
                                 </div>
@@ -75,23 +91,23 @@ const VideoColab: React.FC = () => {
                     </div>
 
                     <ul className="hide-scrollbar">
-                        {[1,2,3,4,5,6,7,8,9].map((_item, idx) => {
+                        {videoModel.videoFiles?.other_video.map((item, idx) => {
                             return <li key={idx}>
                                 <div className="container">
-                                    <img src="/assets/img/tmp/matrix-flyer.png" alt="" />
-                                    <img className="play-circle" src="/assets/img/play-circle-faded.png" alt="" />
+                                    <div className="lofty-yt-video-player">
+                                        {item?.path ? <YouTubePlayer videoId={item?.path} onTwentySeconds={() => handleTwentySeconds(item?.path)} /> : <></>}
+                                    </div>
                                     <div className="content">
-                                        <img src="/assets/img/play-btn-img.png" alt="" />
                                         <div className="info">
-                                            <span>the Matrix</span>
+                                            <span>{item?.title}</span>
                                             <span>Video available</span>
                                         </div>
                                     </div>
                                 </div>
 
                                 <div className="row">
-                                    <h4>Top Gun</h4>
-                                    <b>₦2550</b>
+                                    <h4>{item?.title}</h4>
+                                    <b>$2.75</b>
                                 </div>
                             </li>
                         })}
@@ -104,23 +120,24 @@ const VideoColab: React.FC = () => {
                     </div>
 
                     <ul className="hide-scrollbar">
-                        {[1,2,3,4,5,6,7,8,9].map((_item, idx) => {
+                        {videoModel.videoFiles?.trailers.map((item, idx) => {
                             return <li key={idx}>
                                 <div className="container">
-                                    <img src="/assets/img/tmp/matrix-flyer.png" alt="" />
-                                    <img className="play-circle" src="/assets/img/play-circle-faded.png" alt="" />
+                                    <div className="lofty-yt-video-player">
+                                        {item?.path ? <YouTubePlayer videoId={item?.path} onTwentySeconds={() => handleTwentySeconds(item?.path)} /> : <></>}
+                                    </div>
                                     <div className="content">
                                         <img src="/assets/img/play-btn-img.png" alt="" />
                                         <div className="info">
-                                            <span>the Matrix</span>
+                                            <span>{item?.title}</span>
                                             <span>Video available</span>
                                         </div>
                                     </div>
                                 </div>
 
                                 <div className="row">
-                                    <h4>Top Gun</h4>
-                                    <b>₦2550</b>
+                                    <h4>{item?.title}</h4>
+                                    <b>$2.75</b>
                                 </div>
                             </li>
                         })}

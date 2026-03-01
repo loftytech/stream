@@ -51,7 +51,7 @@ const SnapRoyalties: React.FC = () => {
                     <ul className="hide-scrollbar">
                         {dashboardModel?.snap?.posts.map((item, idx) => {
                             return <li key={idx} onClick={() => {
-                                navigate("/dashboard/snap-royalties/" + item)
+                                navigate("/dashboard/snap-royalties/" + item.id)
                             }}>
                                 <b>{item?.title}</b>
                                 <div className="img-wrapper">
